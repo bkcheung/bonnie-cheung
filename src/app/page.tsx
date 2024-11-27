@@ -9,9 +9,10 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center h-[100vh] w-[100vw]">
       <main className="h-full w-full">
-      {/* <main className="flex flex-col items-center text-3xl m-8"> */}
-      {/* <h1 className="p-4">Hello!</h1>
-        <h2 className="p-4">My name is Bonnie</h2> */}
+        <div className="absolute top-[10%] left-[8%] z-10">
+          <h1 className="text-[5em]">Hello!</h1>
+          <h2 className="text-[3em]">My name is Bonnie</h2>
+        </div>
         <Scene />
       </main>
       <footer className="fixed bottom-4">

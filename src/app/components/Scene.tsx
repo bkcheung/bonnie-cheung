@@ -1,9 +1,8 @@
 'use client'
-
-import { Canvas } from "@react-three/fiber"
 import Model from "./Model"
+import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
-import { useProgress, Html, ScrollControls } from "@react-three/drei"
+import { useProgress, Html, OrbitControls } from "@react-three/drei"
 
 function Loader(){
     const {progress} = useProgress();
@@ -12,12 +11,12 @@ function Loader(){
 
 export default function Scene(){
     return(
-        <Canvas gl={{antialias: true}} dpr={[1, 1.5]} className="relative h-svh">
-            <directionalLight position={[5, 3, 7]} intensity={4} />
+        <Canvas gl={{antialias: true}} dpr={[1, 1.5]} className="bg-white relative h-svh">
+            <directionalLight position={[5, 3, 7]} intensity={3} />
+            <ambientLight />
+            <OrbitControls />
             <Suspense fallback={<Loader/>}>
-                <ScrollControls damping={0.2} pages={4}>
-                    <Model />
-                </ScrollControls>
+               <Model />
             </Suspense>
         </Canvas>
     )

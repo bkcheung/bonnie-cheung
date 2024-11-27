@@ -1,5 +1,4 @@
-import { useAnimations, useGLTF, useScroll } from "@react-three/drei"
-import { useFrame } from "@react-three/fiber";
+import { useAnimations, useGLTF } from "@react-three/drei"
 import { useEffect, useRef } from "react";
 import { Group } from "three";
 
@@ -9,18 +8,16 @@ export default function Model(){
     const group = useRef<Group>(null);
     const {animations, scene} = useGLTF("/planet.glb");
     const {actions} = useAnimations(animations, scene);
-    const scroll = useScroll();
+    // const scroll = useScroll();
 
     useEffect(() => {
-        if(actions["Rotate"]!==null) actions["Rotate"].play().paused = true;
+        const rotation = actions["Rotate"];
+        if(rotation!==null){
+            rotation.play();
+            rotation.timeScale = 0.25;
+        }
     }, [actions])
 
-    useFrame(() => {
-        if(actions["Rotate"]!==null){
-            actions["Rotate"].time = 
-            (actions["Rotate"].getClip().duration * scroll.offset);
-        }
-    })
     return(
         <group ref={group}>
             <primitive  object={scene} scale={[0.02,0.02,0.02]}/>
