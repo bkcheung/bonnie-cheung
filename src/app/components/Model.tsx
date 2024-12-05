@@ -2,12 +2,14 @@ import { useAnimations, useGLTF } from "@react-three/drei"
 import { useEffect, useRef } from "react";
 import { Group } from "three";
 
-useGLTF.preload("/konbini.glb");
+// useGLTF.preload("/planet.glb");
+useGLTF.preload("/imac.glb");
 
 export default function Model(){
     const group = useRef<Group>(null);
-    const {animations, scene} = useGLTF("/konbini.glb");
-    const {actions} = useAnimations(animations, scene);
+    // const {animations, scene} = useGLTF("/planet.glb");
+    const {animations, scene} = useGLTF("/imac.glb");
+    // const {actions} = useAnimations(animations, scene);
 
     // useEffect(() => {
     //     const rotation = actions["Rotate"];
@@ -19,7 +21,7 @@ export default function Model(){
 
     return(
         <group ref={group}>
-            <primitive  object={scene} scale={[0.01,0.01,0.01]}/>
+            <primitive  object={scene} scale={[0.01, 0.01, 0.01]} />    
         </group>
     )
 }

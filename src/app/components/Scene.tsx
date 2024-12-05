@@ -17,6 +17,14 @@ export default function Scene(){
             <OrbitControls />
             <Suspense fallback={<Loader/>}>
                <Model />
+               <Html 
+                position={[-0.65,2.25, 0.51]}
+                className="text-[0.5em]"
+                transform
+                occlude
+               >
+                <div> Hi! I'm Bonnie</div>
+               </Html>
             </Suspense>
         </Canvas>
     )
