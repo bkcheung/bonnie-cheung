@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
 import { useProgress, Html, OrbitControls } from "@react-three/drei"
 
+
 function Loader(){
     const {progress} = useProgress();
     return <Html center>{progress.toFixed(1)}% loaded</Html>
