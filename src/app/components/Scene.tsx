@@ -13,10 +13,24 @@ function Loader(){
 
 export default function Scene(){
     return(
-        <Canvas gl={{antialias: true}} dpr={[1, 1.5]} className="bg-white relative h-svh">
+        <Canvas 
+            gl={{antialias: true}} 
+            dpr={[1, 1.5]} 
+            className="bg-white relative h-svh"
+            camera={{ 
+                position: [-2, 5, 8], // Adjust these values for desired camera position
+                fov: 45
+            }}
+        >
             <directionalLight position={[5, 3, 7]} intensity={3} />
             <ambientLight />
-            <OrbitControls />
+            <OrbitControls 
+                enableZoom={true}
+                enablePan={true}
+                target={[0, 0, 0]}
+                minDistance={5}
+                maxDistance={20}
+            />
             <Suspense fallback={<Loader/>}>
                <Model />
                <Html 
