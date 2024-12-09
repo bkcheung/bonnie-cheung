@@ -11,16 +11,11 @@ const Button = ({ text, position = [0, 0, 0] }: ButtonProps) => {
         position={position} 
         transform 
         style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "5.9em",
-            height: "2em",
             transformStyle: 'preserve-3d',
             WebkitFontSmoothing: 'antialiased',
-            fontSize: "0.5em",
-            color: "white"}}>
-    <button className=" hover:bg-[#5d8dc8]/50 w-full h-full rounded-[1.5em] text-[0.5em]">
+          }}>
+    <button className=" hover:bg-[#5d8dc8]/50 w-[7.4em] h-[2.5em] flex items-center 
+                        justify-center text-[4em] text-white rounded-[1em]">
       {text}
     </button>
     </Html>

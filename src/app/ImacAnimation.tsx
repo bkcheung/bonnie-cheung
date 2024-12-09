@@ -8,13 +8,13 @@ const ImacAnimation = () =>{
     
     useEffect(() => {
       // Set initial camera position (zoomed out)
-      camera.position.set(5, 5, 10)
+      camera.position.set(75, 75, 100)
       
       // Create GSAP animation
       gsap.to(camera.position, {
         x: 0,
-        y: 1.25,
-        z: 4,
+        y: 15,
+        z: 40,
         duration: 1.5,
         ease: "power2.inOut",
         onUpdate: () => {

@@ -21,7 +21,7 @@ export default function Model(){
 
     return(
         <group ref={group}>
-            <primitive  object={scene} scale={[0.01, 0.01, 0.01]} />    
+            <primitive  object={scene} scale={[0.1, 0.1, 0.1]} />    
         </group>
     )
 }

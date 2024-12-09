@@ -23,23 +23,22 @@ export default function Scene(){
             <directionalLight position={[5, 3, 7]} intensity={3} />
             <ambientLight />
             <OrbitControls 
-                target={[0, 1, 0]}
-                minDistance={3}
-                maxDistance={10}
+                target={[0, 10, 0]}
+                minDistance={10}
+                maxDistance={100}
             />
             <ImacAnimation />
             <Suspense fallback={<Loader/>}>
                <Model />
                <Html 
-                position={[-1.35,2.42, 0.51]}
+                position={[-13.25, 24.2, 5.1]}
                 transform
                 occlude
                 style={{
                     transform: 'translate(50%, 50%)',
-                    width: '60px',
                     transformStyle: 'preserve-3d',
                     WebkitFontSmoothing: 'antialiased',
-                    fontSize: "0.5em",
+                    fontSize: "5em",
                     color: "white",
                 }}
                >
@@ -53,15 +52,15 @@ export default function Scene(){
                 />
                </Html>
                <Html 
-                position={[-1.35,1.85, 0.51]}
+                position={[-13.25,18.25, 5.1]}
                 transform
                 occlude
                 style={{
                     transform: 'translate(50%, 50%)',
-                    width: '60px',
+                    width: '600px',
                     transformStyle: 'preserve-3d',
                     WebkitFontSmoothing: 'antialiased',
-                    fontSize: "0.5em",
+                    fontSize: "5em",
                     lineHeight: "1.1", 
                     color: "white",
                 }}
@@ -73,9 +72,9 @@ export default function Scene(){
                     cursor={false}
                 />
                </Html>
-               <Button text="About" position={[0.92, 2.26, 0.51]}/>
-               <Button text="Experience" position={[0.92, 1.72, 0.51]}/>
-               <Button text="Contact" position={[0.92, 1.18, 0.51]}/>
+               <Button text="About" position={[9.2, 22.6, 5.1]}/>
+               <Button text="Experience" position={[9.2, 17.2, 5.1]}/>
+               <Button text="Contact" position={[9.2, 11.8, 5.1]}/>
             </Suspense>
         </Canvas>
     )
