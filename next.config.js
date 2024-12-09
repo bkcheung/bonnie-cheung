@@ -4,11 +4,11 @@ const nextConfig = {
   transpilePackages: ['three'],
   webpack: (config) => {
     config.externals.push({
-      'sharp': 'commonjs sharp',
-      'canvas': 'commonjs canvas'
+      sharp: 'commonjs sharp',
+      canvas: 'commonjs canvas',
     });
     return config;
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
