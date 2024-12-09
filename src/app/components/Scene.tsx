@@ -1,7 +1,7 @@
 'use client'
 import Model from "./Model"
-import { Canvas, useThree } from "@react-three/fiber"
-import { Suspense, useEffect } from "react"
+import { Canvas } from "@react-three/fiber"
+import { Suspense } from "react"
 import { useProgress, Html, OrbitControls } from "@react-three/drei"
 import { TypeAnimation } from 'react-type-animation';
 import ImacAnimation from "../ImacAnimation"
@@ -13,7 +13,6 @@ function Loader(){
 }
 
 export default function Scene(){
-
     return(
         <Canvas 
             gl={{antialias: true}} 
