@@ -1,5 +1,5 @@
 import { Html, useGLTF } from '@react-three/drei';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { Group } from 'three';
 
@@ -10,7 +10,16 @@ useGLTF.preload('/desk.glb');
 function Desk() {
   const group = useRef<Group>(null);
   const { scene } = useGLTF('/desk.glb');
+  const [showButtons, setShowButtons] = useState(false);
   const textZ = 6.8;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowButtons(true);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   function aboutClick() {
     console.log('About button clicked!');
@@ -40,15 +49,15 @@ function Desk() {
           fontSize: '5em',
           textAlign: 'center',
           color: 'white',
-          width: '10em'
+          width: '10em',
         }}
       >
         <TypeAnimation
-          sequence={['Hi!', 1000, "Hi! I'm Bonnie"]}
+          sequence={[750,'Hi!', 750, "Hi! I'm Bonnie"]}
           wrapper="h1"
           speed={75}
           cursor={false}
-          preRenderFirstString={true}
+          // preRenderFirstString={true}
           omitDeletionAnimation={true}
         />
       </Html>
@@ -67,27 +76,34 @@ function Desk() {
         }}
       >
         <TypeAnimation
-          sequence={['', 2000, 'I love creating beautiful user experiences!']}
+          sequence={['', 2500, 'I love creating beautiful user experiences!']}
           wrapper="h2"
           speed={75}
           cursor={false}
         />
       </Html>
-      <Button
-        text="About"
-        position={[9.2, 24.1, textZ]}
-        buttonClick={aboutClick}
-      />
-      <Button
-        text="Experience"
-        position={[9.2, 18.7, textZ]}
-        buttonClick={experienceClick}
-      />
-      <Button
-        text="Contact"
-        position={[9.2, 13.3, textZ]}
-        buttonClick={contactClick}
-      />
+      {showButtons && (
+        <>
+          <Button
+            text="About"
+            position={[9.2, 24.1, textZ]}
+            buttonClick={aboutClick}
+            className="animate-fade-in"
+          />
+          <Button
+            text="Experience"
+            position={[9.2, 18.7, textZ]}
+            buttonClick={experienceClick}
+            className="animate-fade-in"
+          />
+          <Button
+            text="Contact"
+            position={[9.2, 13.3, textZ]}
+            buttonClick={contactClick}
+            className="animate-fade-in"
+          />
+        </>
+      )}
     </>
   );
 }
