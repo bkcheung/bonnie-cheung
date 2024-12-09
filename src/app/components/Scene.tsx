@@ -15,6 +15,7 @@ function Loader() {
 }
 
 export default function Scene() {
+  const textZ = 6.8;
   function aboutClick() {
     console.log('About button clicked!');
   }
@@ -40,7 +41,7 @@ export default function Scene() {
       <Suspense fallback={<Loader />}>
         <Model />
         <Html
-          position={[-13.25, 24.2, 5.1]}
+          position={[-13.25, 25.8, textZ]}
           transform
           occlude
           style={{
@@ -61,7 +62,7 @@ export default function Scene() {
           />
         </Html>
         <Html
-          position={[-13.25, 18.25, 5.1]}
+          position={[-13.25, 19.75, textZ]}
           transform
           occlude
           style={{
@@ -81,9 +82,9 @@ export default function Scene() {
             cursor={false}
           />
         </Html>
-        <Button text="About" position={[9.2, 22.6, 5.1]} buttonClick={aboutClick} />
-        <Button text="Experience" position={[9.2, 17.2, 5.1]} buttonClick={experienceClick} />
-        <Button text="Contact" position={[9.2, 11.8, 5.1]} buttonClick={contactClick} />
+        <Button text="About" position={[9.2, 24.1, textZ]} buttonClick={aboutClick} />
+        <Button text="Experience" position={[9.2, 18.7, textZ]} buttonClick={experienceClick} />
+        <Button text="Contact" position={[9.2, 13.3, textZ]} buttonClick={contactClick} />
       </Suspense>
     </Canvas>
   );
