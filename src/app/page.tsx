@@ -1,4 +1,4 @@
-import Scene from "./components/Scene"
+import Scene from './components/Scene';
 
 export default function Home() {
   const year = String(new Date().getUTCFullYear());

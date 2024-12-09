@@ -15,6 +15,18 @@ function Loader() {
 }
 
 export default function Scene() {
+  function aboutClick() {
+    console.log('About button clicked!');
+  }
+
+  function experienceClick() {
+    console.log('Experience button clicked!');
+  }
+
+  function contactClick() {
+    console.log('Contact button clicked!');
+  }
+
   return (
     <Canvas
       gl={{ antialias: true }}
@@ -69,9 +81,9 @@ export default function Scene() {
             cursor={false}
           />
         </Html>
-        <Button text="About" position={[9.2, 22.6, 5.1]} />
-        <Button text="Experience" position={[9.2, 17.2, 5.1]} />
-        <Button text="Contact" position={[9.2, 11.8, 5.1]} />
+        <Button text="About" position={[9.2, 22.6, 5.1]} buttonClick={aboutClick} />
+        <Button text="Experience" position={[9.2, 17.2, 5.1]} buttonClick={experienceClick} />
+        <Button text="Contact" position={[9.2, 11.8, 5.1]} buttonClick={contactClick} />
       </Suspense>
     </Canvas>
   );
