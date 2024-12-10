@@ -1,4 +1,6 @@
-import { Html, useGLTF } from '@react-three/drei';
+import { Html, OrbitControls, useGLTF } from '@react-three/drei';
+import { useThree } from '@react-three/fiber';
+import gsap from 'gsap';
 import { useEffect, useRef, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { Group } from 'three';
@@ -13,6 +15,8 @@ function Desk() {
   const { scene } = useGLTF('/imac.glb');
   const [showButtons, setShowButtons] = useState(false);
   const textZ = 6.8;
+  const { camera } = useThree();
+  const [orbitEnabled, setOrbitEnabled] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,7 +27,17 @@ function Desk() {
   }, []);
 
   function aboutClick() {
-    console.log('About button clicked!');
+    setOrbitEnabled(false);
+    gsap.to(camera.position, {
+      x: -150,
+      y: 30,
+      z: 0,
+      duration: 2,
+      ease: 'power2.inOut',
+      onUpdate: () => {
+        camera.lookAt(-200, 30, 0);
+      },
+    });
   }
 
   function experienceClick() {
@@ -36,6 +50,12 @@ function Desk() {
 
   return (
     <>
+      <OrbitControls
+        enabled={orbitEnabled}
+        target={[0, 10, 0]}
+        minDistance={10}
+        maxDistance={150}
+      />
       <group ref={group}>
         <primitive object={scene} scale={[1, 1, 1]} />
       </group>
@@ -49,7 +69,6 @@ function Desk() {
           WebkitFontSmoothing: 'antialiased',
           fontSize: '5em',
           textAlign: 'center',
-          // color: 'white',
           width: '10em',
         }}
       >

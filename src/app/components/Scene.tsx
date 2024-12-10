@@ -1,10 +1,11 @@
 'use client';
 
-import { OrbitControls, useProgress } from '@react-three/drei';
+import { useProgress } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useEffect, useState } from 'react';
 
 import ImacAnimation from '../ImacAnimation';
+import Frame from './Frame';
 import { Background, Desk } from './Model';
 
 function Loader() {
@@ -25,15 +26,24 @@ function Loader() {
 }
 
 function ThreeCanvas() {
+  const about = <div>About</div>;
   return (
     <Canvas gl={{ antialias: true }} dpr={[1, 1.5]} className="relative h-svh">
-      <directionalLight position={[-7, 10, 7]} intensity={2} />
-      <directionalLight position={[-7, 10, -7]} intensity={2} />
+      <directionalLight position={[-10, 30, 10]} intensity={1} />
+      <directionalLight position={[-10, 30, -10]} intensity={1} />
+      <directionalLight position={[10, 30, 10]} intensity={1} />
+      <directionalLight position={[10, 30, -10]} intensity={1} />
       <ambientLight />
-      <OrbitControls target={[0, 10, 0]} minDistance={10} maxDistance={150} />
       <ImacAnimation />
       <Desk />
       <Background />
+      <Frame
+        position={[-250, 42, 0]}
+        rotation={[0, Math.PI / 2, 0]}
+        width={200}
+        height={100}
+        children={about}
+      ></Frame>
     </Canvas>
   );
 }
