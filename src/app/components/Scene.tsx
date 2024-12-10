@@ -5,7 +5,7 @@ import { Canvas } from '@react-three/fiber';
 import { Suspense, useEffect, useState } from 'react';
 
 import ImacAnimation from '../ImacAnimation';
-import Desk from './Model';
+import { Background, Desk } from './Model';
 
 function Loader() {
   const { progress } = useProgress();
@@ -15,7 +15,7 @@ function Loader() {
       <div className="text-lg text-gray-600">Loading...</div>
       <div className="w-64 h-3 bg-gray-200 rounded-full">
         <div
-          className="h-full bg-blue-500 rounded-full transition-all duration-300 ease-in-out"
+          className="h-full bg-lightgreen rounded-full transition-all duration-300 ease-in-out"
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -26,16 +26,14 @@ function Loader() {
 
 function ThreeCanvas() {
   return (
-    <Canvas
-      gl={{ antialias: true }}
-      dpr={[1, 1.5]}
-      className="relative h-svh bg-white"
-    >
-      <directionalLight position={[5, 3, 7]} intensity={3} />
+    <Canvas gl={{ antialias: true }} dpr={[1, 1.5]} className="relative h-svh">
+      <directionalLight position={[-7, 10, 7]} intensity={2} />
+      <directionalLight position={[-7, 10, -7]} intensity={2} />
       <ambientLight />
-      <OrbitControls target={[0, 10, 0]} minDistance={10} maxDistance={100} />
+      <OrbitControls target={[0, 10, 0]} minDistance={10} maxDistance={150} />
       <ImacAnimation />
       <Desk />
+      <Background />
     </Canvas>
   );
 }

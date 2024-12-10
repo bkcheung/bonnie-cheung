@@ -5,18 +5,19 @@ import { Group } from 'three';
 
 import Button from './Button';
 
-useGLTF.preload('/desk.glb');
+useGLTF.preload('/imac.glb');
+useGLTF.preload('/gallery.glb');
 
 function Desk() {
   const group = useRef<Group>(null);
-  const { scene } = useGLTF('/desk.glb');
+  const { scene } = useGLTF('/imac.glb');
   const [showButtons, setShowButtons] = useState(false);
   const textZ = 6.8;
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowButtons(true);
-    }, 4000);
+    }, 4300);
 
     return () => clearTimeout(timer);
   }, []);
@@ -48,16 +49,15 @@ function Desk() {
           WebkitFontSmoothing: 'antialiased',
           fontSize: '5em',
           textAlign: 'center',
-          color: 'white',
+          // color: 'white',
           width: '10em',
         }}
       >
         <TypeAnimation
-          sequence={[750,'Hi!', 750, "Hi! I'm Bonnie"]}
+          sequence={[750, 'Hi!', 750, "Hi! I'm Bonnie"]}
           wrapper="h1"
-          speed={75}
+          speed={65}
           cursor={false}
-          // preRenderFirstString={true}
           omitDeletionAnimation={true}
         />
       </Html>
@@ -72,13 +72,12 @@ function Desk() {
           WebkitFontSmoothing: 'antialiased',
           fontSize: '4.5em',
           textAlign: 'center',
-          color: 'white',
         }}
       >
         <TypeAnimation
-          sequence={['', 2500, 'I love creating beautiful user experiences!']}
+          sequence={['', 2600, 'I enjoy creating beautiful user experiences!']}
           wrapper="h2"
-          speed={75}
+          speed={70}
           cursor={false}
         />
       </Html>
@@ -86,7 +85,7 @@ function Desk() {
         <>
           <Button
             text="About"
-            position={[9.2, 24.1, textZ]}
+            position={[9.2, 24.15, textZ]}
             buttonClick={aboutClick}
             className="animate-fade-in"
           />
@@ -98,7 +97,7 @@ function Desk() {
           />
           <Button
             text="Contact"
-            position={[9.2, 13.3, textZ]}
+            position={[9.2, 13.35, textZ]}
             buttonClick={contactClick}
             className="animate-fade-in"
           />
@@ -108,4 +107,14 @@ function Desk() {
   );
 }
 
-export default Desk;
+function Background() {
+  const group = useRef<Group>(null);
+  const { scene } = useGLTF('/gallery.glb');
+  return (
+    <group ref={group} position={[0, -45, 0]}>
+      <primitive object={scene} scale={[60, 60, 60]} />
+    </group>
+  );
+}
+
+export { Desk, Background };

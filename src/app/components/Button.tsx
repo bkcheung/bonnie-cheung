@@ -7,7 +7,12 @@ interface ButtonProps {
   className?: string;
 }
 
-const Button = ({ text, position = [0, 0, 0], buttonClick, className }: ButtonProps) => {
+const Button = ({
+  text,
+  position = [0, 0, 0],
+  buttonClick,
+  className,
+}: ButtonProps) => {
   return (
     <Html
       position={position}
@@ -19,7 +24,10 @@ const Button = ({ text, position = [0, 0, 0], buttonClick, className }: ButtonPr
       }}
     >
       <button
-        className={"flex h-[2.5em] w-[7.4em] items-center justify-center rounded-[1em] text-[4em] text-white hover:bg-[#5d8dc8]/50 "+ className}
+        className={
+          'flex h-[2.5em] w-[7.35em] items-center justify-center rounded-[1.1em] text-[4em] hover:bg-white/30 ' +
+          className
+        }
         onClick={buttonClick}
       >
         {text}
