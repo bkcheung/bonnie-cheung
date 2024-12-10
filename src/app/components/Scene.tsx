@@ -27,6 +27,9 @@ function Loader() {
 
 function ThreeCanvas() {
   const about = <div>About</div>;
+  const exp = <div>Experience</div>;
+  const contact = <div>Contact</div>;
+
   return (
     <Canvas gl={{ antialias: true }} dpr={[1, 1.5]} className="relative h-svh">
       <directionalLight position={[-10, 30, 10]} intensity={1} />
@@ -43,6 +46,20 @@ function ThreeCanvas() {
         width={200}
         height={100}
         children={about}
+      ></Frame>
+      <Frame
+        position={[0, 42, -250]}
+        rotation={[0, 0, 0]}
+        width={200}
+        height={100}
+        children={exp}
+      ></Frame>
+      <Frame
+        position={[250, 42, 0]}
+        rotation={[0, -Math.PI / 2, 0]}
+        width={200}
+        height={100}
+        children={contact}
       ></Frame>
     </Canvas>
   );
