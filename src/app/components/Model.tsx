@@ -14,38 +14,45 @@ function Desk() {
   const group = useRef<Group>(null);
   const { scene } = useGLTF('/imac.glb');
   const [showButtons, setShowButtons] = useState(false);
-  const textZ = 6.8;
-  const { camera } = useThree();
   const [orbitEnabled, setOrbitEnabled] = useState(true);
+  const { camera } = useThree();
+
+  const textZ = 6.8;
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowButtons(true);
-    }, 4300);
+    }, 3600);
 
     return () => clearTimeout(timer);
   }, []);
 
-  function aboutClick() {
-    setOrbitEnabled(false);
+  const moveCamera = ([x1, y1, z1, x2, y2, z2]: number[]) => {
     gsap.to(camera.position, {
-      x: -150,
-      y: 30,
-      z: 0,
-      duration: 2,
+      x: x1,
+      y: y1,
+      z: z1,
+      duration: 1.5,
       ease: 'power2.inOut',
       onUpdate: () => {
-        camera.lookAt(-200, 30, 0);
-      },
+      camera.lookAt(x2, y2, z2);
+    },
     });
+  };
+
+  function aboutClick() {
+    setOrbitEnabled(false);
+    moveCamera([-150, 30, 0, -200, 30, 0]);
   }
 
   function experienceClick() {
-    console.log('Experience button clicked!');
+    setOrbitEnabled(false);
+    moveCamera([0, 30, -150, 0, 30, -200]);
   }
 
   function contactClick() {
-    console.log('Contact button clicked!');
+    setOrbitEnabled(false);
+    moveCamera([150, 30, 0, 200, 30, 0]);
   }
 
   return (
@@ -75,7 +82,7 @@ function Desk() {
         <TypeAnimation
           sequence={[750, 'Hi!', 750, "Hi! I'm Bonnie"]}
           wrapper="h1"
-          speed={65}
+          speed={75}
           cursor={false}
           omitDeletionAnimation={true}
         />
@@ -94,9 +101,9 @@ function Desk() {
         }}
       >
         <TypeAnimation
-          sequence={['', 2600, 'I enjoy creating beautiful user experiences!']}
+          sequence={['', 2200, 'I enjoy creating beautiful user experiences!']}
           wrapper="h2"
-          speed={70}
+          speed={75}
           cursor={false}
         />
       </Html>
