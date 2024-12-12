@@ -44,14 +44,14 @@ function Desk() {
   const contact = <div>Contact</div>;
 
   return (
-    <>
-      <OrbitControls
-        enabled={orbitEnabled}
-        target={[0, 10, 0]}
-        minDistance={10}
-        maxDistance={150}
-      />
+    <group>
       <group ref={group}>
+        <OrbitControls
+          enabled={orbitEnabled}
+          target={[0, 10, 0]}
+          minDistance={10}
+          maxDistance={150}
+        />
         <primitive object={scene} scale={[1, 1, 1]} />
       </group>
       <Html
@@ -129,31 +129,34 @@ function Desk() {
       <Frame
         position={[-250, 42, 0]}
         rotation={[0, Math.PI / 2, 0]}
-        children={about}
         handleFrameClick={() => {
           setOrbitEnabled(false);
           moveCamera(aboutView, camera);
         }}
-      ></Frame>
+      >
+        {about}
+      </Frame>
       <Frame
         position={[0, 42, -250]}
         rotation={[0, 0, 0]}
-        children={exp}
         handleFrameClick={() => {
           setOrbitEnabled(false);
           moveCamera(expView, camera);
         }}
-      ></Frame>
+      >
+        {exp}
+      </Frame>
       <Frame
         position={[250, 42, 0]}
         rotation={[0, -Math.PI / 2, 0]}
-        children={contact}
         handleFrameClick={() => {
           setOrbitEnabled(false);
           moveCamera(contactView, camera);
         }}
-      ></Frame>
-    </>
+      >
+        {contact}
+      </Frame>
+    </group>
   );
 }
 

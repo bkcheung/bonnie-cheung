@@ -3,11 +3,11 @@ import { Box, Html } from '@react-three/drei';
 interface FrameProps {
   position: [number, number, number];
   rotation: [number, number, number];
-  children: React.ReactNode;
   handleFrameClick: () => void;
+  children?: React.ReactNode;
 }
 
-function Frame({ position, rotation, children, handleFrameClick }: FrameProps) {
+function Frame({ position, rotation, handleFrameClick, children }: FrameProps) {
   return (
     <group rotation={rotation} position={position} onClick={handleFrameClick}>
       <group>
