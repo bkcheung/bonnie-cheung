@@ -6,6 +6,8 @@ import { TypeAnimation } from 'react-type-animation';
 import { Group } from 'three';
 
 import Button from './Button';
+import Frame from './Frame';
+import moveCamera from '../moveCamera';
 
 useGLTF.preload('/imac.glb');
 useGLTF.preload('/gallery.glb');
@@ -18,6 +20,10 @@ function Desk() {
   const { camera } = useThree();
 
   const textZ = 6.8;
+  const homeView = [0, 15, 40, 0, 10, 0];
+  const aboutView = [-150, 30, 0, -200, 30, 0];
+  const expView = [0, 30, -150, 0, 30, -200];
+  const contactView = [150, 30, 0, 200, 30, 0];
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -27,33 +33,38 @@ function Desk() {
     return () => clearTimeout(timer);
   }, []);
 
-  const moveCamera = ([x1, y1, z1, x2, y2, z2]: number[]) => {
-    gsap.to(camera.position, {
-      x: x1,
-      y: y1,
-      z: z1,
-      duration: 1.5,
-      ease: 'power2.inOut',
-      onUpdate: () => {
-      camera.lookAt(x2, y2, z2);
-    },
-    });
-  };
-
+  //Button clicks on iMac
   function aboutClick() {
     setOrbitEnabled(false);
-    moveCamera([-150, 30, 0, -200, 30, 0]);
+    moveCamera(aboutView, camera);
   }
 
   function experienceClick() {
     setOrbitEnabled(false);
-    moveCamera([0, 30, -150, 0, 30, -200]);
+    moveCamera(expView, camera);
   }
 
   function contactClick() {
     setOrbitEnabled(false);
-    moveCamera([150, 30, 0, 200, 30, 0]);
+    moveCamera(contactView, camera);
   }
+
+  //Frame clicks
+  const handleFrameClick = ([x1, y1, z1, x2, y2, z2]: number[]) => {
+    setOrbitEnabled(false);
+    moveCamera([x1, y1, z1, x2, y2, z2], camera);
+  };
+
+  const handleBackgroundClick = () => {
+    console.log('background clicked');
+    setOrbitEnabled(true);
+    moveCamera(homeView, camera);
+  };
+
+  //sections
+  const about = <div>About</div>;
+  const exp = <div>Experience</div>;
+  const contact = <div>Contact</div>;
 
   return (
     <>
@@ -129,6 +140,25 @@ function Desk() {
           />
         </>
       )}
+      <Frame
+        position={[-250, 42, 0]}
+        rotation={[0, Math.PI / 2, 0]}
+        children={about}
+        handleFrameClick={() => handleFrameClick(aboutView)}
+      ></Frame>
+      <Frame
+        position={[0, 42, -250]}
+        rotation={[0, 0, 0]}
+
+        children={exp}
+        handleFrameClick={() => handleFrameClick(expView)}
+      ></Frame>
+      <Frame
+        position={[250, 42, 0]}
+        rotation={[0, -Math.PI / 2, 0]}
+        children={contact}
+        handleFrameClick={() => handleFrameClick(contactView)}
+      ></Frame>
     </>
   );
 }
