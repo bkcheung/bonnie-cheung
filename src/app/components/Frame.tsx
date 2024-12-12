@@ -7,12 +7,7 @@ interface FrameProps {
   handleFrameClick: () => void;
 }
 
-function Frame({
-  position,
-  rotation,
-  children,
-  handleFrameClick
-}: FrameProps) {
+function Frame({ position, rotation, children, handleFrameClick }: FrameProps) {
   return (
     <group rotation={rotation} position={position} onClick={handleFrameClick}>
       <group>

@@ -1,13 +1,12 @@
 import { Html, OrbitControls, useGLTF } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
-import gsap from 'gsap';
 import { useEffect, useRef, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { Group } from 'three';
 
+import moveCamera from '../moveCamera';
 import Button from './Button';
 import Frame from './Frame';
-import moveCamera from '../moveCamera';
 
 useGLTF.preload('/imac.glb');
 useGLTF.preload('/gallery.glb');
@@ -32,28 +31,6 @@ function Desk() {
 
     return () => clearTimeout(timer);
   }, []);
-
-  //Button clicks on iMac
-  function aboutClick() {
-    setOrbitEnabled(false);
-    moveCamera(aboutView, camera);
-  }
-
-  function experienceClick() {
-    setOrbitEnabled(false);
-    moveCamera(expView, camera);
-  }
-
-  function contactClick() {
-    setOrbitEnabled(false);
-    moveCamera(contactView, camera);
-  }
-
-  //Frame clicks
-  const handleFrameClick = ([x1, y1, z1, x2, y2, z2]: number[]) => {
-    setOrbitEnabled(false);
-    moveCamera([x1, y1, z1, x2, y2, z2], camera);
-  };
 
   const handleBackgroundClick = () => {
     console.log('background clicked');
@@ -123,19 +100,28 @@ function Desk() {
           <Button
             text="About"
             position={[9.2, 24.15, textZ]}
-            buttonClick={aboutClick}
+            buttonClick={() => {
+              setOrbitEnabled(false);
+              moveCamera(aboutView, camera);
+            }}
             className="animate-fade-in"
           />
           <Button
             text="Experience"
             position={[9.2, 18.7, textZ]}
-            buttonClick={experienceClick}
+            buttonClick={() => {
+              setOrbitEnabled(false);
+              moveCamera(expView, camera);
+            }}
             className="animate-fade-in"
           />
           <Button
             text="Contact"
             position={[9.2, 13.35, textZ]}
-            buttonClick={contactClick}
+            buttonClick={() => {
+              setOrbitEnabled(false);
+              moveCamera(contactView, camera);
+            }}
             className="animate-fade-in"
           />
         </>
@@ -144,20 +130,28 @@ function Desk() {
         position={[-250, 42, 0]}
         rotation={[0, Math.PI / 2, 0]}
         children={about}
-        handleFrameClick={() => handleFrameClick(aboutView)}
+        handleFrameClick={() => {
+          setOrbitEnabled(false);
+          moveCamera(aboutView, camera);
+        }}
       ></Frame>
       <Frame
         position={[0, 42, -250]}
         rotation={[0, 0, 0]}
-
         children={exp}
-        handleFrameClick={() => handleFrameClick(expView)}
+        handleFrameClick={() => {
+          setOrbitEnabled(false);
+          moveCamera(expView, camera);
+        }}
       ></Frame>
       <Frame
         position={[250, 42, 0]}
         rotation={[0, -Math.PI / 2, 0]}
         children={contact}
-        handleFrameClick={() => handleFrameClick(contactView)}
+        handleFrameClick={() => {
+          setOrbitEnabled(false);
+          moveCamera(contactView, camera);
+        }}
       ></Frame>
     </>
   );
