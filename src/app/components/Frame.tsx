@@ -3,29 +3,27 @@ import { Box, Html } from '@react-three/drei';
 interface FrameProps {
   position: [number, number, number];
   rotation: [number, number, number];
-  width?: number;
-  height?: number;
-  children?: React.ReactNode;
+  children: React.ReactNode;
+  handleFrameClick: () => void;
 }
 
 function Frame({
   position,
   rotation,
-  width = 20,
-  height = 30,
   children,
+  handleFrameClick
 }: FrameProps) {
   return (
-    <group rotation={rotation} position={position}>
+    <group rotation={rotation} position={position} onClick={handleFrameClick}>
       <group>
-        <Box args={[width, height, 0.5]} position={[0, 0, 0]}>
+        <Box args={[200, 100, 0.5]} position={[0, 0, 0]}>
           <meshStandardMaterial
             color="white"
             opacity={0.75}
             transparent={true}
           />
         </Box>
-        <Box args={[width + 10, height + 10, 1]} position={[0, 0, -0.5]}>
+        <Box args={[210, 110, 1]} position={[0, 0, -0.5]}>
           <meshStandardMaterial
             color="black"
             opacity={0.75}
