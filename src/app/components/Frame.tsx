@@ -26,16 +26,14 @@ function Frame({ position, rotation, handleFrameClick, children }: FrameProps) {
           />
         </Box>
         <Html
+          as="div"
+          className="frame-content"
           transform
-          occlude
+          occlude="blending"
           position={[0, 0, 0.5]}
+          zIndexRange={[0, -10]}
           style={{
-            padding: '20px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '15em',
+            fontSize: '15rem',
           }}
         >
           {children}
