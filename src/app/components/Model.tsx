@@ -5,6 +5,7 @@ import { TypeAnimation } from 'react-type-animation';
 import { Group } from 'three';
 
 import moveCamera from '../moveCamera';
+import AboutContent from './AboutContent';
 import Button from './Button';
 import Frame from './Frame';
 
@@ -39,7 +40,7 @@ function Desk() {
   };
 
   //sections
-  const about = <div>About</div>;
+  // const about = <div>About</div>;
   const exp = <div>Experience</div>;
   const contact = <div>Contact</div>;
 
@@ -134,7 +135,7 @@ function Desk() {
           moveCamera(aboutView, camera);
         }}
       >
-        {about}
+        <AboutContent />
       </Frame>
       <Frame
         position={[0, 42, -250]}
