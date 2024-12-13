@@ -1,8 +1,16 @@
 import Skillbar from './Skillbar';
+import Image from 'next/image';
 
 const AboutContent = () => {
   return (
-    <div className="flex w-[500rem] h-[250rem] bg-[url('/wheat-field.jpg')] bg-cover bg-center">
+    <div className="flex w-[500rem] h-[250rem]">
+        <Image
+          src="/wheat-field.jpg"
+          alt="wheat field with cypresses by van gogh"
+          width={500}
+          height={300}
+          className="absolute w-full h-full -z-10"
+        />
       <div
         aria-label="about-left"
         className="flex flex-col w-1/2 justify-center bg-white/65 p-[20rem]"
