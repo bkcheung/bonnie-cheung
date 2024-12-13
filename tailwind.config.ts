@@ -12,7 +12,8 @@ export default {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         lightgreen: '#A4C8B1FF',
-        darkgreen: '#324230',
+        mediumgreen: '#8EB8A6FF',
+        darkgreen: '#4F7D6CFF',
       },
       keyframes: {
         'fade-in': {
