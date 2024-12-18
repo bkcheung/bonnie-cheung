@@ -1,20 +1,28 @@
 'use client';
 
+import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useEffect, useState } from 'react';
 
-import ImacAnimation from '../ImacAnimation';
+import Background from './Background';
 import Lighting from './Lighting';
 import Loader from './Loader';
-import { Background, Desk } from './Model';
+import Desk from './Model';
 
 function ThreeCanvas() {
+  const [orbitEnabled, setOrbitEnabled] = useState(true);
+
   return (
     <Canvas gl={{ antialias: true }} dpr={[1, 1.5]} className="relative h-svh">
       <Lighting />
-      <ImacAnimation />
-      <Desk />
-      <Background />
+      <OrbitControls
+        enabled={orbitEnabled}
+        target={[0, 10, 0]}
+        minDistance={10}
+        maxDistance={150}
+      />
+      <Desk setOrbitEnabled={setOrbitEnabled} />
+      <Background setOrbitEnabled={setOrbitEnabled} />
     </Canvas>
   );
 }

@@ -3,7 +3,7 @@ import { Html } from '@react-three/drei';
 interface ButtonProps {
   text: string;
   position?: [number, number, number];
-  buttonClick?: () => void;
+  buttonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
 }
 

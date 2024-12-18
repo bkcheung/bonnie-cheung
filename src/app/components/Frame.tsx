@@ -1,9 +1,10 @@
 import { Box, Html } from '@react-three/drei';
+import { ThreeEvent } from '@react-three/fiber';
 
 interface FrameProps {
   position: [number, number, number];
   rotation: [number, number, number];
-  handleFrameClick: () => void;
+  handleFrameClick: (event: ThreeEvent<MouseEvent>) => void;
   children?: React.ReactNode;
 }
 
