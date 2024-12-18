@@ -22,7 +22,7 @@ function ThreeCanvas() {
         maxDistance={150}
       />
       <Desk setOrbitEnabled={setOrbitEnabled} />
-      <Background setOrbitEnabled={setOrbitEnabled} />
+      <Background orbitEnabled={orbitEnabled} setOrbitEnabled={setOrbitEnabled} />
     </Canvas>
   );
 }
