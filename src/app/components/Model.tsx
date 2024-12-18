@@ -1,6 +1,6 @@
-import { Html, OrbitControls, useGLTF } from '@react-three/drei';
-import { useThree } from '@react-three/fiber';
-import { useEffect, useRef, useState } from 'react';
+import { Html, useGLTF } from '@react-three/drei';
+import { ThreeEvent, useThree } from '@react-three/fiber';
+import React, { useEffect, useRef, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { Group } from 'three';
 
@@ -12,47 +12,37 @@ import Frame from './Frame';
 useGLTF.preload('/imac.glb');
 useGLTF.preload('/gallery.glb');
 
-function Desk() {
+interface DeskProps {
+  setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Desk({ setOrbitEnabled }: DeskProps) {
   const group = useRef<Group>(null);
   const { scene } = useGLTF('/imac.glb');
   const [showButtons, setShowButtons] = useState(false);
-  const [orbitEnabled, setOrbitEnabled] = useState(true);
   const { camera } = useThree();
 
   const textZ = 6.8;
-  const homeView = [0, 15, 40, 0, 10, 0];
   const aboutView = [-150, 30, 0, -200, 30, 0];
   const expView = [0, 30, -150, 0, 30, -200];
   const contactView = [150, 30, 0, 200, 30, 0];
 
   useEffect(() => {
+    const homeView = [0, 15, 40, 0, 10, 0];
+
+    camera.position.set(30, 50, 50);
+    moveCamera(homeView, camera);
+
     const timer = setTimeout(() => {
       setShowButtons(true);
     }, 3600);
 
     return () => clearTimeout(timer);
-  }, []);
-
-  const handleBackgroundClick = () => {
-    console.log('background clicked');
-    setOrbitEnabled(true);
-    moveCamera(homeView, camera);
-  };
-
-  //sections
-  // const about = <div>About</div>;
-  const exp = <div>Experience</div>;
-  const contact = <div>Contact</div>;
+  }, [camera]);
 
   return (
     <group>
       <group ref={group}>
-        <OrbitControls
-          enabled={orbitEnabled}
-          target={[0, 10, 0]}
-          minDistance={10}
-          maxDistance={150}
-        />
         <primitive object={scene} scale={[1, 1, 1]} />
       </group>
       <Html
@@ -101,7 +91,8 @@ function Desk() {
           <Button
             text="About"
             position={[9.2, 24.15, textZ]}
-            buttonClick={() => {
+            buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.stopPropagation();
               setOrbitEnabled(false);
               moveCamera(aboutView, camera);
             }}
@@ -110,7 +101,8 @@ function Desk() {
           <Button
             text="Experience"
             position={[9.2, 18.7, textZ]}
-            buttonClick={() => {
+            buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.stopPropagation();
               setOrbitEnabled(false);
               moveCamera(expView, camera);
             }}
@@ -119,7 +111,8 @@ function Desk() {
           <Button
             text="Contact"
             position={[9.2, 13.35, textZ]}
-            buttonClick={() => {
+            buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.stopPropagation();
               setOrbitEnabled(false);
               moveCamera(contactView, camera);
             }}
@@ -130,7 +123,8 @@ function Desk() {
       <Frame
         position={[-250, 42, 0]}
         rotation={[0, Math.PI / 2, 0]}
-        handleFrameClick={() => {
+        handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
+          e.stopPropagation();
           setOrbitEnabled(false);
           moveCamera(aboutView, camera);
         }}
@@ -140,35 +134,25 @@ function Desk() {
       <Frame
         position={[0, 42, -250]}
         rotation={[0, 0, 0]}
-        handleFrameClick={() => {
+        handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
+          e.stopPropagation();
           setOrbitEnabled(false);
           moveCamera(expView, camera);
         }}
       >
-        {exp}
+        <div>Experience</div>
       </Frame>
       <Frame
         position={[250, 42, 0]}
         rotation={[0, -Math.PI / 2, 0]}
-        handleFrameClick={() => {
+        handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
+          e.stopPropagation();
           setOrbitEnabled(false);
           moveCamera(contactView, camera);
         }}
       >
-        {contact}
+        <div>Contact</div>
       </Frame>
     </group>
   );
 }
-
-function Background() {
-  const group = useRef<Group>(null);
-  const { scene } = useGLTF('/gallery.glb');
-  return (
-    <group ref={group} position={[0, -45, 0]}>
-      <primitive object={scene} scale={[60, 60, 60]} />
-    </group>
-  );
-}
-
-export { Desk, Background };
