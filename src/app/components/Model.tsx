@@ -1,9 +1,9 @@
 import { Html, useGLTF } from '@react-three/drei';
 import { ThreeEvent, useThree } from '@react-three/fiber';
+import gsap from 'gsap';
 import React, { useEffect, useRef, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { Group } from 'three';
-import gsap from 'gsap';
 
 import moveCamera from '../moveCamera';
 import AboutContent from './AboutContent';
@@ -102,9 +102,9 @@ export default function Desk({ setOrbitEnabled }: DeskProps) {
                 duration: 0.6,
                 ease: 'ease-in-out',
               });
-              setTimeout(() => {              
+              setTimeout(() => {
                 moveCamera(aboutView, camera);
-              }, 400)
+              }, 400);
             }}
             className="animate-fade-in"
           />
@@ -131,9 +131,9 @@ export default function Desk({ setOrbitEnabled }: DeskProps) {
                 duration: 0.6,
                 ease: 'ease-in-out',
               });
-              setTimeout(() => {              
+              setTimeout(() => {
                 moveCamera(contactView, camera);
-              }, 400)
+              }, 400);
             }}
             className="animate-fade-in"
           />
