@@ -1,5 +1,6 @@
 import Image from 'next/image';
 
+import Project from './Project';
 import Skillbar from './Skillbar';
 
 const AboutContent = () => {
@@ -61,18 +62,21 @@ const AboutContent = () => {
   );
 };
 
-const PortfolioContent= () => {    
+const PortfolioContent = () => {
   return (
-      <div className="flex flex-col w-[500rem] h-[250rem] p-80">
-          <h1 className="text-[20rem]">Portfolio</h1>
-          <h2 className="text-[12rem]">Some things I've worked on</h2>
-          <div className="flex justify-between items-center h-3/4 w-full">
-              <h3>Project 1</h3>
-              <h3>Project 2</h3>
-              <h3>Project 3</h3>
-          </div>
+    <div className="flex flex-col w-[500rem] h-[250rem] p-60 bg-beige">
+      <h1 className="text-[20rem]">Portfolio</h1>
+      <h2 className="text-[10rem]">Some things I've worked on:</h2>
+      <div className="flex justify-between items-center h-3/4 w-full my-40">
+        <Project
+          title="Bean & Brew"
+          description="A dynamic Next.js store with responsive design, server-side rendering, & parallax effects for immersive user experience."
+          image="/bean-brew.png"
+          tags={['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'API', 'Jest']}
+        />
       </div>
-  )
-}   
+    </div>
+  );
+};
 
-export {AboutContent, PortfolioContent};
+export { AboutContent, PortfolioContent };

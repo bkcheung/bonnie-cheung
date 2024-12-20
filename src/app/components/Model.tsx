@@ -6,8 +6,8 @@ import { TypeAnimation } from 'react-type-animation';
 import { Group } from 'three';
 
 import moveCamera from '../moveCamera';
-import {AboutContent, PortfolioContent} from './Content';
 import Button from './Button';
+import { AboutContent, PortfolioContent } from './Content';
 import Frame from './Frame';
 
 useGLTF.preload('/imac.glb');
