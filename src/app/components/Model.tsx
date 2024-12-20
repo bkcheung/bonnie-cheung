@@ -14,10 +14,11 @@ useGLTF.preload('/imac.glb');
 useGLTF.preload('/gallery.glb');
 
 interface DeskProps {
+  orbitEnabled: boolean;
   setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Desk({ setOrbitEnabled }: DeskProps) {
+export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
   const group = useRef<Group>(null);
   const { scene } = useGLTF('/imac.glb');
   const [showButtons, setShowButtons] = useState(false);
@@ -44,7 +45,13 @@ export default function Desk({ setOrbitEnabled }: DeskProps) {
   return (
     <group>
       <group ref={group}>
-        <primitive object={scene} scale={[1, 1, 1]} />
+        <primitive
+          object={scene}
+          scale={[1, 1, 1]}
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            e.stopPropagation();
+          }}
+        />
       </group>
       <Html
         position={[-16.5, 25.8, textZ]}
@@ -142,6 +149,7 @@ export default function Desk({ setOrbitEnabled }: DeskProps) {
       <Frame
         position={[-250, 42, 0]}
         rotation={[0, Math.PI / 2, 0]}
+        clickEnabled={orbitEnabled}
         handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
           e.stopPropagation();
           setOrbitEnabled(false);
@@ -153,6 +161,7 @@ export default function Desk({ setOrbitEnabled }: DeskProps) {
       <Frame
         position={[0, 42, -250]}
         rotation={[0, 0, 0]}
+        clickEnabled={orbitEnabled}
         handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
           e.stopPropagation();
           setOrbitEnabled(false);
@@ -164,6 +173,7 @@ export default function Desk({ setOrbitEnabled }: DeskProps) {
       <Frame
         position={[250, 42, 0]}
         rotation={[0, -Math.PI / 2, 0]}
+        clickEnabled={orbitEnabled}
         handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
           e.stopPropagation();
           setOrbitEnabled(false);

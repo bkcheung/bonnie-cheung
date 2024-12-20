@@ -4,11 +4,20 @@ import { ThreeEvent } from '@react-three/fiber';
 interface FrameProps {
   position: [number, number, number];
   rotation: [number, number, number];
+  clickEnabled: boolean;
   handleFrameClick: (event: ThreeEvent<MouseEvent>) => void;
   children?: React.ReactNode;
 }
 
-function Frame({ position, rotation, handleFrameClick, children }: FrameProps) {
+function Frame({
+  position,
+  rotation,
+  clickEnabled,
+  handleFrameClick,
+  children,
+}: FrameProps) {
+  let zIndexRange = [0, -10];
+  if (!clickEnabled) zIndexRange = [10, 0];
   return (
     <group rotation={rotation} position={position} onClick={handleFrameClick}>
       <group>
@@ -32,7 +41,7 @@ function Frame({ position, rotation, handleFrameClick, children }: FrameProps) {
           transform
           occlude="blending"
           position={[0, 0, 0.5]}
-          zIndexRange={[0, -10]}
+          zIndexRange={zIndexRange}
           style={{
             fontSize: '15rem',
           }}

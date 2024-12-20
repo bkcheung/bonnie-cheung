@@ -1,4 +1,7 @@
+import { Html } from '@react-three/drei';
 import Image from 'next/image';
+
+import Button from './Button';
 
 interface ProjectProps {
   title: string;
@@ -14,7 +17,7 @@ export default function Project({
   image,
   tags,
   codeUrl,
-  liveUrl
+  liveUrl,
 }: ProjectProps) {
   const tagList = tags.map((tag, index) => {
     const bg = [
@@ -40,11 +43,11 @@ export default function Project({
     <section className="flex flex-col bg-white/50 p-40 rounded-[10rem] w-[32%] h-full shadow-xl justify-between">
       <section>
         <Image
-            src={image}
-            alt={title}
-            width={400}
-            height={300}
-            className="w-full "
+          src={image}
+          alt={title}
+          width={400}
+          height={300}
+          className="w-full "
         />
         <div className="flex my-20 ">{tagList}</div>
       </section>
@@ -53,18 +56,25 @@ export default function Project({
         <p className="text-[7.5rem]">{description}</p>
       </section>
       <section className="flex justify-between text-[7.5rem]">
-        <a
-          href={codeUrl}
+        <button
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            e.stopPropagation();
+            window.open(codeUrl, '_blank')?.focus();
+          }}
           className="bg-green-200 mt-8 mr-16 py-8 px-16 text-[7.5rem] rounded-[3rem] shadow-xl"
         >
           Code
-        </a>
-        <a
-          href={liveUrl}
+        </button>
+        <button
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            e.stopPropagation();
+            window.open(liveUrl, '_blank')?.focus();
+          }}
           className="bg-green-300 w-full mt-8 py-8 px-16 text-[7.5rem] rounded-[3rem] shadow-xl text-center"
         >
           Live View
-        </a>
+        </button>
+        {/* <button onClick={()=>console.log('button')}>Test</button> */}
       </section>
     </section>
   );

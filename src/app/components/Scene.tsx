@@ -23,7 +23,7 @@ function ThreeCanvas() {
         minPolarAngle={Math.PI / 4}
         maxPolarAngle={Math.PI / 2}
       />
-      <Desk setOrbitEnabled={setOrbitEnabled} />
+      <Desk orbitEnabled={orbitEnabled} setOrbitEnabled={setOrbitEnabled} />
       <Background
         orbitEnabled={orbitEnabled}
         setOrbitEnabled={setOrbitEnabled}

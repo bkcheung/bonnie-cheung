@@ -1,3 +1,4 @@
+import { Html } from '@react-three/drei';
 import Image from 'next/image';
 
 import Project from './Project';
@@ -87,28 +88,18 @@ const PortfolioContent = () => {
           title="Memory Card Game"
           description="An interactive game featuring dynamic card generation using an external API"
           image="/memory-card.png"
-          tags={[
-            'React',
-            'TypeScript',
-            'Tailwind CSS',
-            'API',
-            'Vitest',
-          ]}
+          tags={['React', 'TypeScript', 'Tailwind CSS', 'API', 'Vitest']}
           codeUrl="https://github.com/bkcheung/Memory-Card-Game"
           liveUrl="https://ac-memo-game.vercel.app"
-          />
-          <Project
-            title = "CV Builder"
-            description = "Features real-time updates with user-input and PDF export capability"
-            image = "/cv-builder.png"
-            tags={[
-              'React',
-              'TypeScript',
-              'Tailwind CSS',
-            ]}
-            codeUrl = "https://github.com/bkcheung/CV-Builder"
-            liveUrl = "https://bkcheung.github.io/CV-Builder"
-            />
+        />
+        <Project
+          title="CV Builder"
+          description="Features real-time updates with user-input and PDF export capability"
+          image="/cv-builder.png"
+          tags={['React', 'TypeScript', 'Tailwind CSS']}
+          codeUrl="https://github.com/bkcheung/CV-Builder"
+          liveUrl="https://bkcheung.github.io/CV-Builder"
+        />
       </div>
     </div>
   );
