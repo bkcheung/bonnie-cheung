@@ -64,13 +64,13 @@ const AboutContent = () => {
 
 const PortfolioContent = () => {
   return (
-    <div className="flex flex-col w-[500rem] h-[250rem] p-60 bg-beige">
+    <div className="flex flex-col w-[500rem] h-[250rem] py-40 px-60 bg-beige">
       <h1 className="text-[20rem]">Portfolio</h1>
-      <h2 className="text-[10rem]">Some things I've worked on:</h2>
-      <div className="flex justify-between items-center h-3/4 w-full my-40">
+      {/* <h2 className="text-[10rem]">Some things I've worked on:</h2> */}
+      <div className="flex justify-between items-center h-[85%] w-full my-40">
         <Project
           title="Bean & Brew"
-          description="A dynamic Next.js store with responsive design, server-side rendering, & parallax effects for immersive user experience."
+          description="A dynamic store with responsive design, server-side rendering, & parallax effects"
           image="/bean-brew.png"
           tags={[
             'Next.js',
@@ -80,7 +80,35 @@ const PortfolioContent = () => {
             'API',
             'Jest',
           ]}
+          codeUrl="https://github.com/bkcheung/bean-and-brew"
+          liveUrl="https://bean-and-brew-pi.vercel.app"
         />
+        <Project
+          title="Memory Card Game"
+          description="An interactive game featuring dynamic card generation using an external API"
+          image="/memory-card.png"
+          tags={[
+            'React',
+            'TypeScript',
+            'Tailwind CSS',
+            'API',
+            'Vitest',
+          ]}
+          codeUrl="https://github.com/bkcheung/Memory-Card-Game"
+          liveUrl="https://ac-memo-game.vercel.app"
+          />
+          <Project
+            title = "CV Builder"
+            description = "Features real-time updates with user-input and PDF export capability"
+            image = "/cv-builder.png"
+            tags={[
+              'React',
+              'TypeScript',
+              'Tailwind CSS',
+            ]}
+            codeUrl = "https://github.com/bkcheung/CV-Builder"
+            liveUrl = "https://bkcheung.github.io/CV-Builder"
+            />
       </div>
     </div>
   );
