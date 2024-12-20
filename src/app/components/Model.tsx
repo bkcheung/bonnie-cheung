@@ -6,7 +6,7 @@ import { TypeAnimation } from 'react-type-animation';
 import { Group } from 'three';
 
 import moveCamera from '../moveCamera';
-import AboutContent from './AboutContent';
+import {AboutContent, PortfolioContent} from './Content';
 import Button from './Button';
 import Frame from './Frame';
 
@@ -159,7 +159,7 @@ export default function Desk({ setOrbitEnabled }: DeskProps) {
           moveCamera(expView, camera);
         }}
       >
-        <div>Experience</div>
+        <PortfolioContent />
       </Frame>
       <Frame
         position={[250, 42, 0]}

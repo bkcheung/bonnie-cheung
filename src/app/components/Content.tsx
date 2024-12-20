@@ -61,4 +61,18 @@ const AboutContent = () => {
   );
 };
 
-export default AboutContent;
+const PortfolioContent= () => {    
+  return (
+      <div className="flex flex-col w-[500rem] h-[250rem] p-80">
+          <h1 className="text-[20rem]">Portfolio</h1>
+          <h2 className="text-[12rem]">Some things I've worked on</h2>
+          <div className="flex justify-between items-center h-3/4 w-full">
+              <h3>Project 1</h3>
+              <h3>Project 2</h3>
+              <h3>Project 3</h3>
+          </div>
+      </div>
+  )
+}   
+
+export {AboutContent, PortfolioContent};
