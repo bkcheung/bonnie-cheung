@@ -13,14 +13,14 @@ export default {
         foreground: 'var(--foreground)',
         'green-100': '#E8F3EB',
         'green-200': '#C2E8D6',
-        'green-300': '#A4C8B1', 
+        'green-300': '#A4C8B1',
         'green-400': '#8EB8A6',
         'green-500': '#6DAA8F',
         'green-600': '#5A8F7A',
         'green-700': '#4F7D6C',
         'green-800': '#3F6D59',
         'green-900': '#2F5B45',
-        beige: '#D9D9D9'
+        beige: '#D9D9D9',
       },
       keyframes: {
         'fade-in': {

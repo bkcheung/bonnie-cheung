@@ -72,7 +72,14 @@ const PortfolioContent = () => {
           title="Bean & Brew"
           description="A dynamic Next.js store with responsive design, server-side rendering, & parallax effects for immersive user experience."
           image="/bean-brew.png"
-          tags={['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'API', 'Jest']}
+          tags={[
+            'Next.js',
+            'React',
+            'TypeScript',
+            'Tailwind CSS',
+            'API',
+            'Jest',
+          ]}
         />
       </div>
     </div>
