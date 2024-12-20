@@ -14,6 +14,7 @@ export default {
         lightgreen: '#A4C8B1FF',
         mediumgreen: '#8EB8A6FF',
         darkgreen: '#4F7D6CFF',
+        beige: '#D9D9D9'
       },
       keyframes: {
         'fade-in': {
