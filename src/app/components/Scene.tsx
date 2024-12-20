@@ -20,6 +20,8 @@ function ThreeCanvas() {
         target={[0, 10, 0]}
         minDistance={10}
         maxDistance={150}
+        minPolarAngle={Math.PI / 4}
+        maxPolarAngle={Math.PI / 2}
       />
       <Desk setOrbitEnabled={setOrbitEnabled} />
       <Background
