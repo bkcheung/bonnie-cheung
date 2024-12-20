@@ -116,7 +116,7 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
             className="animate-fade-in"
           />
           <Button
-            text="Experience"
+            text="Portfolio"
             position={[9.2, 18.7, textZ]}
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
