@@ -8,7 +8,7 @@ export default function Loader() {
       <div className="text-lg text-gray-600">Loading...</div>
       <div className="w-64 h-3 bg-gray-200 rounded-full">
         <div
-          className="h-full bg-lightgreen rounded-full transition-all duration-300 ease-in-out"
+          className="h-full bg-green-500 rounded-full transition-all duration-300 ease-in-out"
           style={{ width: `${progress}%` }}
         />
       </div>

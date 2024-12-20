@@ -9,7 +9,7 @@ const Skillbar = ({ skill, percent }: SkillbarProps) => {
       {skill}
       <div className="w-[50%] h-[5rem] bg-gray-200 rounded-full border-[1px] border-gray-600">
         <div
-          className="h-full bg-mediumgreen rounded-full transition-all duration-300 ease-in-out"
+          className="h-full bg-green-500 rounded-full transition-all duration-300 ease-in-out"
           style={{ width: `${percent}%`, height: '100%' }}
         />
       </div>
