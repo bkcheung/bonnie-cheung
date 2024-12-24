@@ -1,6 +1,6 @@
-import { Html } from '@react-three/drei';
 import Image from 'next/image';
 
+import ContactForm from './ContactForm';
 import Project from './Project';
 import Skillbar from './Skillbar';
 
@@ -105,4 +105,22 @@ const PortfolioContent = () => {
   );
 };
 
-export { AboutContent, PortfolioContent };
+const ContactContent = () => {
+  return (
+    <div className="flex flex-col w-[500rem] h-[250rem] p-40 bg-beige">
+      <h1 className="text-[20rem]">Contact</h1>
+      <div className="flex justify-between items-center">
+        <Image
+          src="/cat.png"
+          alt="laptop with cat"
+          width={300}
+          height={200}
+          className="w-[40%] h-auto"
+        />
+        <ContactForm />
+      </div>
+    </div>
+  );
+};
+
+export { AboutContent, PortfolioContent, ContactContent };

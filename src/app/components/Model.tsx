@@ -7,7 +7,7 @@ import { Group } from 'three';
 
 import moveCamera from '../moveCamera';
 import Button from './Button';
-import { AboutContent, PortfolioContent } from './Content';
+import { AboutContent, ContactContent, PortfolioContent } from './Content';
 import Frame from './Frame';
 
 useGLTF.preload('/imac.glb');
@@ -180,7 +180,7 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
           moveCamera(contactView, camera);
         }}
       >
-        <div>Contact</div>
+        <ContactContent />
       </Frame>
     </group>
   );
