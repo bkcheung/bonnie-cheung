@@ -2,12 +2,12 @@ export default function ContactForm() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    formData.append('access_key', `${process.env.API_KEY}`);
-
+    formData.append('access_key', `${process.env.NEXT_PUBLIC_KEY}`);
+    
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
-    const response = await fetch('https://api.web3forms.com/submit', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
