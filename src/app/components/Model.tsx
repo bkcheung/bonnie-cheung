@@ -108,9 +108,9 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
               setOrbitEnabled(false);
               gsap.to(camera.position, {
                 x: 0,
-                y: 15,
+                y: 50,
                 z: 75,
-                duration: 0.6,
+                duration: 0.3,
                 ease: 'ease-in-out',
               });
               setTimeout(() => {
@@ -125,7 +125,16 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               setOrbitEnabled(false);
-              moveCamera(expView, camera);
+              gsap.to(camera.position, {
+                x: 0,
+                y: 50,
+                z: 75,
+                duration: 0.3,
+                ease: 'ease-in-out',
+              });
+              setTimeout(() => {
+                moveCamera(expView, camera);
+              }, 400);
             }}
             className="animate-fade-in"
           />
@@ -137,9 +146,9 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
               setOrbitEnabled(false);
               gsap.to(camera.position, {
                 x: 0,
-                y: 15,
+                y: 50,
                 z: 75,
-                duration: 0.6,
+                duration: 0.3,
                 ease: 'ease-in-out',
               });
               setTimeout(() => {
