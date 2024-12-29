@@ -75,20 +75,24 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
         />
       </Html>
       <Html
-        position={[-15.5, 20.5, textZ]}
+        position={[-14, 20.5, textZ]}
         transform
         occlude
         style={{
           transform: 'translate(50%, 50%)',
-          width: '10em',
+          width: '10.5em',
           transformStyle: 'preserve-3d',
           WebkitFontSmoothing: 'antialiased',
-          fontSize: '4.5em',
+          fontSize: '3.5em',
           textAlign: 'center',
         }}
       >
         <TypeAnimation
-          sequence={['', 2200, 'I enjoy creating beautiful user experiences!']}
+          sequence={[
+            '',
+            2200,
+            'Welcome to my website! Scroll to zoom and click + drag to rotate the view.',
+          ]}
           wrapper="h2"
           speed={75}
           cursor={false}
