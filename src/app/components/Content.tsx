@@ -6,7 +6,7 @@ import Skillbar from './Skillbar';
 
 const AboutContent = () => {
   return (
-    <div className="flex w-[500rem] h-[250rem]">
+    <div className="flex w-full h-full">
       <Image
         src="/wheat-field.jpg"
         alt="wheat field with cypresses by van gogh"
@@ -67,7 +67,6 @@ const PortfolioContent = () => {
   return (
     <div className="flex flex-col w-[500rem] h-[250rem] py-40 px-60 bg-beige">
       <h1 className="text-[20rem]">Portfolio</h1>
-      {/* <h2 className="text-[10rem]">Some things I've worked on:</h2> */}
       <div className="flex justify-between items-center h-[85%] w-full my-40">
         <Project
           title="Bean & Brew"
