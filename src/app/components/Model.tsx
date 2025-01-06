@@ -5,11 +5,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { Group } from 'three';
 
+import { frameData, homeView } from '../data';
 import moveCamera from '../moveCamera';
-import Button from './Button';
+import { Button } from './Buttons';
 import { AboutContent, ContactContent, PortfolioContent } from './Content';
 import Frame from './Frame';
-import {frameData, homeView} from '../data';
 
 useGLTF.preload('/imac.glb');
 useGLTF.preload('/gallery.glb');
@@ -159,35 +159,38 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
         </>
       )}
       <Frame
-        frame='About'
+        frame="About"
         clickEnabled={orbitEnabled}
         handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
           e.stopPropagation();
           setOrbitEnabled(false);
           moveCamera(aboutView, camera);
         }}
+        camera={camera}
       >
         <AboutContent />
       </Frame>
       <Frame
-        frame='Portfolio'
+        frame="Portfolio"
         clickEnabled={orbitEnabled}
         handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
           e.stopPropagation();
           setOrbitEnabled(false);
           moveCamera(expView, camera);
         }}
+        camera={camera}
       >
         <PortfolioContent />
       </Frame>
       <Frame
-        frame='Contact'
+        frame="Contact"
         clickEnabled={orbitEnabled}
         handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
           e.stopPropagation();
           setOrbitEnabled(false);
           moveCamera(contactView, camera);
         }}
+        camera={camera}
       >
         <ContactContent />
       </Frame>

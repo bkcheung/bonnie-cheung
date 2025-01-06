@@ -1,29 +1,40 @@
 import { Box, Html } from '@react-three/drei';
 import { ThreeEvent } from '@react-three/fiber';
-import { useState } from 'react';
-import Button from './Button';
-import {frameData} from '../data';
+import { useEffect, useState } from 'react';
+
+import { frameData, homeView } from '../data';
+import moveCamera from '../moveCamera';
+import { NavButton } from './Buttons';
 
 interface FrameProps {
   frame: string;
   clickEnabled: boolean;
   handleFrameClick: (event: ThreeEvent<MouseEvent>) => void;
   children?: React.ReactNode;
+  camera: any;
 }
 function Frame({
   frame,
   clickEnabled,
   handleFrameClick,
   children,
+  camera,
 }: FrameProps) {
   const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    document.body.style.cursor = hovered ? 'pointer' : 'auto';
+    return () => {
+      document.body.style.cursor = 'auto';
+    };
+  }, [hovered]);
 
   let zIndexRange = [0, -10];
   if (!clickEnabled) zIndexRange = [10, 0];
 
   let position, rotation, left, right;
 
-  switch(frame) {
+  switch (frame) {
     case 'About':
       position = frameData[0].position;
       rotation = frameData[0].rotation;
@@ -51,40 +62,57 @@ function Frame({
   }
 
   return (
-      <group rotation={rotation} position={position} onClick={handleFrameClick}>
-        <group
-          onPointerEnter={() => setHovered(true)}
-          onPointerLeave={() => setHovered(false)}
+    <group rotation={rotation} position={position} onClick={handleFrameClick}>
+      <group
+        onPointerEnter={() => setHovered(true)}
+        onPointerLeave={() => setHovered(false)}
+      >
+        <Box args={[200, 100, 0.5]} position={[0, 0, 0]}>
+          <meshStandardMaterial
+            color="white"
+            opacity={0.75}
+            transparent={true}
+          />
+        </Box>
+        <Box args={[210, 110, 1]} position={[0, 0, -0.5]}>
+          <meshStandardMaterial
+            color={hovered && clickEnabled ? '#636E67' : 'black'}
+            opacity={0.75}
+            transparent={true}
+          />
+        </Box>
+        <Html
+          as="div"
+          className="frame-content w-[500rem] h-[250rem] text-[15rem]"
+          transform
+          occlude="blending"
+          position={[0, 0, 0.5]}
+          zIndexRange={zIndexRange}
         >
-          <Box args={[200, 100, 0.5]} position={[0, 0, 0]}>
-            <meshStandardMaterial
-              color="white"
-              opacity={0.75}
-              transparent={true}
-            />
-          </Box>
-          <Box args={[210, 110, 1]} position={[0, 0, -0.5]}>
-            <meshStandardMaterial
-              color={hovered && clickEnabled ? '#636E67' : 'black'}
-              opacity={0.75}
-              transparent={true}
-            />
-          </Box>
-          <Html
-            as="div"
-            className="frame-content w-[500rem] h-[250rem] text-[15rem]"
-            transform
-            occlude="blending"
-            position={[0, 0, 0.5]}
-            zIndexRange={zIndexRange}
-          >
-            {children}
-          </Html>
-        </group>
-        {/* <Button text={left} position={[-70,-70,1]} buttonClick={()=>console.log('button')} className='animate-fade-in' />  */}
-        {/* <Button text={right} position={[70,-70,1]} buttonClick={()=>console.log('button')} className='animate-fade-in' />  */}
+          {children}
+        </Html>
       </group>
-    
+      {!clickEnabled && (
+        <>
+          <NavButton
+            text={frameData[left].frame}
+            direction="left"
+            buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.stopPropagation();
+              moveCamera(frameData[left].view, camera);
+            }}
+          />
+          <NavButton
+            text={frameData[right].frame}
+            direction="right"
+            buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.stopPropagation();
+              moveCamera(frameData[right].view, camera);
+            }}
+          />
+        </>
+      )}
+    </group>
   );
 }
 

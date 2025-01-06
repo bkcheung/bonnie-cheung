@@ -1,7 +1,7 @@
 import { Html } from '@react-three/drei';
 import Image from 'next/image';
 
-import Button from './Button';
+import Button from './Buttons';
 
 interface ProjectProps {
   title: string;
