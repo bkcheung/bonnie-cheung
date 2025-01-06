@@ -23,7 +23,7 @@ function Frame({
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
-    document.body.style.cursor = hovered ? 'pointer' : 'auto';
+    document.body.style.cursor = (hovered && clickEnabled) ? 'pointer' : 'auto';
     return () => {
       document.body.style.cursor = 'auto';
     };
