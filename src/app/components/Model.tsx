@@ -9,6 +9,7 @@ import moveCamera from '../moveCamera';
 import Button from './Button';
 import { AboutContent, ContactContent, PortfolioContent } from './Content';
 import Frame from './Frame';
+import {frameData, homeView} from '../data';
 
 useGLTF.preload('/imac.glb');
 useGLTF.preload('/gallery.glb');
@@ -25,13 +26,11 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
   const { camera } = useThree();
 
   const textZ = 6.8;
-  const aboutView = [-150, 30, 0, -200, 30, 0];
-  const expView = [0, 30, -150, 0, 30, -200];
-  const contactView = [150, 30, 0, 200, 30, 0];
+  const aboutView = frameData[0].view;
+  const expView = frameData[1].view;
+  const contactView = frameData[2].view;
 
   useEffect(() => {
-    const homeView = [0, 15, 40, 0, 10, 0];
-
     camera.position.set(30, 50, 50);
     moveCamera(homeView, camera);
 
@@ -160,8 +159,7 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
         </>
       )}
       <Frame
-        position={[-250, 42, 0]}
-        rotation={[0, Math.PI / 2, 0]}
+        frame='About'
         clickEnabled={orbitEnabled}
         handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
           e.stopPropagation();
@@ -172,8 +170,7 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
         <AboutContent />
       </Frame>
       <Frame
-        position={[0, 42, -250]}
-        rotation={[0, 0, 0]}
+        frame='Portfolio'
         clickEnabled={orbitEnabled}
         handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
           e.stopPropagation();
@@ -184,8 +181,7 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
         <PortfolioContent />
       </Frame>
       <Frame
-        position={[250, 42, 0]}
-        rotation={[0, -Math.PI / 2, 0]}
+        frame='Contact'
         clickEnabled={orbitEnabled}
         handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
           e.stopPropagation();

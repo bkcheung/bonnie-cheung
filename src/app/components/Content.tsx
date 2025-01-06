@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import ContactForm from './ContactForm';
-import Project from './Project';
-import Skillbar from './Skillbar';
+import ContactForm from '../components/ContactForm';
+import Project from '../components/Project';
+import Skillbar from '../components/Skillbar';
 
 const AboutContent = () => {
   return (
