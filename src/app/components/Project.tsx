@@ -1,7 +1,4 @@
-import { Html } from '@react-three/drei';
 import Image from 'next/image';
-
-import Button from './Buttons';
 
 interface ProjectProps {
   title: string;
@@ -74,7 +71,6 @@ export default function Project({
         >
           Live View
         </button>
-        {/* <button onClick={()=>console.log('button')}>Test</button> */}
       </section>
     </section>
   );
