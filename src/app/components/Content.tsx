@@ -6,7 +6,7 @@ import Skillbar from '../components/Skillbar';
 
 const AboutContent = () => {
   return (
-    <div className="flex w-full h-full">
+    <div title="About" className="flex w-full h-full">
       <Image
         src="/wheat-field.jpg"
         alt="wheat field with cypresses by van gogh"
@@ -16,12 +16,12 @@ const AboutContent = () => {
       />
       <div
         aria-label="about-left"
-        className="flex flex-col w-1/2 justify-center bg-white/65 p-[20rem]"
+        className="flex flex-col w-1/2 justify-center bg-white/65 p-80"
       >
         <h1 className="text-[20rem]">Bonnie Cheung</h1>
         <h2 className="text-[10rem]">
           About:
-          <ul className="list-disc ml-[10rem] text-[7.5rem]">
+          <ul className="list-disc ml-40 text-[7.5rem]">
             <li>
               Since an early age, I have loved building (& unbuilding) things;
               sorry mom!
@@ -44,18 +44,18 @@ const AboutContent = () => {
       </div>
       <div
         aria-label="about-right"
-        className="flex flex-col w-1/2 text-[10rem] justify-end items-end p-[20rem] pb-0"
+        className="flex flex-col w-1/2 text-[10rem] justify-end items-end p-80 pb-0"
       >
         <div
           aria-label="skills"
-          className="bg-white/75 p-[10rem] rounded-[10rem] w-[65%]"
+          className="bg-white/75 p-40 rounded-[10rem] w-[65%]"
         >
           <Skillbar skill="HTML & CSS" percent={90} />
           <Skillbar skill="Javascript" percent={80} />
           <Skillbar skill="Typescript" percent={75} />
           <Skillbar skill="React" percent={70} />
         </div>
-        <h4 className="text-[5rem] text-right my-[5rem]">
+        <h4 className="text-[6rem] text-white text-right my-20">
           Wheat Field with Cypresses - Vincent Van Gogh
         </h4>
       </div>
@@ -65,7 +65,7 @@ const AboutContent = () => {
 
 const PortfolioContent = () => {
   return (
-    <div className="flex flex-col w-[500rem] h-[250rem] py-40 px-60 bg-beige">
+    <div title="Portfolio" className="flex flex-col w-[500rem] h-[250rem] py-40 px-60 bg-beige">
       <h1 className="text-[20rem]">Portfolio</h1>
       <div className="flex justify-between items-center h-[85%] w-full my-40">
         <Project
@@ -106,7 +106,7 @@ const PortfolioContent = () => {
 
 const ContactContent = () => {
   return (
-    <div className="flex w-[500rem] h-[250rem]">
+    <div title="Contact" className="flex w-[500rem] h-[250rem]">
       <Image
         src="/cliff-walk.jpg"
         alt="Cliff Walk at Pourville by Claude Monet"
@@ -114,11 +114,11 @@ const ContactContent = () => {
         height={250}
         className="absolute w-full h-full -z-10"
       />
-      <div className="flex flex-col w-1/2 justify-evenly p-40">
-        <h1 className="text-[20rem]">Contact</h1>
+      <div className="flex flex-col w-[55%] justify-evenly p-80">
+        <h1 className="text-[20rem] text-white mb-40">Contact</h1>
         <ContactForm />
       </div>
-      <h4 className="text-[5rem] text-white ml-auto mr-20 mt-auto mb-20">
+      <h4 className="text-[6rem] text-white ml-auto mr-20 mt-auto mb-20">
         Cliff Walk at Pourville - Claude Monet
       </h4>
     </div>

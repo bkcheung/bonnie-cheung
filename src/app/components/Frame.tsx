@@ -83,7 +83,7 @@ function Frame({
         </Box>
         <Html
           as="div"
-          className="frame-content w-[500rem] h-[250rem] text-[15rem]"
+          className="w-[500rem] h-[250rem] text-[15rem]"
           transform
           occlude="blending"
           position={[0, 0, 0.5]}
@@ -102,6 +102,13 @@ function Frame({
               moveCamera(frameData[left].view, camera);
             }}
           />
+          <Html
+            as='div'
+            transform
+            position={[0, -70, 1]}
+          >
+            <div title='Home' className='w-[400rem] h-[65rem] hover:cursor-pointer'/>
+          </Html>
           <NavButton
             text={frameData[right].frame}
             direction="right"
