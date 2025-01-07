@@ -27,9 +27,15 @@ export default {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        'fade-in-delay': {
+          '0%': { opacity: '0' },
+          '70%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
       },
       animation: {
         'fade-in': 'fade-in 0.5s ease-out forwards',
+        'fade-in-long': 'fade-in-delay 2.5s ease-out forwards',
       },
     },
   },
