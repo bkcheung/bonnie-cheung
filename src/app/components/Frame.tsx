@@ -23,11 +23,11 @@ function Frame({
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
-    document.body.style.cursor = (hovered && clickEnabled) ? 'pointer' : 'auto';
+    document.body.style.cursor = hovered && clickEnabled ? 'pointer' : 'auto';
     return () => {
       document.body.style.cursor = 'auto';
     };
-  }, [hovered]);
+  }, [hovered, clickEnabled]);
 
   let zIndexRange = [0, -10];
   if (!clickEnabled) zIndexRange = [10, 0];
