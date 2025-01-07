@@ -7,7 +7,6 @@ const moveCamera = (
   transitionDuration: number,
   delay: number = 0
 ) => {
-  console.log(camera.rotation);
   gsap.to(camera.position, {
     x: 0,
     y: 50,
