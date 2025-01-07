@@ -12,7 +12,6 @@ const Button = ({
   text,
   position = [0, 0, 0],
   buttonClick,
-  className,
 }: ButtonProps) => {
   return (
     <Html
@@ -25,10 +24,7 @@ const Button = ({
       }}
     >
       <button
-        className={
-          'flex h-[2.5em] w-[7.35em] items-center justify-center rounded-[1.1em] text-[4em] hover:bg-white/30 ' +
-          className
-        }
+        className="flex h-[2.5em] w-[7.35em] items-center justify-center rounded-[1.1em] text-[4em] hover:bg-white/30 animate-fade-in"
         onClick={buttonClick}
       >
         {text}
@@ -70,9 +66,7 @@ const NavButton = ({ text, direction, buttonClick }: NavButton) => {
       }}
     >
       <button
-        className={
-          'flex px-32 py-20 items-center justify-center rounded-[0.75em] text-[8em] hover:bg-white/30 animate-fade-in-long'
-        }
+        className="flex px-32 py-20 items-center justify-center rounded-[0.75em] text-[8em] hover:bg-white/30 animate-fade-in-long"
         onClick={buttonClick}
       >
         {label}

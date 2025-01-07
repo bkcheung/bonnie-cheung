@@ -36,7 +36,7 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
 
     const timer = setTimeout(() => {
       setShowButtons(true);
-    }, 3600);
+    }, 4500);
 
     return () => clearTimeout(timer);
   }, [camera]);
@@ -90,11 +90,14 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
           sequence={[
             '',
             2200,
-            'Welcome to my website! Scroll to zoom and click + drag to rotate the view.',
+            'Welcome to my website!',
+            500,
+            'Welcome to my website! Scroll to zoom and click + drag to rotate the view.'
           ]}
           wrapper="h2"
           speed={75}
           cursor={false}
+          omitDeletionAnimation={true}
         />
       </Html>
       {showButtons && (
@@ -116,7 +119,6 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
                 moveCamera(aboutView, camera);
               }, 400);
             }}
-            className="animate-fade-in"
           />
           <Button
             text="Portfolio"
@@ -135,7 +137,6 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
                 moveCamera(expView, camera);
               }, 400);
             }}
-            className="animate-fade-in"
           />
           <Button
             text="Contact"
@@ -154,7 +155,6 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
                 moveCamera(contactView, camera);
               }, 400);
             }}
-            className="animate-fade-in"
           />
         </>
       )}
