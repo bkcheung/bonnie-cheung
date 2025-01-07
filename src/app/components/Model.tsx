@@ -1,6 +1,5 @@
 import { Html, useGLTF } from '@react-three/drei';
 import { ThreeEvent, useThree } from '@react-three/fiber';
-import gsap from 'gsap';
 import React, { useEffect, useRef, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { Group } from 'three';
@@ -26,13 +25,13 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
   const { camera } = useThree();
 
   const textZ = 6.8;
-  const aboutView = frameData[0].view;
-  const expView = frameData[1].view;
-  const contactView = frameData[2].view;
+  const about = frameData[0];
+  const exp = frameData[1];
+  const contact = frameData[2];
 
   useEffect(() => {
     camera.position.set(30, 50, 50);
-    moveCamera(homeView, camera);
+    moveCamera(homeView, [0, 0, 0], camera, 1, 0);
 
     const timer = setTimeout(() => {
       setShowButtons(true);
@@ -92,7 +91,7 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
             2200,
             'Welcome to my website!',
             500,
-            'Welcome to my website! Scroll to zoom and click + drag to rotate the view.'
+            'Welcome to my website! Scroll to zoom and click + drag to rotate the view.',
           ]}
           wrapper="h2"
           speed={75}
@@ -108,16 +107,7 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               setOrbitEnabled(false);
-              gsap.to(camera.position, {
-                x: 0,
-                y: 50,
-                z: 75,
-                duration: 0.3,
-                ease: 'ease-in-out',
-              });
-              setTimeout(() => {
-                moveCamera(aboutView, camera);
-              }, 400);
+              moveCamera(about.view, about.rotation, camera, 0.8, 0.8);
             }}
           />
           <Button
@@ -126,16 +116,7 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               setOrbitEnabled(false);
-              gsap.to(camera.position, {
-                x: 0,
-                y: 50,
-                z: 75,
-                duration: 0.3,
-                ease: 'ease-in-out',
-              });
-              setTimeout(() => {
-                moveCamera(expView, camera);
-              }, 400);
+              moveCamera(exp.view, exp.rotation, camera, 0.8, 0.8);
             }}
           />
           <Button
@@ -144,16 +125,7 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               setOrbitEnabled(false);
-              gsap.to(camera.position, {
-                x: 0,
-                y: 50,
-                z: 75,
-                duration: 0.3,
-                ease: 'ease-in-out',
-              });
-              setTimeout(() => {
-                moveCamera(contactView, camera);
-              }, 400);
+              moveCamera(contact.view, contact.rotation, camera, 0.8, 0.8);
             }}
           />
         </>
@@ -164,7 +136,7 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
         handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
           e.stopPropagation();
           setOrbitEnabled(false);
-          moveCamera(aboutView, camera);
+          moveCamera(about.view, about.rotation, camera, 0.8, 0.8);
         }}
         camera={camera}
       >
@@ -176,7 +148,7 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
         handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
           e.stopPropagation();
           setOrbitEnabled(false);
-          moveCamera(expView, camera);
+          moveCamera(exp.view, exp.rotation, camera, 0.8, 0.8);
         }}
         camera={camera}
       >
@@ -188,7 +160,7 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
         handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
           e.stopPropagation();
           setOrbitEnabled(false);
-          moveCamera(contactView, camera);
+          moveCamera(contact.view, contact.rotation, camera, 0.8, 0.8);
         }}
         camera={camera}
       >

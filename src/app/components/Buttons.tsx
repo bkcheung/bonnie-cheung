@@ -8,11 +8,7 @@ interface ButtonProps {
   className?: string;
 }
 
-const Button = ({
-  text,
-  position = [0, 0, 0],
-  buttonClick,
-}: ButtonProps) => {
+const Button = ({ text, position = [0, 0, 0], buttonClick }: ButtonProps) => {
   return (
     <Html
       position={position}

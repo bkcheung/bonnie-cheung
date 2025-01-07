@@ -99,22 +99,33 @@ function Frame({
             direction="left"
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
-              moveCamera(frameData[left].view, camera);
+              moveCamera(
+                frameData[left].view,
+                frameData[left].rotation,
+                camera,
+                0.6,
+                0.8
+              );
             }}
           />
-          <Html
-            as='div'
-            transform
-            position={[0, -70, 1]}
-          >
-            <div title='Home' className='w-[400rem] h-[65rem] hover:cursor-pointer'/>
+          <Html as="div" transform position={[0, -70, 1]}>
+            <div
+              title="Home"
+              className="w-[400rem] h-[65rem] hover:cursor-pointer"
+            />
           </Html>
           <NavButton
             text={frameData[right].frame}
             direction="right"
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
-              moveCamera(frameData[right].view, camera);
+              moveCamera(
+                frameData[right].view,
+                frameData[right].rotation,
+                camera,
+                0.6,
+                0.8
+              );
             }}
           />
         </>

@@ -65,7 +65,10 @@ const AboutContent = () => {
 
 const PortfolioContent = () => {
   return (
-    <div title="Portfolio" className="flex flex-col w-[500rem] h-[250rem] py-40 px-60 bg-beige">
+    <div
+      title="Portfolio"
+      className="flex flex-col w-[500rem] h-[250rem] py-40 px-60 bg-beige"
+    >
       <h1 className="text-[20rem]">Portfolio</h1>
       <div className="flex justify-between items-center h-[85%] w-full my-40">
         <Project
