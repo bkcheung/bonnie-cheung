@@ -106,18 +106,21 @@ const PortfolioContent = () => {
 
 const ContactContent = () => {
   return (
-    <div className="flex flex-col w-[500rem] h-[250rem] p-40 bg-beige">
-      <h1 className="text-[20rem]">Contact</h1>
-      <div className="flex justify-between items-center">
-        <Image
-          src="/cat.png"
-          alt="laptop with cat"
-          width={300}
-          height={200}
-          className="w-[40%] h-auto"
-        />
+    <div className="flex w-[500rem] h-[250rem]">
+      <Image
+        src="/cliff-walk.jpg"
+        alt="Cliff Walk at Pourville by Claude Monet"
+        width={500}
+        height={250}
+        className="absolute w-full h-full -z-10"
+      />
+      <div className="flex flex-col w-1/2 justify-evenly p-40">
+        <h1 className="text-[20rem]">Contact</h1>
         <ContactForm />
       </div>
+      <h4 className="text-[5rem] text-white ml-auto mr-20 mt-auto mb-20">
+        Cliff Walk at Pourville - Claude Monet
+      </h4>
     </div>
   );
 };

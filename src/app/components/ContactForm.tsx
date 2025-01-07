@@ -28,7 +28,7 @@ export default function ContactForm() {
 
   return (
     <section
-      className="w-[55%] h-full p-40  bg-white/50 rounded-[10rem] text-[12rem]"
+      className="w-full p-40 bg-white/50 rounded-[10rem] text-[10rem]"
       onClick={(e) => {
         e.stopPropagation();
       }}
