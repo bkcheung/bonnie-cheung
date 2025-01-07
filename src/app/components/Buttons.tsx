@@ -39,12 +39,12 @@ const NavButton = ({ text, direction, buttonClick }: NavButton) => {
   let label, pos;
   switch (direction) {
     case 'left':
-      label = '← ' + text;
-      pos = new Vector3(-95, -70, 1);
+      label = text;
+      pos = new Vector3(-100, -70, 1);
       break;
     case 'right':
-      label = text + ' →';
-      pos = new Vector3(95, -70, 1);
+      label = text;
+      pos = new Vector3(100, -70, 1);
       break;
     default:
       label = text;
