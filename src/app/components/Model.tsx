@@ -11,7 +11,6 @@ import { AboutContent, ContactContent, PortfolioContent } from './Content';
 import Frame from './Frame';
 
 useGLTF.preload('/imac.glb');
-useGLTF.preload('/gallery.glb');
 
 interface DeskProps {
   orbitEnabled: boolean;
