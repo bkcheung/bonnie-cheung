@@ -26,15 +26,32 @@ export default function Background({
           if (!orbitEnabled) {
             gsap.to(camera.position, {
               x: 0,
-              y: 15,
-              z: 40,
-              duration: 0.75,
-              ease: 'ease-in-out',
+              y: 50,
+              z: 70,
+              duration: 0.8,
+              ease: 'power2.inOut',
+              onStart: () => {
+                gsap.to(camera.rotation, {
+                  x: -Math.PI / 12,
+                  y: 0,
+                  z: 0,
+                  duration: 0.8,
+                  ease: 'power2.inOut',
+                });
+              },
+              onComplete: () => {
+                setOrbitEnabled(true);
+              },
             });
             setTimeout(() => {
-              camera.lookAt(0, 10, 0);
-              setOrbitEnabled(true);
-            }, 500);
+              gsap.to(camera.position, {
+                x: 0,
+                y: 15,
+                z: 40,
+                duration: 0.75,
+                ease: 'power2.inOut',
+              });
+            }, 800);
           }
         }}
       />
