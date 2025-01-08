@@ -13,6 +13,8 @@ const AboutContent = () => {
         width={500}
         height={300}
         className="absolute w-full h-full -z-10"
+        placeholder='blur'
+        blurDataURL='/wheat-field-blur.jpg'
       />
       <div
         aria-label="about-left"
@@ -116,6 +118,8 @@ const ContactContent = () => {
         width={500}
         height={250}
         className="absolute w-full h-full -z-10"
+        placeholder='blur'
+        blurDataURL='/cliff-walk-blur.jpg'
       />
       <div className="flex flex-col w-[55%] justify-evenly p-80">
         <h1 className="text-[20rem] text-white mb-40">Contact</h1>
