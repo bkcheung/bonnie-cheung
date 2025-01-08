@@ -2,7 +2,7 @@ import { Box, Html } from '@react-three/drei';
 import { ThreeEvent } from '@react-three/fiber';
 import { useEffect, useState } from 'react';
 
-import { frameData, homeView } from '../data';
+import { frameData } from '../data';
 import moveCamera from '../moveCamera';
 import { NavButton } from './Buttons';
 
@@ -21,6 +21,7 @@ function Frame({
   camera,
 }: FrameProps) {
   const [hovered, setHovered] = useState(false);
+  const [zIndexRange, setZIndexRange] = useState([0, -10]);
 
   useEffect(() => {
     document.body.style.cursor = hovered && clickEnabled ? 'pointer' : 'auto';
@@ -29,8 +30,14 @@ function Frame({
     };
   }, [hovered, clickEnabled]);
 
-  let zIndexRange = [0, -10];
-  if (!clickEnabled) zIndexRange = [10, 0];
+  useEffect(() => {
+    if (!clickEnabled) {
+      const timer = setTimeout(() => {
+        setZIndexRange([10, 0]);
+      }, 800);
+      return () => clearTimeout(timer);
+    } else setZIndexRange([0, -10]);
+  }, [clickEnabled]);
 
   let position, rotation, left, right;
 
