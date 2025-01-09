@@ -1,10 +1,11 @@
 import Image from 'next/image';
+import React from 'react';
 
 import ContactForm from '../components/ContactForm';
 import Project from '../components/Project';
 import Skillbar from '../components/Skillbar';
 
-const AboutContent = () => {
+const AboutContent = React.memo(() => {
   return (
     <div title="About" className="flex w-full h-full">
       <Image
@@ -63,9 +64,9 @@ const AboutContent = () => {
       </div>
     </div>
   );
-};
+});
 
-const PortfolioContent = () => {
+const PortfolioContent = React.memo(() => {
   return (
     <div
       title="Portfolio"
@@ -107,9 +108,9 @@ const PortfolioContent = () => {
       </div>
     </div>
   );
-};
+});
 
-const ContactContent = () => {
+const ContactContent = React.memo(() => { 
   return (
     <div title="Contact" className="flex w-[500rem] h-[250rem]">
       <Image
@@ -130,6 +131,6 @@ const ContactContent = () => {
       </h4>
     </div>
   );
-};
+});
 
 export { AboutContent, PortfolioContent, ContactContent };
