@@ -67,20 +67,12 @@ function Frame({
       right = frameData[0].right;
       break;
   }
-
   return (
     <group rotation={rotation} position={position} onClick={handleFrameClick}>
       <group
         onPointerEnter={() => setHovered(true)}
         onPointerLeave={() => setHovered(false)}
       >
-        <Box args={[200, 100, 0.5]} position={[0, 0, 0]}>
-          <meshStandardMaterial
-            color="white"
-            opacity={0.75}
-            transparent={true}
-          />
-        </Box>
         <Box args={[210, 110, 1]} position={[0, 0, -0.5]}>
           <meshStandardMaterial
             color={hovered && clickEnabled ? '#636E67' : 'black'}
