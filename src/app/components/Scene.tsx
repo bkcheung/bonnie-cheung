@@ -5,6 +5,7 @@ import { Canvas } from '@react-three/fiber';
 import { Suspense, useEffect, useState } from 'react';
 
 import Background from './Background';
+import Frames from './Frames';
 import Lighting from './Lighting';
 import Loader from './Loader';
 import Desk from './Model';
@@ -24,6 +25,7 @@ function ThreeCanvas() {
         maxPolarAngle={Math.PI / 2}
       />
       <Desk orbitEnabled={orbitEnabled} setOrbitEnabled={setOrbitEnabled} />
+      <Frames orbitEnabled={orbitEnabled} setOrbitEnabled={setOrbitEnabled} />
       <Background
         orbitEnabled={orbitEnabled}
         setOrbitEnabled={setOrbitEnabled}
