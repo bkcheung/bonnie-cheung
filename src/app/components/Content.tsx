@@ -133,4 +133,8 @@ const ContactContent = React.memo(() => {
   );
 });
 
+AboutContent.displayName = 'AboutContent';
+PortfolioContent.displayName = 'PortfolioContent';
+ContactContent.displayName = 'ContactContent';
+
 export { AboutContent, PortfolioContent, ContactContent };
