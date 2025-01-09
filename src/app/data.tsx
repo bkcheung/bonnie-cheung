@@ -1,3 +1,9 @@
+import {
+  AboutContent,
+  ContactContent,
+  PortfolioContent,
+} from './components/Content';
+
 type frameType = {
   frame: string;
   view: [number, number, number];
@@ -5,6 +11,7 @@ type frameType = {
   rotation: [number, number, number];
   left: number;
   right: number;
+  content: React.ReactNode;
 };
 
 const frameData: frameType[] = [
@@ -15,6 +22,7 @@ const frameData: frameType[] = [
     rotation: [0, Math.PI / 2, 0],
     left: 2,
     right: 1,
+    content: <AboutContent />,
   },
   {
     frame: 'Portfolio',
@@ -23,6 +31,7 @@ const frameData: frameType[] = [
     rotation: [0, 0, 0],
     left: 0,
     right: 2,
+    content: <PortfolioContent />,
   },
   {
     frame: 'Contact',
@@ -31,6 +40,7 @@ const frameData: frameType[] = [
     rotation: [0, -Math.PI / 2, 0],
     left: 1,
     right: 0,
+    content: <ContactContent />,
   },
 ];
 
