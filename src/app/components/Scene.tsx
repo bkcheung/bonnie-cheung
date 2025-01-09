@@ -8,7 +8,7 @@ import Background from './Background';
 import Frames from './Frames';
 import Lighting from './Lighting';
 import Loader from './Loader';
-import Desk from './Model';
+import Desk from './Desk';
 
 function ThreeCanvas() {
   const [orbitEnabled, setOrbitEnabled] = useState(true);
@@ -24,7 +24,7 @@ function ThreeCanvas() {
         minPolarAngle={Math.PI / 4}
         maxPolarAngle={Math.PI / 2}
       />
-      <Desk orbitEnabled={orbitEnabled} setOrbitEnabled={setOrbitEnabled} />
+      <Desk setOrbitEnabled={setOrbitEnabled} />
       <Frames orbitEnabled={orbitEnabled} setOrbitEnabled={setOrbitEnabled} />
       <Background
         orbitEnabled={orbitEnabled}

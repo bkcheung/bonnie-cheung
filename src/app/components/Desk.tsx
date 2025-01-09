@@ -1,5 +1,5 @@
 import { Html, useGLTF } from '@react-three/drei';
-import { ThreeEvent, useThree } from '@react-three/fiber';
+import { useThree } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { Group } from 'three';
@@ -7,17 +7,15 @@ import { Group } from 'three';
 import { frameData, homeView } from '../data';
 import moveCamera from '../moveCamera';
 import { Button } from './Buttons';
-import { AboutContent, ContactContent, PortfolioContent } from './Content';
-import Frame from './Frame';
 
 useGLTF.preload('/imac.glb');
 
 interface DeskProps {
-  orbitEnabled: boolean;
   setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
+export default function Desk({ setOrbitEnabled }: DeskProps) {
+  console.log('Desk rendered');
   const group = useRef<Group>(null);
   const { scene } = useGLTF('/imac.glb');
   const [showButtons, setShowButtons] = useState(false);
@@ -129,42 +127,6 @@ export default function Desk({ orbitEnabled, setOrbitEnabled }: DeskProps) {
           />
         </>
       )}
-      <Frame
-        frame="About"
-        clickEnabled={orbitEnabled}
-        handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
-          e.stopPropagation();
-          setOrbitEnabled(false);
-          moveCamera(about.view, about.rotation, camera, 0.8, 0.8);
-        }}
-        camera={camera}
-      >
-        <AboutContent />
-      </Frame>
-      <Frame
-        frame="Portfolio"
-        clickEnabled={orbitEnabled}
-        handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
-          e.stopPropagation();
-          setOrbitEnabled(false);
-          moveCamera(exp.view, exp.rotation, camera, 0.8, 0.8);
-        }}
-        camera={camera}
-      >
-        <PortfolioContent />
-      </Frame>
-      <Frame
-        frame="Contact"
-        clickEnabled={orbitEnabled}
-        handleFrameClick={(e: ThreeEvent<MouseEvent>) => {
-          e.stopPropagation();
-          setOrbitEnabled(false);
-          moveCamera(contact.view, contact.rotation, camera, 0.8, 0.8);
-        }}
-        camera={camera}
-      >
-        <ContactContent />
-      </Frame>
     </group>
   );
 }
