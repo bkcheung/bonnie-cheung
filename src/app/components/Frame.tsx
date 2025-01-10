@@ -8,76 +8,93 @@ import { NavButton } from './Buttons';
 
 interface FrameProps {
   frame: number;
-  left: number;
-  right: number;
-  clickEnabled: boolean;
-  handleFrameClick: (event: ThreeEvent<MouseEvent>) => void;
-  children?: React.ReactNode;
+  active: boolean;
+  setActiveFrame: React.Dispatch<React.SetStateAction<number>>;
+  setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
-function Frame({
-  frame,
-  left,
-  right,
-  clickEnabled,
-  handleFrameClick,
-  children,
-}: FrameProps) {
+function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
   console.log('Frame rendered');
+
+  const left = frameData[frame].left;
+  const right = frameData[frame].right;
+  const framePreview = frameData[frame].preview;
+  const frameContent = frameData[frame].content;
+
   const [hovered, setHovered] = useState(false);
   const [zIndexRange, setZIndexRange] = useState([0, -10]);
+  const [content, setContent] = useState(framePreview);
+
   const { camera } = useThree();
 
   useEffect(() => {
-    document.body.style.cursor = hovered && clickEnabled ? 'pointer' : 'auto';
+    document.body.style.cursor = hovered && !active ? 'pointer' : 'auto';
     return () => {
       document.body.style.cursor = 'auto';
     };
-  }, [hovered, clickEnabled]);
+  }, [hovered, active]);
 
   useEffect(() => {
-    if (!clickEnabled) {
+    if (active) {
       const timer = setTimeout(() => {
+        setContent(frameContent);
         setZIndexRange([10, 0]);
       }, 800);
       return () => clearTimeout(timer);
-    } else setZIndexRange([0, -10]);
-  }, [clickEnabled]);
+    } else {
+      setContent(framePreview);
+      setZIndexRange([0, -10]);
+    }
+  }, [active]);
+
+  const handleFrameClick = (e: ThreeEvent<MouseEvent>) => {
+    e.stopPropagation();
+    setOrbitEnabled(false);
+    setActiveFrame(frame);
+    moveCamera(
+      frameData[frame].view,
+      frameData[frame].rotation,
+      camera,
+      0.8,
+      0.8
+    );
+  };
 
   return (
     <group
-      rotation={frameData[frame].rotation}
-      position={frameData[frame].position}
       onClick={handleFrameClick}
+      position={frameData[frame].position}
+      rotation={frameData[frame].rotation}
     >
-      <group
+      <Box
+        args={[210, 110, 1]}
+        position={[0, 0, -0.5]}
         onPointerEnter={() => setHovered(true)}
         onPointerLeave={() => setHovered(false)}
       >
-        <Box args={[210, 110, 1]} position={[0, 0, -0.5]}>
-          <meshStandardMaterial
-            color={hovered && clickEnabled ? '#636E67' : 'black'}
-            opacity={0.75}
-            transparent={true}
-          />
-        </Box>
-        <Html
-          as="div"
-          className="w-[500rem] h-[250rem] text-[15rem]"
-          transform
-          occlude="blending"
-          position={[0, 0, 0.5]}
-          zIndexRange={zIndexRange}
-        >
-          {children}
-        </Html>
-      </group>
-      {!clickEnabled && (
-        <group>
+        <meshStandardMaterial
+          color={hovered && !active ? '#636E67' : 'black'}
+          opacity={0.75}
+          transparent={true}
+        />
+      </Box>
+      <Html
+        as="div"
+        className="w-[500rem] h-[250rem] text-[15rem]"
+        transform
+        occlude="blending"
+        position={[0, 0, 0.5]}
+        zIndexRange={zIndexRange}
+      >
+        {content}
+      </Html>
+      {active && (
+        <>
           <NavButton
             text={frameData[left].frame}
             direction="left"
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
+              setActiveFrame(left);
               moveCamera(
                 frameData[left].view,
                 frameData[left].rotation,
@@ -98,6 +115,7 @@ function Frame({
             direction="right"
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
+              setActiveFrame(right);
               moveCamera(
                 frameData[right].view,
                 frameData[right].rotation,
@@ -107,7 +125,7 @@ function Frame({
               );
             }}
           />
-        </group>
+        </>
       )}
     </group>
   );

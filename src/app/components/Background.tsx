@@ -7,11 +7,13 @@ import { Group } from 'three';
 interface BackgroundProps {
   orbitEnabled: boolean;
   setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+  setActiveFrame: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function Background({
   orbitEnabled,
   setOrbitEnabled,
+  setActiveFrame,
 }: BackgroundProps) {
   const group = useRef<Group>(null);
   const { scene } = useGLTF('/gallery.glb');
@@ -23,6 +25,7 @@ export default function Background({
         object={scene}
         scale={[60, 60, 60]}
         onClick={() => {
+          setActiveFrame(-1);
           if (!orbitEnabled) {
             gsap.to(camera.position, {
               x: 0,

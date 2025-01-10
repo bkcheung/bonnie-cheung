@@ -12,9 +12,10 @@ useGLTF.preload('/imac.glb');
 
 interface DeskProps {
   setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+  setActiveFrame: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function Desk({ setOrbitEnabled }: DeskProps) {
+function Desk({ setOrbitEnabled, setActiveFrame }: DeskProps) {
   const group = useRef<Group>(null);
   const { scene } = useGLTF('/imac.glb');
   const [showButtons, setShowButtons] = useState(false);
@@ -103,6 +104,7 @@ function Desk({ setOrbitEnabled }: DeskProps) {
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               setOrbitEnabled(false);
+              setActiveFrame(0);
               moveCamera(about.view, about.rotation, camera, 0.8, 0.8);
             }}
           />
@@ -112,6 +114,7 @@ function Desk({ setOrbitEnabled }: DeskProps) {
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               setOrbitEnabled(false);
+              setActiveFrame(1);
               moveCamera(exp.view, exp.rotation, camera, 0.8, 0.8);
             }}
           />
@@ -121,6 +124,7 @@ function Desk({ setOrbitEnabled }: DeskProps) {
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               setOrbitEnabled(false);
+              setActiveFrame(2);
               moveCamera(contact.view, contact.rotation, camera, 0.8, 0.8);
             }}
           />
