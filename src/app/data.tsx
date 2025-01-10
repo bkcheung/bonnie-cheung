@@ -1,7 +1,9 @@
 import {
   AboutContent,
   ContactContent,
+  ContactPreview,
   PortfolioContent,
+  PortfolioPreview,
 } from './components/Content';
 
 type frameType = {
@@ -11,6 +13,7 @@ type frameType = {
   rotation: [number, number, number];
   left: number;
   right: number;
+  preview: React.ReactNode;
   content: React.ReactNode;
 };
 
@@ -22,6 +25,7 @@ const frameData: frameType[] = [
     rotation: [0, Math.PI / 2, 0],
     left: 2,
     right: 1,
+    preview: <AboutContent />,
     content: <AboutContent />,
   },
   {
@@ -31,6 +35,7 @@ const frameData: frameType[] = [
     rotation: [0, 0, 0],
     left: 0,
     right: 2,
+    preview: <PortfolioPreview />,
     content: <PortfolioContent />,
   },
   {
@@ -40,6 +45,7 @@ const frameData: frameType[] = [
     rotation: [0, -Math.PI / 2, 0],
     left: 1,
     right: 0,
+    preview: <ContactPreview />,
     content: <ContactContent />,
   },
 ];
