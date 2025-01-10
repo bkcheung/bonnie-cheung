@@ -3,69 +3,30 @@ import React from 'react';
 
 import ContactForm from '../components/ContactForm';
 import Project from '../components/Project';
-import Skillbar from '../components/Skillbar';
 
 const AboutContent = React.memo(() => {
   return (
-    <div title="About" className="flex w-full h-full">
+    <div title="About" className="flex absolute w-full h-full">
       <Image
-        src="/wheat-field.jpg"
-        alt="wheat field with cypresses by van gogh"
-        width={500}
-        height={300}
-        className="absolute w-full h-full -z-10"
+        src="/about.png"
+        alt="About section"
+        sizes="50vw"
         placeholder="blur"
         blurDataURL="/wheat-field-blur.jpg"
+        priority
+        fill
       />
-      <div
-        aria-label="about-left"
-        className="flex flex-col w-1/2 justify-center bg-white/65 p-80"
-      >
-        <h1 className="text-[20rem]">Bonnie Cheung</h1>
-        <h2 className="text-[10rem]">
-          About:
-          <ul className="list-disc ml-40 text-[7.5rem]">
-            <li>
-              Since an early age, I have loved building (& unbuilding) things;
-              sorry mom!
-            </li>
-            <li>
-              I did FIRST Robotics in high school and studied Mechatronics
-              Engineering at the University of Waterloo
-            </li>
-            <li>
-              For the past 4+ years, I've been a Mechanical Product and System
-              Design Engineer at Apple
-            </li>
-            <li>
-              After years as a mechanical engineer, I discovered a passion for
-              creating interactive digital experiences, leading me to leave my
-              job and pursue my dream of becoming a full-time software engineer!
-            </li>
-          </ul>
-        </h2>
-      </div>
-      <div
-        aria-label="about-right"
-        className="flex flex-col w-1/2 text-[10rem] justify-end items-end p-80 pb-0"
-      >
-        <div
-          aria-label="skills"
-          className="bg-white/75 p-40 rounded-[10rem] w-[65%]"
-        >
-          <Skillbar skill="HTML & CSS" percent={90} />
-          <Skillbar skill="Javascript" percent={80} />
-          <Skillbar skill="Typescript" percent={75} />
-          <Skillbar skill="React" percent={70} />
-        </div>
-        <h4 className="text-[6rem] text-white text-right my-20">
-          Wheat Field with Cypresses - Vincent Van Gogh
-        </h4>
-      </div>
     </div>
   );
 });
-
+const PortfolioPreview = React.memo(() => {
+  return (
+    <div
+      title="Portfolio"
+      className="flex absolute w-full h-full bg-[url(/portfolio-prev.png)] bg-cover bg-center bg-no-repeat"
+    />
+  );
+});
 const PortfolioContent = React.memo(() => {
   return (
     <div
@@ -110,18 +71,21 @@ const PortfolioContent = React.memo(() => {
   );
 });
 
+const ContactPreview = React.memo(() => {
+  return (
+    <div
+      title="Contact"
+      className="flex absolute w-full h-full bg-[url(/contact-prev.png)] bg-cover bg-center bg-no-repeat"
+    />
+  );
+});
+
 const ContactContent = React.memo(() => {
   return (
-    <div title="Contact" className="flex w-[500rem] h-[250rem]">
-      <Image
-        src="/cliff-walk.jpg"
-        alt="Cliff Walk at Pourville by Claude Monet"
-        width={500}
-        height={250}
-        className="absolute w-full h-full -z-10"
-        placeholder="blur"
-        blurDataURL="/cliff-walk-blur.jpg"
-      />
+    <div
+      title="Contact"
+      className="flex absolute w-full h-full bg-[url(/cliff-walk.jpg)] bg-cover bg-center bg-no-repeat"
+    >
       <div className="flex flex-col w-[55%] justify-evenly p-80">
         <h1 className="text-[20rem] text-white mb-40">Contact</h1>
         <ContactForm />
@@ -137,4 +101,10 @@ AboutContent.displayName = 'AboutContent';
 PortfolioContent.displayName = 'PortfolioContent';
 ContactContent.displayName = 'ContactContent';
 
-export { AboutContent, PortfolioContent, ContactContent };
+export {
+  AboutContent,
+  PortfolioContent,
+  PortfolioPreview,
+  ContactContent,
+  ContactPreview,
+};
