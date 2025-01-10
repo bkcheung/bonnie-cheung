@@ -14,8 +14,7 @@ interface DeskProps {
   setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Desk({ setOrbitEnabled }: DeskProps) {
-  console.log('Desk rendered');
+function Desk({ setOrbitEnabled }: DeskProps) {
   const group = useRef<Group>(null);
   const { scene } = useGLTF('/imac.glb');
   const [showButtons, setShowButtons] = useState(false);
@@ -130,3 +129,5 @@ export default function Desk({ setOrbitEnabled }: DeskProps) {
     </group>
   );
 }
+
+export default React.memo(Desk);

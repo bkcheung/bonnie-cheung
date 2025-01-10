@@ -1,4 +1,6 @@
-export default function Lighting() {
+import React from "react";
+
+function Lighting() {
   return (
     <group>
       <directionalLight position={[-10, 30, 10]} intensity={1} />
@@ -9,3 +11,5 @@ export default function Lighting() {
     </group>
   );
 }
+
+export default React.memo(Lighting);
