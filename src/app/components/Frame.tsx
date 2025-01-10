@@ -44,7 +44,7 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
       setContent(framePreview);
       setZIndexRange([0, -10]);
     }
-  }, [active]);
+  }, [active, frameContent, framePreview]);
 
   const handleFrameClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
