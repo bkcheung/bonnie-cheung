@@ -40,11 +40,11 @@ const NavButton = ({ text, direction, buttonClick }: NavButton) => {
   switch (direction) {
     case 'left':
       label = text;
-      pos = new Vector3(-100, -70, 1);
+      pos = new Vector3(-95, -70, 1);
       break;
     case 'right':
       label = text;
-      pos = new Vector3(100, -70, 1);
+      pos = new Vector3(95, -70, 1);
       break;
     default:
       label = text;
@@ -55,14 +55,13 @@ const NavButton = ({ text, direction, buttonClick }: NavButton) => {
     <Html
       position={pos}
       transform
-      occlude
       style={{
         transformStyle: 'preserve-3d',
         WebkitFontSmoothing: 'antialiased',
       }}
     >
       <button
-        className="flex px-32 py-20 items-center justify-center rounded-[0.75em] text-[8em] hover:bg-white/30 animate-fade-in-long"
+        className="px-32 py-20  rounded-[0.75em] text-[10rem] hover:bg-white/30 animate-fade-in-long"
         onClick={buttonClick}
       >
         {label}
