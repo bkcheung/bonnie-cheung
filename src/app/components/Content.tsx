@@ -99,7 +99,9 @@ const ContactContent = React.memo(() => {
 
 AboutContent.displayName = 'AboutContent';
 PortfolioContent.displayName = 'PortfolioContent';
+PortfolioPreview.displayName = 'PortfolioPreview';
 ContactContent.displayName = 'ContactContent';
+ContactPreview.displayName = 'ContactPreview';
 
 export {
   AboutContent,
