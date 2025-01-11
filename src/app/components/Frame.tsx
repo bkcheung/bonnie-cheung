@@ -77,7 +77,7 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
       </Box>
       <Html
         as="div"
-        className="w-[500rem] h-[250rem] text-[15rem]"
+        className="w-[500rem] h-[250rem] text-[15rem] antialiased"
         transform
         occlude="blending"
         position={[0, 0, 0.5]}
