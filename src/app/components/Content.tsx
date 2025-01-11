@@ -6,7 +6,12 @@ import Project from '../components/Project';
 
 const AboutContent = React.memo(() => {
   return (
-    <div className="flex absolute w-full h-full">
+    <section
+      className="flex absolute w-full h-full"
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+      }}
+    >
       <Image
         src="/about.png"
         alt="About section"
@@ -16,7 +21,7 @@ const AboutContent = React.memo(() => {
         priority
         fill
       />
-    </div>
+    </section>
   );
 });
 const PortfolioPreview = React.memo(() => {
@@ -26,7 +31,12 @@ const PortfolioPreview = React.memo(() => {
 });
 const PortfolioContent = React.memo(() => {
   return (
-    <div className="flex flex-col w-[500rem] h-[250rem] py-40 px-60 bg-beige">
+    <section
+      className="flex flex-col w-[500rem] h-[250rem] py-40 px-60 bg-beige"
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+      }}
+    >
       <h1 className="text-[20rem]">Portfolio</h1>
       <div className="flex justify-between items-center h-[85%] w-full my-40">
         <Project
@@ -61,7 +71,7 @@ const PortfolioContent = React.memo(() => {
           liveUrl="https://bkcheung.github.io/CV-Builder"
         />
       </div>
-    </div>
+    </section>
   );
 });
 
@@ -73,7 +83,12 @@ const ContactPreview = React.memo(() => {
 
 const ContactContent = React.memo(() => {
   return (
-    <div className="flex w-full h-full">
+    <section
+      className="flex w-full h-full"
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+      }}
+    >
       <div className="flex flex-col w-[55%] justify-evenly p-80">
         <h1 className="text-[20rem] text-white mb-40">Contact</h1>
         <ContactForm />
@@ -81,7 +96,7 @@ const ContactContent = React.memo(() => {
       <h4 className="text-[8rem] text-white ml-auto mr-20 mt-auto mb-20">
         Cliff Walk at Pourville - Claude Monet
       </h4>
-    </div>
+    </section>
   );
 });
 
