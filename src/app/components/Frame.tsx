@@ -13,8 +13,6 @@ interface FrameProps {
   setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
-  console.log('Frame rendered');
-
   const left = frameData[frame].left;
   const right = frameData[frame].right;
   const framePreview = frameData[frame].preview;
@@ -86,6 +84,15 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
         zIndexRange={zIndexRange}
       >
         {content}
+      </Html>
+      <Html
+        as="div"
+        className="w-[510rem] h-[260rem]"
+        transform
+        position={[0, 0, 0.25]}
+        zIndexRange={[-10, -20]}
+      >
+        <div className="w-full h-full bg-[url(/cliff-walk.jpg)] bg-cover bg-center bg-no-repeat" />
       </Html>
       {active && (
         <>
