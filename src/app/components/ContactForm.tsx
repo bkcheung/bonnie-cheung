@@ -41,7 +41,7 @@ export default function ContactForm() {
               type="text"
               name="name"
               autoComplete="name"
-              className="w-[70%] p-20 rounded-[5rem]"
+              className="w-[70%] p-20 pr-0 rounded-[5rem]"
             />
           </div>
           <div className="flex my-20 justify-between">
@@ -50,7 +50,7 @@ export default function ContactForm() {
               type="email"
               name="email"
               autoComplete="email"
-              className="w-[70%] p-20 rounded-[5rem]"
+              className="w-[70%] p-20 pr-0 rounded-[5rem]"
             />
           </div>
           <div className="flex my-20 justify-between">
