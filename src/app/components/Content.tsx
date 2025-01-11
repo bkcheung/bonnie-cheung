@@ -6,7 +6,7 @@ import Project from '../components/Project';
 
 const AboutContent = React.memo(() => {
   return (
-    <div title="About" className="flex absolute w-full h-full">
+    <div className="flex absolute w-full h-full">
       <Image
         src="/about.png"
         alt="About section"
@@ -21,18 +21,12 @@ const AboutContent = React.memo(() => {
 });
 const PortfolioPreview = React.memo(() => {
   return (
-    <div
-      title="Portfolio"
-      className="flex absolute w-full h-full bg-[url(/portfolio-prev.png)] bg-cover bg-center bg-no-repeat"
-    />
+    <div className="flex absolute w-full h-full bg-[url(/portfolio-prev.png)] bg-cover bg-center bg-no-repeat" />
   );
 });
 const PortfolioContent = React.memo(() => {
   return (
-    <div
-      title="Portfolio"
-      className="flex flex-col w-[500rem] h-[250rem] py-40 px-60 bg-beige"
-    >
+    <div className="flex flex-col w-[500rem] h-[250rem] py-40 px-60 bg-beige">
       <h1 className="text-[20rem]">Portfolio</h1>
       <div className="flex justify-between items-center h-[85%] w-full my-40">
         <Project
@@ -73,24 +67,18 @@ const PortfolioContent = React.memo(() => {
 
 const ContactPreview = React.memo(() => {
   return (
-    <div
-      title="Contact"
-      className="flex absolute w-full h-full bg-[url(/contact-prev.png)] bg-cover bg-center bg-no-repeat"
-    />
+    <div className="flex absolute w-full h-full bg-[url(/contact-prev.png)] bg-cover bg-center bg-no-repeat" />
   );
 });
 
 const ContactContent = React.memo(() => {
   return (
-    <div
-      title="Contact"
-      className="flex absolute w-full h-full bg-[url(/cliff-walk.jpg)] bg-cover bg-center bg-no-repeat"
-    >
+    <div className="flex w-full h-full">
       <div className="flex flex-col w-[55%] justify-evenly p-80">
         <h1 className="text-[20rem] text-white mb-40">Contact</h1>
         <ContactForm />
       </div>
-      <h4 className="text-[6rem] text-white ml-auto mr-20 mt-auto mb-20">
+      <h4 className="text-[8rem] text-white ml-auto mr-20 mt-auto mb-20">
         Cliff Walk at Pourville - Claude Monet
       </h4>
     </div>
