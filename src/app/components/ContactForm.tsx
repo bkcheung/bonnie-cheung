@@ -40,6 +40,7 @@ export default function ContactForm() {
             <input
               type="text"
               name="name"
+              autoComplete="name"
               className="w-[70%] p-20 rounded-[5rem]"
             />
           </div>
@@ -48,6 +49,7 @@ export default function ContactForm() {
             <input
               type="email"
               name="email"
+              autoComplete="email"
               className="w-[70%] p-20 rounded-[5rem]"
             />
           </div>
@@ -62,17 +64,19 @@ export default function ContactForm() {
         <div className="flex my-20 justify-between items-center">
           <div className="flex gap-32 opacity-60">
             <button
-              onClick={() =>
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.preventDefault();
                 window
                   .open('https://www.linkedin.com/in/cheungbonnie/', '_blank')
-                  ?.focus()
-              }
+                  ?.focus();
+              }}
               className="bg-[url('/linkedin.png')] bg-cover w-[20rem] h-[20rem]"
             ></button>
             <button
-              onClick={() =>
-                window.open('https://github.com/bkcheung', '_blank')?.focus()
-              }
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.preventDefault();
+                window.open('https://github.com/bkcheung', '_blank')?.focus();
+              }}
               className="bg-[url('/github.png')] bg-cover w-[20rem] h-[20rem]"
             ></button>
           </div>
@@ -82,7 +86,6 @@ export default function ContactForm() {
           </button>
         </div>
       </form>
-      {/* <ToastContainer/> */}
     </section>
   );
 }
