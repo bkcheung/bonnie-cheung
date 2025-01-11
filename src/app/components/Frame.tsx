@@ -71,8 +71,6 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
       >
         <meshStandardMaterial
           color={hovered && !active ? '#636E67' : 'black'}
-          opacity={0.75}
-          transparent={true}
         />
       </Box>
       <Html
