@@ -1,4 +1,5 @@
 import { Html, useGLTF } from '@react-three/drei';
+import { KTX2Loader } from 'three-stdlib'
 import { useThree } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
@@ -8,6 +9,8 @@ import { frameData, homeView } from '../data';
 import moveCamera from '../moveCamera';
 import { Button } from './Buttons';
 
+const ktx2Loader = new KTX2Loader()
+ktx2Loader.setTranscoderPath('https://unpkg.com/three@0.168.0/examples/jsm/libs/basis/')
 useGLTF.preload('/imac.glb');
 
 interface DeskProps {
@@ -17,7 +20,10 @@ interface DeskProps {
 
 function Desk({ setOrbitEnabled, setActiveFrame }: DeskProps) {
   const group = useRef<Group>(null);
-  const { scene } = useGLTF('/imac.glb');
+  const { gl } = useThree()
+  const { scene } = useGLTF('imac.glb', true, true, (loader) => {
+    loader.setKTX2Loader(ktx2Loader.detectSupport(gl))
+  })
   const [showButtons, setShowButtons] = useState(false);
   const { camera } = useThree();
 
