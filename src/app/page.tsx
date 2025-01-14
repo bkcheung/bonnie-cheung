@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import { ToastContainer } from 'react-toastify';
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 
 import Scene from './components/Scene';
 
@@ -9,6 +11,7 @@ export default function Home() {
       <main className="h-full w-full">
         <Scene />
         <ToastContainer limit={3} autoClose={2000} hideProgressBar={true} />
+        <SpeedInsights />
       </main>
       <footer className="fixed bottom-0 bg-white/40 w-full min-h-[3rem] flex items-center justify-between px-4">
         <h4>
