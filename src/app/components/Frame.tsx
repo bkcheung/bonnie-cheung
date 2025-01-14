@@ -1,4 +1,4 @@
-import { Box, Html } from '@react-three/drei';
+import { Box, Html, useKTX2, useTexture } from '@react-three/drei';
 import { ThreeEvent, useThree } from '@react-three/fiber';
 import React, { useEffect, useState } from 'react';
 
@@ -57,6 +57,9 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
     );
   };
 
+  const props = useKTX2({
+    map:"/contact-prev-uastc.ktx2",
+  });
   return (
     <group
       onClick={handleFrameClick}
@@ -92,6 +95,12 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
       >
         <div className="w-full h-full bg-[url(/cliff-walk.jpg)] bg-cover bg-center bg-no-repeat" />
       </Html> */}
+     <Box
+        args={[200, 100, 1]}
+        position={[0, 0, 0.5]}
+      >
+        <meshStandardMaterial {...props}/>
+      </Box>
       {active && (
         <>
           <NavButton
