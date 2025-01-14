@@ -83,7 +83,7 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
       >
         {content}
       </Html>
-      <Html
+      {/* <Html
         as="div"
         className="w-[510rem] h-[260rem]"
         transform
@@ -91,7 +91,7 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
         zIndexRange={[-10, -20]}
       >
         <div className="w-full h-full bg-[url(/cliff-walk.jpg)] bg-cover bg-center bg-no-repeat" />
-      </Html>
+      </Html> */}
       {active && (
         <>
           <NavButton
