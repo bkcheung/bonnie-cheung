@@ -57,6 +57,10 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
     );
   };
 
+  const props = useKTX2({
+    map: '/contact-prev-uastc.ktx2',
+  });
+
   return (
     <group
       onClick={handleFrameClick}
@@ -75,11 +79,7 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
       </Box>
       {frame === 2 && (
         <Box args={[200, 100, 1]} position={[0, 0, 0]}>
-          <meshStandardMaterial
-            {...useKTX2({
-              map: '/contact-prev-uastc.ktx2',
-            })}
-          />
+          <meshStandardMaterial {...props} />
         </Box>
       )}
       <Html
