@@ -38,7 +38,7 @@ function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
 
   useEffect(() => {
     camera.position.set(30, 50, 50);
-    moveCamera(homeView, [0, 0, 0], camera, 1, 0, zoom);
+    moveCamera(homeView, [0, 0, 0], camera, 1, 0, 1.15);
 
     const timer = setTimeout(() => {
       setShowButtons(true);
