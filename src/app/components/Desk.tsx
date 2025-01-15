@@ -14,9 +14,10 @@ useGLTF.preload('/imac.glb');
 interface DeskProps {
   setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
   setActiveFrame: React.Dispatch<React.SetStateAction<number>>;
+  zoom: number;
 }
 
-function Desk({ setOrbitEnabled, setActiveFrame }: DeskProps) {
+function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
   const group = useRef<Group>(null);
   const { gl } = useThree();
   const ktx2Loader = new KTX2Loader();
@@ -37,7 +38,7 @@ function Desk({ setOrbitEnabled, setActiveFrame }: DeskProps) {
 
   useEffect(() => {
     camera.position.set(30, 50, 50);
-    moveCamera(homeView, [0, 0, 0], camera, 1, 0);
+    moveCamera(homeView, [0, 0, 0], camera, 1, 0, zoom);
 
     const timer = setTimeout(() => {
       setShowButtons(true);
@@ -114,7 +115,7 @@ function Desk({ setOrbitEnabled, setActiveFrame }: DeskProps) {
               e.stopPropagation();
               setOrbitEnabled(false);
               setActiveFrame(0);
-              moveCamera(about.view, about.rotation, camera, 0.8, 0.8);
+              moveCamera(about.view, about.rotation, camera, 0.8, 0.8, zoom);
             }}
           />
           <Button
@@ -124,7 +125,7 @@ function Desk({ setOrbitEnabled, setActiveFrame }: DeskProps) {
               e.stopPropagation();
               setOrbitEnabled(false);
               setActiveFrame(1);
-              moveCamera(exp.view, exp.rotation, camera, 0.8, 0.8);
+              moveCamera(exp.view, exp.rotation, camera, 0.8, 0.8, zoom);
             }}
           />
           <Button
@@ -134,7 +135,14 @@ function Desk({ setOrbitEnabled, setActiveFrame }: DeskProps) {
               e.stopPropagation();
               setOrbitEnabled(false);
               setActiveFrame(2);
-              moveCamera(contact.view, contact.rotation, camera, 0.8, 0.8);
+              moveCamera(
+                contact.view,
+                contact.rotation,
+                camera,
+                0.8,
+                0.8,
+                zoom
+              );
             }}
           />
         </>

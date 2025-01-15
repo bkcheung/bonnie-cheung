@@ -21,7 +21,7 @@ const frameData: frameType[] = [
   {
     frame: 'About',
     view: [-150, 30, 0],
-    position: [-250, 42, 0],
+    position: [-270, 42, 0],
     rotation: [0, Math.PI / 2, 0],
     left: 2,
     right: 1,
@@ -31,7 +31,7 @@ const frameData: frameType[] = [
   {
     frame: 'Portfolio',
     view: [0, 30, -150],
-    position: [0, 42, -250],
+    position: [0, 42, -270],
     rotation: [0, 0, 0],
     left: 0,
     right: 2,
@@ -41,7 +41,7 @@ const frameData: frameType[] = [
   {
     frame: 'Contact',
     view: [150, 30, 0],
-    position: [250, 42, 0],
+    position: [270, 42, 0],
     rotation: [0, -Math.PI / 2, 0],
     left: 1,
     right: 0,

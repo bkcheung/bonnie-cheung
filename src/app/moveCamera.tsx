@@ -5,7 +5,8 @@ const moveCamera = (
   [thetax, thetay, thetaz]: number[],
   camera: any,
   transitionDuration: number,
-  delay: number = 0
+  delay: number = 0,
+  zoom: number = 1
 ) => {
   gsap.to(camera.position, {
     x: 0,
@@ -25,9 +26,9 @@ const moveCamera = (
   });
   setTimeout(() => {
     gsap.to(camera.position, {
-      x: x1,
-      y: y1,
-      z: z1,
+      x: x1 * zoom,
+      y: y1 * zoom,
+      z: z1 * zoom,
       duration: 1.5,
       ease: 'power2.inOut',
     });

@@ -9,10 +9,17 @@ import { NavButton } from './Buttons';
 interface FrameProps {
   frame: number;
   active: boolean;
+  zoom: number;
   setActiveFrame: React.Dispatch<React.SetStateAction<number>>;
   setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
-function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
+function Frame({
+  frame,
+  active,
+  zoom,
+  setActiveFrame,
+  setOrbitEnabled,
+}: FrameProps) {
   const left = frameData[frame].left;
   const right = frameData[frame].right;
   const framePreview = frameData[frame].preview;
@@ -53,7 +60,8 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
       frameData[frame].rotation,
       camera,
       0.8,
-      0.8
+      0.8,
+      zoom
     );
   };
 
@@ -105,7 +113,8 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
                 frameData[left].rotation,
                 camera,
                 0.6,
-                0.8
+                0.8,
+                zoom
               );
             }}
           />
@@ -126,7 +135,8 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
                 frameData[right].rotation,
                 camera,
                 0.6,
-                0.8
+                0.8,
+                zoom
               );
             }}
           />

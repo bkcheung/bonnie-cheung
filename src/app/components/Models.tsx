@@ -15,12 +15,21 @@ interface ModelsProps {
 const Models = ({ orbitEnabled, setOrbitEnabled }: ModelsProps) => {
   const [activeFrame, setActiveFrame] = useState(-1);
   const [rotate, setRotate] = useState(false);
+  const [zoom, setZoom] = useState(1.15);
   const { width, height } = useThree((state) => state.size);
 
   useEffect(() => {
-    if (height / width > 1.3) {
+    const ratio = height / width;
+    if (ratio > 4 / 3) {
       setRotate(true);
-    } else setRotate(false);
+    } else {
+      setRotate(false);
+      if (1.1 < ratio && ratio < 4 / 3) setZoom(0.6);
+      else if (0.9 < ratio && ratio < 1.1) setZoom(0.75);
+      else if (0.7 < ratio && ratio < 0.9) setZoom(0.85);
+      else if (0 < ratio && ratio < 0.5) setZoom(1.25);
+      else setZoom(1.15);
+    }
   }, [height, width]);
 
   const frames = frameData.map((frame, index) => {
@@ -31,6 +40,7 @@ const Models = ({ orbitEnabled, setOrbitEnabled }: ModelsProps) => {
         active={activeFrame === index}
         setActiveFrame={setActiveFrame}
         setOrbitEnabled={setOrbitEnabled}
+        zoom={zoom}
       />
     );
   });
@@ -52,7 +62,11 @@ const Models = ({ orbitEnabled, setOrbitEnabled }: ModelsProps) => {
     </Html>
   ) : (
     <>
-      <Desk setOrbitEnabled={setOrbitEnabled} setActiveFrame={setActiveFrame} />
+      <Desk
+        setOrbitEnabled={setOrbitEnabled}
+        setActiveFrame={setActiveFrame}
+        zoom={zoom}
+      />
       {frames}
     </>
   );
