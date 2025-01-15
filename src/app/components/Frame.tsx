@@ -57,9 +57,6 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
     );
   };
 
-  const props = useKTX2({
-    map:"/contact-prev-uastc.ktx2",
-  });
   return (
     <group
       onClick={handleFrameClick}
@@ -67,7 +64,7 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
       rotation={frameData[frame].rotation}
     >
       <Box
-        args={[210, 110, 1]}
+        args={[210, 110, 0.5]}
         position={[0, 0, -0.5]}
         onPointerEnter={() => setHovered(true)}
         onPointerLeave={() => setHovered(false)}
@@ -76,31 +73,25 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
           color={hovered && !active ? '#636E67' : 'black'}
         />
       </Box>
+      {frame === 2 && (
+        <Box args={[200, 100, 1]} position={[0, 0, 0]}>
+          <meshStandardMaterial
+            {...useKTX2({
+              map: '/contact-prev-uastc.ktx2',
+            })}
+          />
+        </Box>
+      )}
       <Html
         as="div"
         className="w-[500rem] h-[250rem] text-[15rem] antialiased"
         transform
         occlude="blending"
-        position={[0, 0, 0.5]}
+        position={[0, 0, 0]}
         zIndexRange={zIndexRange}
       >
         {content}
       </Html>
-      {/* <Html
-        as="div"
-        className="w-[510rem] h-[260rem]"
-        transform
-        position={[0, 0, 0.25]}
-        zIndexRange={[-10, -20]}
-      >
-        <div className="w-full h-full bg-[url(/cliff-walk.jpg)] bg-cover bg-center bg-no-repeat" />
-      </Html> */}
-     <Box
-        args={[200, 100, 1]}
-        position={[0, 0, 0.5]}
-      >
-        <meshStandardMaterial {...props}/>
-      </Box>
       {active && (
         <>
           <NavButton

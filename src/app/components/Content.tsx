@@ -77,7 +77,7 @@ const PortfolioContent = React.memo(() => {
 
 const ContactPreview = React.memo(() => {
   return (
-    <div/>
+    <div />
     // <div className="flex absolute w-full h-full bg-[url(/contact-prev.png)] bg-cover bg-center bg-no-repeat" />
   );
 });
