@@ -1,9 +1,6 @@
-import Image from 'next/image';
 import React from 'react';
 
 import ContactForm from '../components/ContactForm';
-
-// import Project from '../components/Project';
 
 const AboutPreview = React.memo(() => {
   return (
@@ -13,21 +10,11 @@ const AboutPreview = React.memo(() => {
 const AboutContent = React.memo(() => {
   return (
     <section
-      className="flex absolute w-full h-full"
+      className="flex absolute w-full h-full bg-[url(/about.png)] bg-cover bg-center bg-no-repeat"
       onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
       }}
-    >
-      <Image
-        src="/about.png"
-        alt="About section"
-        sizes="50vw"
-        placeholder="blur"
-        blurDataURL="/wheat-field-blur.jpg"
-        priority
-        fill
-      />
-    </section>
+    />
   );
 });
 const PortfolioPreview = React.memo(() => {
@@ -38,7 +25,6 @@ const PortfolioPreview = React.memo(() => {
 const PortfolioContent = React.memo(() => {
   return (
     <section
-      // className="flex flex-col w-full h-full py-40 px-60 bg-beige"
       className="flex w-full items-end h-full py-40 px-60 gap-40 bg-[url(/portfolio.png)] bg-cover bg-center bg-no-repeat"
       onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
@@ -108,40 +94,6 @@ const PortfolioContent = React.memo(() => {
           className="w-full"
         />
       </section>
-      {/* <h1 className="text-[20rem]">Portfolio</h1>
-      <div className="flex justify-between items-center h-[85%] w-full my-40">
-        <Project
-          title="Bean & Brew"
-          description="A dynamic store with responsive design, server-side rendering, & parallax effects"
-          image="/bean-brew.png"
-          tags={[
-            'Next.js',
-            'React',
-            'TypeScript',
-            'Tailwind CSS',
-            'API',
-            'Jest',
-          ]}
-          codeUrl="https://github.com/bkcheung/bean-and-brew"
-          liveUrl="https://bean-and-brew-pi.vercel.app"
-        />
-        <Project
-          title="Memory Card Game"
-          description="An interactive game featuring dynamic card generation using an external API"
-          image="/memory-card.png"
-          tags={['React', 'TypeScript', 'Tailwind CSS', 'API', 'Vitest']}
-          codeUrl="https://github.com/bkcheung/Memory-Card-Game"
-          liveUrl="https://ac-memo-game.vercel.app"
-        />
-        <Project
-          title="CV Builder"
-          description="Features real-time updates with user-input and PDF export capability"
-          image="/cv-builder.png"
-          tags={['React', 'TypeScript', 'Tailwind CSS']}
-          codeUrl="https://github.com/bkcheung/CV-Builder"
-          liveUrl="https://bkcheung.github.io/CV-Builder"
-        />
-      </div> */}
     </section>
   );
 });

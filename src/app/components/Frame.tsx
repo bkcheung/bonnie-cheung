@@ -1,7 +1,6 @@
 import { Box, Html, useKTX2, useTexture } from '@react-three/drei';
 import { ThreeEvent, useThree } from '@react-three/fiber';
 import React, { useEffect, useState } from 'react';
-import { Vector3 } from 'three';
 
 import { frameData } from '../data';
 import moveCamera from '../moveCamera';
@@ -71,7 +70,6 @@ function Frame({
   };
   const leftButton = zoom === 1.25 ? 'left-mid' : 'left-bottom';
   const rightButton = zoom === 1.25 ? 'right-mid' : 'right-bottom';
-  // const homeButton = zoom === 1.25 ? new Vector3(0, -60, 1) : new Vector3(0, -60, 1);
 
   return (
     <group
