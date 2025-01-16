@@ -25,7 +25,7 @@ const PortfolioPreview = React.memo(() => {
 const PortfolioContent = React.memo(() => {
   return (
     <section
-      className="flex w-full items-end h-full py-40 px-60 gap-40 bg-[url(/portfolio.png)] bg-cover bg-center bg-no-repeat"
+      className="flex w-full items-end h-full py-40 px-60 gap-40 bg-[url(/portfolio-prev.png)] bg-cover bg-center bg-no-repeat"
       onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
       }}
