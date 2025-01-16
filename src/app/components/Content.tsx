@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import ContactForm from '../components/ContactForm';
-import Project from '../components/Project';
+// import Project from '../components/Project';
 
 const AboutPreview = React.memo(() => {
   return (
@@ -37,12 +37,77 @@ const PortfolioPreview = React.memo(() => {
 const PortfolioContent = React.memo(() => {
   return (
     <section
-      className="flex flex-col w-full h-full py-40 px-60 bg-beige"
+      // className="flex flex-col w-full h-full py-40 px-60 bg-beige"
+      className="flex w-full items-end h-full py-40 px-60 gap-40 bg-[url(/portfolio.png)] bg-cover bg-center bg-no-repeat"
       onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
       }}
     >
-      <h1 className="text-[20rem]">Portfolio</h1>
+      <section className="flex w-[32%] h-[15rem] px-40 mb-80 gap-20">
+        <button
+          title="https://github.com/bkcheung/bean-and-brew"
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            e.stopPropagation();
+            window
+              .open('https://github.com/bkcheung/bean-and-brew', '_blank')
+              ?.focus();
+          }}
+          className="w-1/4"
+        />
+        <button
+          title="https://bean-and-brew-pi.vercel.app"
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            e.stopPropagation();
+            window
+              .open('https://bean-and-brew-pi.vercel.app', '_blank')
+              ?.focus();
+          }}
+          className="w-full"
+        />
+      </section>
+      <section className="flex w-[32%] h-[15rem] px-40 mb-80 gap-20">
+        <button
+          title="https://github.com/bkcheung/Memory-Card-Game"
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            e.stopPropagation();
+            window
+              .open('https://github.com/bkcheung/Memory-Card-Game', '_blank')
+              ?.focus();
+          }}
+          className="w-1/4"
+        />
+        <button
+          title="https://ac-memo-game.vercel.app"
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            e.stopPropagation();
+            window.open('https://ac-memo-game.vercel.app', '_blank')?.focus();
+          }}
+          className="w-full"
+        />
+      </section>
+      <section className="flex w-[32%] h-[15rem] px-40 mb-80 gap-20">
+        <button
+          title="https://github.com/bkcheung/CV-Builder"
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            e.stopPropagation();
+            window
+              .open('https://github.com/bkcheung/CV-Builder', '_blank')
+              ?.focus();
+          }}
+          className="w-1/4"
+        />
+        <button
+          title="https://bkcheung.github.io/CV-Builder"
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            e.stopPropagation();
+            window
+              .open('https://bkcheung.github.io/CV-Builder', '_blank')
+              ?.focus();
+          }}
+          className="w-full"
+        />
+      </section>
+      {/* <h1 className="text-[20rem]">Portfolio</h1>
       <div className="flex justify-between items-center h-[85%] w-full my-40">
         <Project
           title="Bean & Brew"
@@ -75,7 +140,7 @@ const PortfolioContent = React.memo(() => {
           codeUrl="https://github.com/bkcheung/CV-Builder"
           liveUrl="https://bkcheung.github.io/CV-Builder"
         />
-      </div>
+      </div> */}
     </section>
   );
 });
