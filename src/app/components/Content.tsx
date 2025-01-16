@@ -158,7 +158,7 @@ const ContactContent = React.memo(() => {
         e.stopPropagation();
       }}
     >
-      <div className="flex flex-col w-[55%] justify-evenly p-80 bg-white/80">
+      <div className="flex flex-col w-[55%] justify-evenly p-80 bg-white">
         <h1 className="text-[20rem] mb-40 text-gray-800">Contact</h1>
         <ContactForm />
       </div>
