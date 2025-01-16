@@ -4,6 +4,11 @@ import React from 'react';
 import ContactForm from '../components/ContactForm';
 import Project from '../components/Project';
 
+const AboutPreview = React.memo(() => {
+  return (
+    <div className="flex absolute w-full h-full bg-[url(/about-prev.png)] bg-cover bg-center bg-no-repeat" />
+  );
+});
 const AboutContent = React.memo(() => {
   return (
     <section
@@ -32,7 +37,7 @@ const PortfolioPreview = React.memo(() => {
 const PortfolioContent = React.memo(() => {
   return (
     <section
-      className="flex flex-col w-[500rem] h-[250rem] py-40 px-60 bg-beige"
+      className="flex flex-col w-full h-full py-40 px-60 bg-beige"
       onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
       }}
@@ -76,10 +81,7 @@ const PortfolioContent = React.memo(() => {
 });
 
 const ContactPreview = React.memo(() => {
-  return (
-    <div />
-    // <div className="flex absolute w-full h-full bg-[url(/contact-prev.png)] bg-cover bg-center bg-no-repeat" />
-  );
+  return <div className="bg-black w-full h-full" />;
 });
 
 const ContactContent = React.memo(() => {
@@ -102,6 +104,7 @@ const ContactContent = React.memo(() => {
 });
 
 AboutContent.displayName = 'AboutContent';
+AboutPreview.displayName = 'AboutPreview';
 PortfolioContent.displayName = 'PortfolioContent';
 PortfolioPreview.displayName = 'PortfolioPreview';
 ContactContent.displayName = 'ContactContent';
@@ -109,6 +112,7 @@ ContactPreview.displayName = 'ContactPreview';
 
 export {
   AboutContent,
+  AboutPreview,
   PortfolioContent,
   PortfolioPreview,
   ContactContent,

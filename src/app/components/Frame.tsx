@@ -31,6 +31,10 @@ function Frame({
 
   const { camera } = useThree();
 
+  const props = useKTX2({
+    map: '/contact-prev-uastc.ktx2',
+  });
+
   useEffect(() => {
     document.body.style.cursor = hovered && !active ? 'pointer' : 'auto';
     return () => {
@@ -65,10 +69,6 @@ function Frame({
     );
   };
 
-  const props = useKTX2({
-    map: '/contact-prev-uastc.ktx2',
-  });
-
   return (
     <group
       onClick={handleFrameClick}
@@ -92,7 +92,7 @@ function Frame({
       )}
       <Html
         as="div"
-        className="w-[500rem] h-[250rem] text-[15rem] antialiased"
+        className="w-[502rem] h-[250rem] text-[15rem] antialiased"
         transform
         occlude="blending"
         position={[0, 0, 0]}

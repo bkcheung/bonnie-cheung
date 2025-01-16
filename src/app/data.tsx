@@ -1,5 +1,6 @@
 import {
   AboutContent,
+  AboutPreview,
   ContactContent,
   ContactPreview,
   PortfolioContent,
@@ -25,7 +26,7 @@ const frameData: frameType[] = [
     rotation: [0, Math.PI / 2, 0],
     left: 2,
     right: 1,
-    preview: <AboutContent />,
+    preview: <AboutPreview />,
     content: <AboutContent />,
   },
   {

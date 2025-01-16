@@ -12,7 +12,11 @@ function ThreeCanvas() {
   const [orbitEnabled, setOrbitEnabled] = useState(true);
 
   return (
-    <Canvas gl={{ antialias: true }} dpr={[1, 1.5]} className="absolute top-0 left-0 w-full h-full">
+    <Canvas
+      gl={{ antialias: true }}
+      dpr={[1, 1.5]}
+      className="absolute top-0 left-0 w-full h-full"
+    >
       <Lighting />
       <OrbitControls
         enabled={orbitEnabled}
