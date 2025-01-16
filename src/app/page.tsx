@@ -6,8 +6,8 @@ import Scene from './components/Scene';
 
 export default function Home() {
   return (
-    <div className="flex h-[100vh] w-[100vw] flex-col items-center">
-      <main className="h-full w-full">
+    <div className="flex flex-col h-dvh w-screen items-center">
+      <main className="h-full w-full overflow-hidden">
         <Scene />
         <ToastContainer limit={3} autoClose={2000} hideProgressBar={true} />
         <SpeedInsights />
