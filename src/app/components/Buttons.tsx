@@ -31,24 +31,32 @@ const Button = ({ text, position = [0, 0, 0], buttonClick }: ButtonProps) => {
 
 interface NavButton {
   text: string;
-  direction: string;
+  position: string;
   buttonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const NavButton = ({ text, direction, buttonClick }: NavButton) => {
+const NavButton = ({ text, position, buttonClick }: NavButton) => {
   let label, pos;
-  switch (direction) {
-    case 'left':
+  switch (position) {
+    case 'left-bottom':
       label = text;
-      pos = new Vector3(-95, -70, 1);
+      pos = new Vector3(-95, -60, 1);
       break;
-    case 'right':
+    case 'left-mid':
       label = text;
-      pos = new Vector3(95, -70, 1);
+      pos = new Vector3(-120, 0, 1);
+      break;
+    case 'right-bottom':
+      label = text;
+      pos = new Vector3(95, -60, 1);
+      break;
+    case 'right-mid':
+      label = text;
+      pos = new Vector3(120, 0, 1);
       break;
     default:
       label = text;
-      pos = new Vector3(0, -70, 1);
+      pos = new Vector3(0, -60, 1);
       break;
   }
   return (

@@ -1,4 +1,4 @@
-import { Box, Html } from '@react-three/drei';
+import { Box, Html, useKTX2, useTexture } from '@react-three/drei';
 import { ThreeEvent, useThree } from '@react-three/fiber';
 import React, { useEffect, useState } from 'react';
 
@@ -9,10 +9,17 @@ import { NavButton } from './Buttons';
 interface FrameProps {
   frame: number;
   active: boolean;
+  zoom: number;
   setActiveFrame: React.Dispatch<React.SetStateAction<number>>;
   setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
-function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
+function Frame({
+  frame,
+  active,
+  zoom,
+  setActiveFrame,
+  setOrbitEnabled,
+}: FrameProps) {
   const left = frameData[frame].left;
   const right = frameData[frame].right;
   const framePreview = frameData[frame].preview;
@@ -23,6 +30,10 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
   const [content, setContent] = useState(framePreview);
 
   const { camera } = useThree();
+
+  const props = useKTX2({
+    map: '/contact-prev-uastc.ktx2',
+  });
 
   useEffect(() => {
     document.body.style.cursor = hovered && !active ? 'pointer' : 'auto';
@@ -53,9 +64,12 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
       frameData[frame].rotation,
       camera,
       0.8,
-      0.8
+      0.8,
+      zoom
     );
   };
+  const leftButton = zoom === 1.25 ? 'left-mid' : 'left-bottom';
+  const rightButton = zoom === 1.25 ? 'right-mid' : 'right-bottom';
 
   return (
     <group
@@ -64,7 +78,7 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
       rotation={frameData[frame].rotation}
     >
       <Box
-        args={[210, 110, 1]}
+        args={[210, 110, 0.5]}
         position={[0, 0, -0.5]}
         onPointerEnter={() => setHovered(true)}
         onPointerLeave={() => setHovered(false)}
@@ -73,30 +87,26 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
           color={hovered && !active ? '#636E67' : 'black'}
         />
       </Box>
+      {frame === 2 && (
+        <Box args={[200, 100, 1]} position={[0, 0, 0]}>
+          <meshStandardMaterial {...props} />
+        </Box>
+      )}
       <Html
         as="div"
-        className="w-[500rem] h-[250rem] text-[15rem] antialiased"
+        className="w-[502rem] h-[250rem] text-[15rem] antialiased"
         transform
         occlude="blending"
-        position={[0, 0, 0.5]}
+        position={[0, 0, 0]}
         zIndexRange={zIndexRange}
       >
         {content}
-      </Html>
-      <Html
-        as="div"
-        className="w-[510rem] h-[260rem]"
-        transform
-        position={[0, 0, 0.25]}
-        zIndexRange={[-10, -20]}
-      >
-        <div className="w-full h-full bg-[url(/cliff-walk.jpg)] bg-cover bg-center bg-no-repeat" />
       </Html>
       {active && (
         <>
           <NavButton
             text={frameData[left].frame}
-            direction="left"
+            position={leftButton}
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               setActiveFrame(left);
@@ -105,19 +115,22 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
                 frameData[left].rotation,
                 camera,
                 0.6,
-                0.8
+                0.8,
+                zoom
               );
             }}
           />
-          <Html as="div" transform position={[0, -70, 1]}>
+          {/* <Html as="div" transform position={[0, -60, 1]}>
             <div
               title="Home"
-              className="w-[400rem] h-[65rem] hover:cursor-pointer"
-            />
-          </Html>
+              className="flex w-[400rem] h-[65rem] hover:cursor-pointer text-[10rem] items-center justify-center text-black/30 animate-fade-in-long"
+            >
+              Home
+            </div>
+          </Html> */}
           <NavButton
             text={frameData[right].frame}
-            direction="right"
+            position={rightButton}
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               setActiveFrame(right);
@@ -126,7 +139,8 @@ function Frame({ frame, active, setActiveFrame, setOrbitEnabled }: FrameProps) {
                 frameData[right].rotation,
                 camera,
                 0.6,
-                0.8
+                0.8,
+                zoom
               );
             }}
           />

@@ -3,6 +3,7 @@ import { useThree } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { Group } from 'three';
+import { KTX2Loader } from 'three-stdlib';
 
 import { frameData, homeView } from '../data';
 import moveCamera from '../moveCamera';
@@ -13,11 +14,20 @@ useGLTF.preload('/imac.glb');
 interface DeskProps {
   setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
   setActiveFrame: React.Dispatch<React.SetStateAction<number>>;
+  zoom: number;
 }
 
-function Desk({ setOrbitEnabled, setActiveFrame }: DeskProps) {
+function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
   const group = useRef<Group>(null);
-  const { scene } = useGLTF('/imac.glb');
+  const { gl } = useThree();
+  const ktx2Loader = new KTX2Loader();
+  ktx2Loader.setTranscoderPath(
+    'https://unpkg.com/three@0.168.0/examples/jsm/libs/basis/'
+  );
+  const { scene } = useGLTF('imac.glb', undefined, undefined, (loader) => {
+    loader.setKTX2Loader(ktx2Loader.detectSupport(gl));
+    ktx2Loader.dispose();
+  });
   const [showButtons, setShowButtons] = useState(false);
   const { camera } = useThree();
 
@@ -28,7 +38,7 @@ function Desk({ setOrbitEnabled, setActiveFrame }: DeskProps) {
 
   useEffect(() => {
     camera.position.set(30, 50, 50);
-    moveCamera(homeView, [0, 0, 0], camera, 1, 0);
+    moveCamera(homeView, [0, 0, 0], camera, 1, 0, 1.15);
 
     const timer = setTimeout(() => {
       setShowButtons(true);
@@ -105,7 +115,7 @@ function Desk({ setOrbitEnabled, setActiveFrame }: DeskProps) {
               e.stopPropagation();
               setOrbitEnabled(false);
               setActiveFrame(0);
-              moveCamera(about.view, about.rotation, camera, 0.8, 0.8);
+              moveCamera(about.view, about.rotation, camera, 0.8, 0.8, zoom);
             }}
           />
           <Button
@@ -115,7 +125,7 @@ function Desk({ setOrbitEnabled, setActiveFrame }: DeskProps) {
               e.stopPropagation();
               setOrbitEnabled(false);
               setActiveFrame(1);
-              moveCamera(exp.view, exp.rotation, camera, 0.8, 0.8);
+              moveCamera(exp.view, exp.rotation, camera, 0.8, 0.8, zoom);
             }}
           />
           <Button
@@ -125,7 +135,14 @@ function Desk({ setOrbitEnabled, setActiveFrame }: DeskProps) {
               e.stopPropagation();
               setOrbitEnabled(false);
               setActiveFrame(2);
-              moveCamera(contact.view, contact.rotation, camera, 0.8, 0.8);
+              moveCamera(
+                contact.view,
+                contact.rotation,
+                camera,
+                0.8,
+                0.8,
+                zoom
+              );
             }}
           />
         </>
