@@ -28,7 +28,7 @@ export default function ContactForm() {
 
   return (
     <section
-      className="w-full p-40 bg-white/50 rounded-[10rem] text-[10rem]"
+      className="w-full p-40 bg-[#d6d6d6] rounded-[10rem] text-[10rem]"
       onClick={(e) => {
         e.stopPropagation();
       }}
@@ -81,7 +81,7 @@ export default function ContactForm() {
             ></button>
           </div>
 
-          <button type="submit" className="bg-beige p-20 rounded-[5rem]">
+          <button type="submit" className="bg-white/50 p-20 rounded-[5rem]">
             Send Email
           </button>
         </div>

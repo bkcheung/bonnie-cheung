@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import ContactForm from '../components/ContactForm';
+
 // import Project from '../components/Project';
 
 const AboutPreview = React.memo(() => {
@@ -157,8 +158,8 @@ const ContactContent = React.memo(() => {
         e.stopPropagation();
       }}
     >
-      <div className="flex flex-col w-[55%] justify-evenly p-80">
-        <h1 className="text-[20rem] text-white mb-40">Contact</h1>
+      <div className="flex flex-col w-[55%] justify-evenly p-80 bg-white/80">
+        <h1 className="text-[20rem] mb-40 text-gray-800">Contact</h1>
         <ContactForm />
       </div>
       <h4 className="text-[8rem] text-white ml-auto mr-20 mt-auto mb-20">
