@@ -1,6 +1,7 @@
 import { Box, Html, useKTX2, useTexture } from '@react-three/drei';
 import { ThreeEvent, useThree } from '@react-three/fiber';
 import React, { useEffect, useState } from 'react';
+import { Vector3 } from 'three';
 
 import { frameData } from '../data';
 import moveCamera from '../moveCamera';
@@ -68,6 +69,9 @@ function Frame({
       zoom
     );
   };
+  const leftButton = zoom === 1.25 ? 'left-mid' : 'left-bottom';
+  const rightButton = zoom === 1.25 ? 'right-mid' : 'right-bottom';
+  // const homeButton = zoom === 1.25 ? new Vector3(0, -60, 1) : new Vector3(0, -60, 1);
 
   return (
     <group
@@ -104,7 +108,7 @@ function Frame({
         <>
           <NavButton
             text={frameData[left].frame}
-            direction="left"
+            position={leftButton}
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               setActiveFrame(left);
@@ -118,15 +122,17 @@ function Frame({
               );
             }}
           />
-          <Html as="div" transform position={[0, -70, 1]}>
+          <Html as="div" transform position={[0, -60, 1]}>
             <div
               title="Home"
-              className="w-[400rem] h-[65rem] hover:cursor-pointer"
-            />
+              className="flex w-[400rem] h-[65rem] hover:cursor-pointer text-[10rem] items-center justify-center text-black/30 animate-fade-in-long"
+            >
+              Home
+            </div>
           </Html>
           <NavButton
             text={frameData[right].frame}
-            direction="right"
+            position={rightButton}
             buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               setActiveFrame(right);
