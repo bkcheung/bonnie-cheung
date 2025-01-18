@@ -1,4 +1,6 @@
 import React from 'react';
+// import Image from 'next/image';
+// import Skillbar from '../components/Skillbar';
 
 import ContactForm from '../components/ContactForm';
 
@@ -15,6 +17,60 @@ const AboutContent = React.memo(() => {
         e.stopPropagation();
       }}
     />
+    // Uncomment this section to update About section
+    // <div className="flex w-full h-full">
+    //   <Image
+    //     src="/wheat-field.jpg"
+    //     alt="wheat field with cypresses by van gogh"
+    //     width={500}
+    //     height={300}
+    //     className="absolute w-full h-full -z-10"
+    //   />
+    //   <div
+    //     aria-label="about-left"
+    //     className="flex flex-col w-1/2 h-full  bg-white/75 p-[20rem]"
+    //   >
+    //     <h1 className="text-[20rem] font-serif my-20">Bonnie Cheung</h1>
+    //     <h2 className="text-[12rem] font-serif mb-20"> About me:
+    //     </h2>
+    //       <ul className="list-disc ml-[10rem] text-[7.5rem]">
+    //         <li className='mb-20'>
+    //           Since an early age, I have loved building (& unbuilding) things;
+    //           sorry mom!
+    //         </li>
+    //         <li className='mb-20'>
+    //           I did FIRST Robotics in high school and studied Mechatronics
+    //           Engineering at the University of Waterloo
+    //         </li>
+    //         <li className='mb-20'>
+    //           For the past 4+ years, I've been a Mechanical Product and System
+    //           Design Engineer at Apple
+    //         </li>
+    //         <li className='mb-20'>
+    //           After years as a mechanical engineer, I discovered a passion for
+    //           creating interactive digital experiences, leading me to leave my
+    //           job and pursue my dream of becoming a full-time software engineer!
+    //         </li>
+    //       </ul>
+    //   </div>
+    //   <div
+    //     aria-label="about-right"
+    //     className="flex flex-col w-1/2 text-[10rem] justify-end items-end p-[20rem] pb-0"
+    //   >
+    //     <div
+    //       aria-label="skills"
+    //       className="bg-white/75 p-[10rem] rounded-[10rem] w-[65%]"
+    //     >
+    //       <Skillbar skill="HTML & CSS" percent={95} />
+    //       <Skillbar skill="Javascript" percent={85} />
+    //       <Skillbar skill="Typescript" percent={75} />
+    //       <Skillbar skill="React" percent={77} />
+    //     </div>
+    //     <h4 className="text-[6.5rem] text-right my-[5rem] text-white">
+    //       Wheat Field with Cypresses - Vincent Van Gogh
+    //     </h4>
+    //   </div>
+    // </div>
   );
 });
 const PortfolioPreview = React.memo(() => {
@@ -111,7 +167,7 @@ const ContactContent = React.memo(() => {
       }}
     >
       <div className="flex flex-col w-[55%] justify-evenly p-80 bg-[#e9e9e9]">
-        <h1 className="text-[20rem] mb-40 text-gray-800">Contact</h1>
+        <h1 className="font-serif text-[20rem] mb-40 text-gray-800">Contact</h1>
         <ContactForm />
       </div>
       <h4 className="text-[8rem] text-white ml-auto mr-20 mt-auto mb-20">

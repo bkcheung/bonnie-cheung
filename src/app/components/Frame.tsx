@@ -120,14 +120,6 @@ function Frame({
               );
             }}
           />
-          {/* <Html as="div" transform position={[0, -60, 1]}>
-            <div
-              title="Home"
-              className="flex w-[400rem] h-[65rem] hover:cursor-pointer text-[10rem] items-center justify-center text-black/30 animate-fade-in-long"
-            >
-              Home
-            </div>
-          </Html> */}
           <NavButton
             text={frameData[right].frame}
             position={rightButton}

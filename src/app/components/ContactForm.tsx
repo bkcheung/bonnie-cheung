@@ -28,7 +28,7 @@ export default function ContactForm() {
 
   return (
     <section
-      className="w-full p-40 bg-[#d6d6d6] rounded-[10rem] text-[10rem]"
+      className="w-full p-40 bg-[#d6d6d6] rounded-[10rem] text-[10rem] shadow-xl"
       onClick={(e) => {
         e.stopPropagation();
       }}
@@ -41,7 +41,7 @@ export default function ContactForm() {
               type="text"
               name="name"
               autoComplete="name"
-              className="w-[70%] p-20 pr-0 rounded-[5rem]"
+              className="w-[70%] p-20 pr-0 rounded-[5rem] shadow-xl"
             />
           </div>
           <div className="flex my-20 justify-between">
@@ -50,20 +50,21 @@ export default function ContactForm() {
               type="email"
               name="email"
               autoComplete="email"
-              className="w-[70%] p-20 pr-0 rounded-[5rem]"
+              className="w-[70%] p-20 pr-0 rounded-[5rem] shadow-xl"
             />
           </div>
           <div className="flex my-20 justify-between">
             <h2>Message:</h2>
             <textarea
               name="message"
-              className="w-[70%] p-20 rounded-[5rem]"
+              className="w-[70%] p-20 rounded-[5rem] shadow-xl"
             ></textarea>
           </div>
         </div>
         <div className="flex my-20 justify-between items-center">
-          <div className="flex gap-32 opacity-60">
+          <div className="flex gap-32 opacity-80">
             <button
+            title='https://www.linkedin.com/in/cheungbonnie/'
               onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.preventDefault();
                 window
@@ -73,6 +74,7 @@ export default function ContactForm() {
               className="bg-[url('/linkedin.png')] bg-cover w-[20rem] h-[20rem]"
             ></button>
             <button
+            title='https://github.com/bkcheung'
               onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.preventDefault();
                 window.open('https://github.com/bkcheung', '_blank')?.focus();
@@ -81,7 +83,7 @@ export default function ContactForm() {
             ></button>
           </div>
 
-          <button type="submit" className="bg-white/50 p-20 rounded-[5rem]">
+          <button type="submit" className="bg-[#0277b5]/20 hover:bg-white/30 shadow-xl p-20 rounded-[5rem]">
             Send Email
           </button>
         </div>
