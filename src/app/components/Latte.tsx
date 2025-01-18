@@ -19,7 +19,7 @@ const Latte = () => {
     <primitive
       title="latte"
       object={scene}
-      scale={[100, 100, 100]}
+      scale={[1, 1, 1]}
       position={[-22, 2, 8]}
     />
   );
