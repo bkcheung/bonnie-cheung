@@ -1,7 +1,6 @@
 import { Html, useGLTF } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
-import React, { useEffect, useRef, useState } from 'react';
-import { TypeAnimation } from 'react-type-animation';
+import React, { useEffect, useRef } from 'react';
 import { Group } from 'three';
 import { KTX2Loader } from 'three-stdlib';
 
@@ -28,7 +27,6 @@ function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
     loader.setKTX2Loader(ktx2Loader.detectSupport(gl));
     ktx2Loader.dispose();
   });
-  const [showButtons, setShowButtons] = useState(false);
   const { camera } = useThree();
 
   const textZ = 6.8;
@@ -39,12 +37,6 @@ function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
   useEffect(() => {
     camera.position.set(30, 50, 50);
     moveCamera(homeView, [0, 0, 0], camera, 1, 0, 1.15);
-
-    const timer = setTimeout(() => {
-      setShowButtons(true);
-    }, 4500);
-
-    return () => clearTimeout(timer);
   }, [camera]);
 
   return (
@@ -71,16 +63,10 @@ function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
           width: '10em',
         }}
       >
-        <TypeAnimation
-          sequence={[750, 'Hi!', 750, "Hi! I'm Bonnie"]}
-          wrapper="h1"
-          speed={75}
-          cursor={false}
-          omitDeletionAnimation={true}
-        />
+        Hi! I'm Bonnie
       </Html>
       <Html
-        position={[-14, 20.5, textZ]}
+        position={[-14, 20.75, textZ]}
         transform
         occlude
         style={{
@@ -92,61 +78,39 @@ function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
           textAlign: 'center',
         }}
       >
-        <TypeAnimation
-          sequence={[
-            '',
-            2200,
-            'Welcome to my website!',
-            500,
-            'Welcome to my website! Scroll to zoom and click + drag to rotate the view.',
-          ]}
-          wrapper="h2"
-          speed={75}
-          cursor={false}
-          omitDeletionAnimation={true}
-        />
+        I'm a frontend engineer who is passionate about creating stunning user
+        experiences
       </Html>
-      {showButtons && (
-        <>
-          <Button
-            text="About"
-            position={[9.2, 24.15, textZ]}
-            buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-              e.stopPropagation();
-              setOrbitEnabled(false);
-              setActiveFrame(0);
-              moveCamera(about.view, about.rotation, camera, 0.8, 0.8, zoom);
-            }}
-          />
-          <Button
-            text="Portfolio"
-            position={[9.2, 18.7, textZ]}
-            buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-              e.stopPropagation();
-              setOrbitEnabled(false);
-              setActiveFrame(1);
-              moveCamera(exp.view, exp.rotation, camera, 0.8, 0.8, zoom);
-            }}
-          />
-          <Button
-            text="Contact"
-            position={[9.2, 13.35, textZ]}
-            buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-              e.stopPropagation();
-              setOrbitEnabled(false);
-              setActiveFrame(2);
-              moveCamera(
-                contact.view,
-                contact.rotation,
-                camera,
-                0.8,
-                0.8,
-                zoom
-              );
-            }}
-          />
-        </>
-      )}
+      <Button
+        text="About"
+        position={[9.2, 24.15, textZ]}
+        buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+          e.stopPropagation();
+          setOrbitEnabled(false);
+          setActiveFrame(0);
+          moveCamera(about.view, about.rotation, camera, 0.8, 0.8, zoom);
+        }}
+      />
+      <Button
+        text="Portfolio"
+        position={[9.2, 18.7, textZ]}
+        buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+          e.stopPropagation();
+          setOrbitEnabled(false);
+          setActiveFrame(1);
+          moveCamera(exp.view, exp.rotation, camera, 0.8, 0.8, zoom);
+        }}
+      />
+      <Button
+        text="Contact"
+        position={[9.2, 13.35, textZ]}
+        buttonClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+          e.stopPropagation();
+          setOrbitEnabled(false);
+          setActiveFrame(2);
+          moveCamera(contact.view, contact.rotation, camera, 0.8, 0.8, zoom);
+        }}
+      />
     </group>
   );
 }
