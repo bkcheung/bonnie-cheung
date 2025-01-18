@@ -64,7 +64,7 @@ export default function ContactForm() {
         <div className="flex my-20 justify-between items-center">
           <div className="flex gap-32 opacity-80">
             <button
-            title='https://www.linkedin.com/in/cheungbonnie/'
+              title="https://www.linkedin.com/in/cheungbonnie/"
               onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.preventDefault();
                 window
@@ -74,7 +74,7 @@ export default function ContactForm() {
               className="bg-[url('/linkedin.png')] bg-cover w-[20rem] h-[20rem]"
             ></button>
             <button
-            title='https://github.com/bkcheung'
+              title="https://github.com/bkcheung"
               onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.preventDefault();
                 window.open('https://github.com/bkcheung', '_blank')?.focus();
@@ -83,7 +83,10 @@ export default function ContactForm() {
             ></button>
           </div>
 
-          <button type="submit" className="bg-[#0277b5]/20 hover:bg-white/30 shadow-xl p-20 rounded-[5rem]">
+          <button
+            type="submit"
+            className="bg-[#0277b5]/20 hover:bg-white/30 shadow-xl p-20 rounded-[5rem]"
+          >
             Send Email
           </button>
         </div>
