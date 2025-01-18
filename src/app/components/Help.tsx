@@ -7,18 +7,12 @@ const Help = () => {
     <section>
       {showHelp && (
         <section
-          className="absolute inset-0 w-full h-full"
+        title='Click anywhere to close'
+          className="absolute inset-0 w-full h-full bg-black/50 hover:cursor-pointer"
           onClick={() => setShowHelp(false)}
         >
-          <div className="flex flex-col absolute inset-0 m-auto w-max h-min items-center bg-white/90 shadow-xl rounded-3xl p-10 z-1">
-            <button
-              title="close"
-              className="absolute right-10 text-gray-600 text-xl"
-              onClick={() => setShowHelp(false)}
-            >
-              close
-            </button>
-            <ul className="flex flex-col p-10 gap-4 text-gray-700 list-disc text-2xl">
+          <div className="flex flex-col absolute inset-0 m-auto w-3/4 sm:w-max h-min items-center bg-white shadow-xl rounded-3xl p-4 lg:p-10 z-1">
+            <ul className="flex flex-col p-10 gap-2 lg:gap-4 text-gray-700 list-disc text-lg lg:text-2xl">
               <li>Click and drag to rotate the view</li>
               <li>Pinch or scroll to zoom in and out</li>
               <li>
