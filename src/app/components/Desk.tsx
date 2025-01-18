@@ -7,6 +7,7 @@ import { KTX2Loader } from 'three-stdlib';
 import { frameData, homeView } from '../data';
 import moveCamera from '../moveCamera';
 import { Button } from './Buttons';
+import Latte from './Latte';
 
 useGLTF.preload('/imac.glb');
 
@@ -49,6 +50,7 @@ function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
             e.stopPropagation();
           }}
         />
+        <Latte />
       </group>
       <Html
         position={[-16.5, 25.8, textZ]}
