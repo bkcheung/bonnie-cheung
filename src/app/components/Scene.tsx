@@ -4,6 +4,7 @@ import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useEffect, useState } from 'react';
 
+import Help from './Help';
 import Lighting from './Lighting';
 import Loader from './Loader';
 import Models from './Models';
@@ -11,11 +12,13 @@ import Models from './Models';
 function ThreeCanvas() {
   const [orbitEnabled, setOrbitEnabled] = useState(true);
 
+  useEffect(() => {});
+
   return (
     <Canvas
       gl={{ antialias: true }}
       dpr={[1, 1.5]}
-      className="absolute top-0 left-0 w-full h-full"
+      className="absolute top-0 left-0 w-full h-full z-0"
     >
       <Lighting />
       <OrbitControls
@@ -44,6 +47,7 @@ export default function Scene() {
   return (
     <Suspense fallback={<Loader />}>
       <ThreeCanvas />
+      <Help />
     </Suspense>
   );
 }

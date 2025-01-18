@@ -4,7 +4,7 @@ import ContactForm from '../components/ContactForm';
 
 const AboutPreview = React.memo(() => {
   return (
-    <div className="flex absolute w-full h-full bg-[url(/about-prev.png)] bg-cover bg-center bg-no-repeat" />
+    <div className="flex absolute w-full h-full bg-[url(/about.png)] bg-cover bg-center bg-no-repeat" />
   );
 });
 const AboutContent = React.memo(() => {
@@ -19,7 +19,7 @@ const AboutContent = React.memo(() => {
 });
 const PortfolioPreview = React.memo(() => {
   return (
-    <div className="flex absolute w-full h-full bg-[url(/portfolio-prev.png)] bg-cover bg-center bg-no-repeat" />
+    <div className="flex absolute w-full h-full bg-[url(/portfolio.png)] bg-cover bg-center bg-no-repeat" />
   );
 });
 const PortfolioContent = React.memo(() => {

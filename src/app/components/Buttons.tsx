@@ -40,7 +40,7 @@ const NavButton = ({ text, position, buttonClick }: NavButton) => {
   switch (position) {
     case 'left-bottom':
       label = text;
-      pos = new Vector3(-95, -60, 1);
+      pos = new Vector3(-95, -62, 1);
       break;
     case 'left-mid':
       label = text;
@@ -48,7 +48,7 @@ const NavButton = ({ text, position, buttonClick }: NavButton) => {
       break;
     case 'right-bottom':
       label = text;
-      pos = new Vector3(95, -60, 1);
+      pos = new Vector3(95, -62, 1);
       break;
     case 'right-mid':
       label = text;
@@ -69,7 +69,7 @@ const NavButton = ({ text, position, buttonClick }: NavButton) => {
       }}
     >
       <button
-        className="px-32 py-20  rounded-[0.75em] text-[10rem] hover:bg-white/30 animate-fade-in-long"
+        className="px-28 py-16 rounded-[0.75em] text-[10rem] text-gray-700 shadow-2xl bg-white/30 hover:bg-white/70 animate-fade-in-long"
         onClick={buttonClick}
       >
         {label}

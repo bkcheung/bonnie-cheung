@@ -68,8 +68,8 @@ function Frame({
       zoom
     );
   };
-  const leftButton = zoom === 1.25 ? 'left-mid' : 'left-bottom';
-  const rightButton = zoom === 1.25 ? 'right-mid' : 'right-bottom';
+  const leftButton = zoom >= 1.15 ? 'left-mid' : 'left-bottom';
+  const rightButton = zoom >= 1.15 ? 'right-mid' : 'right-bottom';
 
   return (
     <group
