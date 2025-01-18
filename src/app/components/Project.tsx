@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import React from 'react';
 
 interface ProjectProps {
   title: string;
@@ -8,7 +9,7 @@ interface ProjectProps {
   codeUrl: string;
   liveUrl: string;
 }
-export default function Project({
+function Project({
   title,
   description,
   image,
@@ -44,7 +45,8 @@ export default function Project({
           alt={title}
           width={400}
           height={300}
-          className="w-full "
+          className="w-full"
+          priority
         />
         <div className="flex my-20 ">{tagList}</div>
       </section>
@@ -58,7 +60,7 @@ export default function Project({
             e.stopPropagation();
             window.open(codeUrl, '_blank')?.focus();
           }}
-          className="bg-green-200 mt-8 mr-16 py-8 px-16 text-[7.5rem] rounded-[3rem] shadow-xl"
+          className="bg-green-200 hover:bg-green-400 mt-8 mr-16 py-8 px-16 text-[7.5rem] rounded-[3rem] shadow-xl"
         >
           Code
         </button>
@@ -67,7 +69,7 @@ export default function Project({
             e.stopPropagation();
             window.open(liveUrl, '_blank')?.focus();
           }}
-          className="bg-green-300 w-full mt-8 py-8 px-16 text-[7.5rem] rounded-[3rem] shadow-xl text-center"
+          className="bg-green-300 hover:bg-green-500 w-full mt-8 py-8 px-16 text-[7.5rem] rounded-[3rem] shadow-xl text-center"
         >
           Live View
         </button>
@@ -75,3 +77,5 @@ export default function Project({
     </section>
   );
 }
+
+export default React.memo(Project);
