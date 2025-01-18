@@ -27,9 +27,11 @@ const Models = ({ orbitEnabled, setOrbitEnabled }: ModelsProps) => {
       if (1.1 < ratio && ratio < 4 / 3) setZoom(0.6);
       else if (0.9 < ratio && ratio < 1.1) setZoom(0.75);
       else if (0.7 < ratio && ratio < 0.9) setZoom(0.85);
+      else if (0.6 < ratio && ratio < 0.7) setZoom(1.1);
       else if (0 < ratio && ratio < 0.5) setZoom(1.25);
       else setZoom(1.15);
     }
+    console.log(ratio);
   }, [height, width]);
 
   const frames = frameData.map((frame, index) => {
