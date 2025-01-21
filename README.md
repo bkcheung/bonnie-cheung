@@ -1,6 +1,7 @@
 ## Bonnie's Personal Website
-
 This is a 3D immersive personal website built with Next.js and React that showcases my frontend development skills and highlights some projects that I've worked on. This project demonstrates a creative approach to building a personal website, utilizing 3D graphics and interactive elements to engage users and showcase my skills and projects. [View here!](https://bonnie-cheung.vercel.app/)
+
+![Screenshot 2025-01-21 at 11 11 05 AM](https://github.com/user-attachments/assets/f1de5caf-227a-492c-b5e0-a06ae39d7ba6)
 
 # Key Technologies Used:
 * React
