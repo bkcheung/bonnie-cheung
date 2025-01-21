@@ -1,8 +1,13 @@
 ## Bonnie's Personal Website
 
-A personal website to showcase my frontend development skills, highlight projects, and share contact information!
+This is a 3D immersive personal website built with Next.js and React that showcases my frontend development skills and highlights some projects that I've worked on. This project demonstrates a creative approach to building a personal website, utilizing 3D graphics and interactive elements to engage users and showcase my skills and projects. [View here!](https://bonnie-cheung.vercel.app/)
 
-Built using:
-
-- Next.js
-- Jest
+# Key Technologies Used:
+* React
+* Next.js: for server-side rendering, routing, and static site generation.
+* Three.js: used to create 3D graphics and animations.
+* React Three Fiber: this library integrates React with Three.js, allowing for declarative and reusable 3D components.
+* Tailwind CSS: used for styling, providing a utility-first approach to CSS and enabling efficient development.
+* GSAP: GSAP (GreenSock Animation Platform) is leveraged for creating smooth animations and transitions.
+* React Toastify: Used for displaying toast notifications and messages to the user.
+* Form Handling: The contact form is handled using the web3forms API, sending data to a specified endpoint, obscuring my personal email in the process.
