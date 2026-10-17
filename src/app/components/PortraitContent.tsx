@@ -16,7 +16,7 @@ const openLink = (e: React.MouseEvent, url: string) => {
 const AboutPortrait = React.memo(() => {
   return (
     <section
-      className="relative flex h-full w-full items-center justify-center bg-[url(/about-art.png)] bg-cover bg-[70%_center] p-[12rem]"
+      className="relative flex h-full w-full items-center justify-center bg-[url(/about-art.png)] bg-cover bg-center p-[12rem]"
       onClick={stop}
     >
       <div className="flex w-full flex-col rounded-[14rem] bg-white/80 p-[12rem]">
