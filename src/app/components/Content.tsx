@@ -1,78 +1,35 @@
 import React from 'react';
-// import Image from 'next/image';
-// import Skillbar from '../components/Skillbar';
 
+import { aboutCaption, aboutPoints } from '../about';
 import ContactForm from '../components/ContactForm';
 
-const AboutPreview = React.memo(() => {
-  return (
-    <div className="flex absolute w-full h-full bg-[url(/about.png)] bg-cover bg-center bg-no-repeat" />
-  );
-});
-const AboutContent = React.memo(() => {
+// The landscape About frame: bio on a white wash over the left half of the
+// painting, the painting itself showing on the right
+const AboutLandscape = () => {
   return (
     <section
-      className="flex absolute w-full h-full bg-[url(/about.png)] bg-cover bg-center bg-no-repeat"
-      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+      className="flex h-full w-full bg-[url(/about-bg.jpg)] bg-cover bg-center"
+      onClick={(e: React.MouseEvent<HTMLElement>) => {
         e.stopPropagation();
       }}
-    />
-    // Uncomment this section to update About section
-    // <div className="flex w-full h-full">
-    //   <Image
-    //     src="/wheat-field.jpg"
-    //     alt="wheat field with cypresses by van gogh"
-    //     width={500}
-    //     height={300}
-    //     className="absolute w-full h-full -z-10"
-    //   />
-    //   <div
-    //     aria-label="about-left"
-    //     className="flex flex-col w-1/2 h-full  bg-white/75 p-[20rem]"
-    //   >
-    //     <h1 className="text-[20rem] font-serif my-20">Bonnie Cheung</h1>
-    //     <h2 className="text-[12rem] font-serif mb-20"> About me:
-    //     </h2>
-    //       <ul className="list-disc ml-[10rem] text-[7.5rem]">
-    //         <li className='mb-20'>
-    //           Since an early age, I have loved building (& unbuilding) things;
-    //           sorry mom!
-    //         </li>
-    //         <li className='mb-20'>
-    //           I did FIRST Robotics in high school and studied Mechatronics
-    //           Engineering at the University of Waterloo
-    //         </li>
-    //         <li className='mb-20'>
-    //           For the past 4+ years, I've been a Mechanical Product and System
-    //           Design Engineer at Apple
-    //         </li>
-    //         <li className='mb-20'>
-    //           After years as a mechanical engineer, I discovered a passion for
-    //           creating interactive digital experiences, leading me to leave my
-    //           job and pursue my dream of becoming a full-time software engineer!
-    //         </li>
-    //       </ul>
-    //   </div>
-    //   <div
-    //     aria-label="about-right"
-    //     className="flex flex-col w-1/2 text-[10rem] justify-end items-end p-[20rem] pb-0"
-    //   >
-    //     <div
-    //       aria-label="skills"
-    //       className="bg-white/75 p-[10rem] rounded-[10rem] w-[65%]"
-    //     >
-    //       <Skillbar skill="HTML & CSS" percent={95} />
-    //       <Skillbar skill="Javascript" percent={85} />
-    //       <Skillbar skill="Typescript" percent={75} />
-    //       <Skillbar skill="React" percent={77} />
-    //     </div>
-    //     <h4 className="text-[6.5rem] text-right my-[5rem] text-white">
-    //       Wheat Field with Cypresses - Vincent Van Gogh
-    //     </h4>
-    //   </div>
-    // </div>
+    >
+      <div className="flex h-full w-1/2 flex-col justify-center bg-white/75 p-[20rem]">
+        <h1 className="mb-[8rem] font-serif text-[20rem]">Bonnie Cheung</h1>
+        <h2 className="mb-[8rem] font-serif text-[12rem]">About me:</h2>
+        <ul className="ml-[10rem] flex list-disc flex-col gap-[6rem] text-[8rem] leading-[1.35]">
+          {aboutPoints.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+      </div>
+      <h4 className="absolute bottom-[6rem] right-[8rem] text-[6.5rem] text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]">
+        {aboutCaption}
+      </h4>
+    </section>
   );
-});
+};
+const AboutPreview = React.memo(AboutLandscape);
+const AboutContent = React.memo(AboutLandscape);
 const PortfolioPreview = React.memo(() => {
   return (
     <div className="flex absolute w-full h-full bg-[url(/portfolio.png)] bg-cover bg-center bg-no-repeat" />

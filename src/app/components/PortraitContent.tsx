@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 
+import { aboutCaption, aboutPoints } from '../about';
 import projects from '../projects';
 import ContactForm from './ContactForm';
 
@@ -16,34 +17,20 @@ const openLink = (e: React.MouseEvent, url: string) => {
 const AboutPortrait = React.memo(() => {
   return (
     <section
-      className="relative flex h-full w-full items-center justify-center bg-[url(/about-art.png)] bg-cover bg-center p-[12rem]"
+      className="relative flex h-full w-full items-center justify-center bg-[url(/about-art.jpg)] bg-cover bg-center p-[12rem]"
       onClick={stop}
     >
       <div className="flex w-full flex-col rounded-[14rem] bg-white/80 p-[12rem]">
         <h1 className="font-serif text-[24rem]">Bonnie Cheung</h1>
         <h2 className="mb-[6rem] font-serif text-[15rem]">About me:</h2>
         <ul className="ml-[12rem] flex list-disc flex-col gap-[6rem] text-[11rem] leading-[1.35]">
-          <li>
-            Since an early age, I have loved building (& unbuilding) things;
-            sorry mom!
-          </li>
-          <li>
-            I did FIRST Robotics in high school and studied Mechatronics
-            Engineering at the University of Waterloo
-          </li>
-          <li>
-            After years as a mechanical product design engineer at Apple, I
-            discovered my passion for creating interactive digital experiences,
-            leading me to pivot careers into software
-          </li>
-          <li>
-            I am currently a senior fullstack engineer at fintech startup Savvy
-            Wealth, building out awesome new features for the company!
-          </li>
+          {aboutPoints.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
         </ul>
       </div>
       <h4 className="absolute bottom-[5rem] right-[10rem] text-[6.5rem] text-white">
-        Wheat Field with Cypresses - Vincent Van Gogh
+        {aboutCaption}
       </h4>
     </section>
   );
