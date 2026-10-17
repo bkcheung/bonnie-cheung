@@ -8,7 +8,7 @@ import { getHomeHintTop } from '../layout3d';
 // let the camera settle (on load, or on returning home) before hints start
 const START_DELAY_MS = 1500;
 const FADE_MS = 1200;
-const HOLD_MS = 5000;
+const HOLD_MS = 3000;
 const GAP_MS = 600;
 
 interface HomeHintProps {

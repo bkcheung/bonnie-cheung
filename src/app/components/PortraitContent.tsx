@@ -149,14 +149,18 @@ const PortfolioPortrait = React.memo(() => {
 
 const ContactPortrait = React.memo(() => {
   return (
-    <section className="flex h-full w-full flex-col" onClick={stop}>
-      <div className="flex flex-col bg-[#e9e9e9] p-[10rem]">
+    <section
+      className="relative flex h-full w-full items-center justify-center p-[12rem]"
+      onClick={stop}
+    >
+      {/* inset card so the painting behind the frame shows on every side */}
+      <div className="flex w-full flex-col rounded-[16rem] bg-[#e9e9e9] p-[10rem] shadow-xl">
         <h1 className="mb-[6rem] font-serif text-[22rem] text-gray-800">
           Contact
         </h1>
         <ContactForm portrait />
       </div>
-      <h4 className="ml-auto mr-[8rem] mt-auto mb-[6rem] text-[6.5rem] text-white">
+      <h4 className="absolute bottom-[5rem] right-[10rem] text-[6.5rem] text-white">
         Cliff Walk at Pourville - Claude Monet
       </h4>
     </section>
