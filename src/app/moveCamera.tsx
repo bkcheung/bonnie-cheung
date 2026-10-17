@@ -1,4 +1,8 @@
 import gsap from 'gsap';
+import { Camera, PerspectiveCamera } from 'three';
+
+import { frameData } from './data';
+import { getPortraitView } from './layout3d';
 
 const moveCamera = (
   [x1, y1, z1]: number[],
@@ -35,4 +39,33 @@ const moveCamera = (
   }, delay * 1000);
 };
 
+interface FrameViewOptions {
+  portrait: boolean;
+  zoom: number;
+  width: number;
+  height: number;
+}
+
+const moveToFrame = (
+  frame: number,
+  camera: Camera,
+  { portrait, zoom, width, height }: FrameViewOptions,
+  transitionDuration: number,
+  delay: number = 0.8
+) => {
+  const { view, rotation } = frameData[frame];
+  if (portrait) {
+    moveCamera(
+      getPortraitView(frame, camera as PerspectiveCamera, width, height),
+      rotation,
+      camera,
+      transitionDuration,
+      delay
+    );
+  } else {
+    moveCamera(view, rotation, camera, transitionDuration, delay, zoom);
+  }
+};
+
+export { moveToFrame };
 export default moveCamera;

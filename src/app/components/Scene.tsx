@@ -4,7 +4,6 @@ import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useEffect, useState } from 'react';
 
-import Help from './Help';
 import Lighting from './Lighting';
 import Loader from './Loader';
 import Models from './Models';
@@ -47,7 +46,6 @@ export default function Scene() {
   return (
     <Suspense fallback={<Loader />}>
       <ThreeCanvas />
-      <Help />
     </Suspense>
   );
 }
