@@ -91,7 +91,7 @@ function Desk({
           textAlign: 'center',
         }}
       >
-        I'm a frontend engineer who is passionate about creating stunning user
+        I'm a fullstack engineer who is passionate about creating stunning user
         experiences
       </Html>
       <Button
