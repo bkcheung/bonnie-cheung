@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 
 import projects from '../projects';
 import ContactForm from './ContactForm';
-import Skillbar from './Skillbar';
 
 // Portrait frame content is laid out on a 250rem x 400rem canvas
 
@@ -17,13 +16,13 @@ const openLink = (e: React.MouseEvent, url: string) => {
 const AboutPortrait = React.memo(() => {
   return (
     <section
-      className="relative flex h-full w-full flex-col gap-[8rem] bg-[url(/about-art.png)] bg-cover bg-[70%_center] p-[10rem]"
+      className="relative flex h-full w-full items-center justify-center bg-[url(/about-art.png)] bg-cover bg-[70%_center] p-[12rem]"
       onClick={stop}
     >
-      <div className="flex flex-col rounded-[14rem] bg-white/80 p-[10rem]">
-        <h1 className="font-serif text-[22rem]">Bonnie Cheung</h1>
-        <h2 className="mb-[4rem] font-serif text-[14rem]">About me:</h2>
-        <ul className="ml-[12rem] flex list-disc flex-col gap-[4rem] text-[10rem] leading-[1.3]">
+      <div className="flex w-full flex-col rounded-[14rem] bg-white/80 p-[12rem]">
+        <h1 className="font-serif text-[24rem]">Bonnie Cheung</h1>
+        <h2 className="mb-[6rem] font-serif text-[15rem]">About me:</h2>
+        <ul className="ml-[12rem] flex list-disc flex-col gap-[6rem] text-[11rem] leading-[1.35]">
           <li>
             Since an early age, I have loved building (& unbuilding) things;
             sorry mom!
@@ -33,23 +32,17 @@ const AboutPortrait = React.memo(() => {
             Engineering at the University of Waterloo
           </li>
           <li>
-            For the past 4+ years, I&apos;ve been a Mechanical Product and
-            System Design Engineer at Apple
+            After years as a mechanical product design engineer at Apple, I
+            discovered my passion for creating interactive digital experiences,
+            leading me to pivot careers into software
           </li>
           <li>
-            After years as a mechanical engineer, I discovered a passion for
-            creating interactive digital experiences, leading me to leave my job
-            and pursue my dream of becoming a full-time software engineer!
+            I am currently a senior fullstack engineer at fintech startup Savvy
+            Wealth, building out awesome new features for the company!
           </li>
         </ul>
       </div>
-      <div className="mt-auto flex flex-col gap-[3rem] rounded-[14rem] bg-white/80 p-[8rem]">
-        <Skillbar skill="HTML & CSS" percent={95} className="text-[9.5rem]" />
-        <Skillbar skill="Javascript" percent={85} className="text-[9.5rem]" />
-        <Skillbar skill="Typescript" percent={75} className="text-[9.5rem]" />
-        <Skillbar skill="React" percent={77} className="text-[9.5rem]" />
-      </div>
-      <h4 className="text-right text-[6.5rem] text-white">
+      <h4 className="absolute bottom-[5rem] right-[10rem] text-[6.5rem] text-white">
         Wheat Field with Cypresses - Vincent Van Gogh
       </h4>
     </section>
