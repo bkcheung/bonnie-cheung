@@ -3,8 +3,9 @@ import { useEffect, useRef, useState } from 'react';
 import { PerspectiveCamera } from 'three';
 
 import { frameData } from '../data';
+import { HOME_EVENT } from '../homeEvent';
 import { getHomeView, isPortrait } from '../layout3d';
-import moveCamera, { moveToFrame } from '../moveCamera';
+import moveCamera, { goHome, moveToFrame } from '../moveCamera';
 import Background from './Background';
 import Desk from './Desk';
 import Frame from './Frame';
@@ -50,8 +51,23 @@ const Models = ({
     width,
     height
   );
-  const homeViewRef = useRef(homeView);
-  homeViewRef.current = homeView;
+  // the exact camera position of the opening scene (landscape opens zoomed
+  // 1.15x out from the home view)
+  const openingView: [number, number, number] = portrait
+    ? homeView
+    : [homeView[0] * 1.15, homeView[1] * 1.15, homeView[2] * 1.15];
+  const homeViewRef = useRef(openingView);
+  homeViewRef.current = openingView;
+
+  // footer home button: back to the opening scene from anywhere
+  useEffect(() => {
+    const onHome = () => {
+      setActiveFrame(-1);
+      goHome(camera, homeViewRef.current, () => setOrbitEnabled(true));
+    };
+    window.addEventListener(HOME_EVENT, onHome);
+    return () => window.removeEventListener(HOME_EVENT, onHome);
+  }, [camera, setOrbitEnabled]);
 
   // swap between the landscape and portrait home views when the layout flips
   const layoutMounted = useRef(false);
@@ -110,7 +126,7 @@ const Models = ({
         orbitEnabled={orbitEnabled}
         setOrbitEnabled={setOrbitEnabled}
         setActiveFrame={setActiveFrame}
-        homeView={portrait ? homeView : [0, 15, 40]}
+        homeView={openingView}
       />
     </group>
   );
