@@ -1,9 +1,10 @@
 import { useGLTF } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
-import gsap from 'gsap';
 import { useRef } from 'react';
 import { Group } from 'three';
 import { KTX2Loader } from 'three-stdlib';
+
+import { goHome } from '../moveCamera';
 
 useGLTF.preload('/gallery.glb');
 
@@ -41,34 +42,7 @@ export default function Background({
         onClick={() => {
           setActiveFrame(-1);
           if (!orbitEnabled) {
-            gsap.to(camera.position, {
-              x: 0,
-              y: 50,
-              z: 70,
-              duration: 0.8,
-              ease: 'power2.inOut',
-              onStart: () => {
-                gsap.to(camera.rotation, {
-                  x: -Math.PI / 12,
-                  y: 0,
-                  z: 0,
-                  duration: 0.8,
-                  ease: 'power2.inOut',
-                });
-              },
-              onComplete: () => {
-                setOrbitEnabled(true);
-              },
-            });
-            setTimeout(() => {
-              gsap.to(camera.position, {
-                x: homeView[0],
-                y: homeView[1],
-                z: homeView[2],
-                duration: 0.75,
-                ease: 'power2.inOut',
-              });
-            }, 800);
+            goHome(camera, homeView, () => setOrbitEnabled(true));
           }
         }}
       />

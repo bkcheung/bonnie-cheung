@@ -67,5 +67,38 @@ const moveToFrame = (
   }
 };
 
-export { moveToFrame };
+// Pull back to a wide shot, then settle on the home view. Used for background
+// clicks and the footer home button; cancels any camera tween in flight.
+const goHome = (camera: Camera, home: number[], onPulledBack?: () => void) => {
+  gsap.killTweensOf(camera.position);
+  gsap.killTweensOf(camera.rotation);
+  gsap.to(camera.position, {
+    x: 0,
+    y: 50,
+    z: 70,
+    duration: 0.8,
+    ease: 'power2.inOut',
+    onStart: () => {
+      gsap.to(camera.rotation, {
+        x: -Math.PI / 12,
+        y: 0,
+        z: 0,
+        duration: 0.8,
+        ease: 'power2.inOut',
+      });
+    },
+    onComplete: onPulledBack,
+  });
+  gsap.to(camera.position, {
+    x: home[0],
+    y: home[1],
+    z: home[2],
+    duration: 0.75,
+    delay: 0.8,
+    ease: 'power2.inOut',
+    overwrite: false,
+  });
+};
+
+export { goHome, moveToFrame };
 export default moveCamera;

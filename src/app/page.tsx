@@ -2,6 +2,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ToastContainer } from 'react-toastify';
 
 import Help from './components/Help';
+import HomeButton from './components/HomeButton';
 import Scene from './components/Scene';
 
 export default function Home() {
@@ -16,7 +17,10 @@ export default function Home() {
         <h4>
           ©<a href="https://github.com/bkcheung"> Bonnie Cheung </a>
         </h4>
-        <Help />
+        <div className="flex items-center">
+          <HomeButton />
+          <Help />
+        </div>
       </footer>
     </div>
   );
