@@ -9,10 +9,13 @@ import { moveToFrame } from '../moveCamera';
 import { NavButton, PortraitNav } from './Buttons';
 
 // The frame content is laid out on a very large canvas (rem sizes), so each 3D
-// layer is millions of px and the browser drops tiles once a few are on
-// screen. CSS zoom shrinks the layer's pixels by this factor squared and
-// distanceFactor grows by the same factor, so the world size is unchanged.
+// layer would be millions of px and the browser drops tiles once a few are on
+// screen. The Html layer is made 1/LAYER_SHRINK as wide and tall, the canvas is
+// scaled down into it with transform, and distanceFactor grows by the same
+// factor, so the world size is unchanged. (transform, not CSS zoom: zoom plus
+// rem lengths is inconsistent across engines, notably Safari.)
 const LAYER_SHRINK = 4;
+const CANVAS_REM = { portrait: [250, 400], landscape: [502, 250] } as const;
 
 interface FrameProps {
   frame: number;
@@ -90,6 +93,11 @@ function Frame({
     setActiveFrame(frame);
     moveToFrame(frame, camera, viewOptions, 0.8);
   };
+  const [canvasW, canvasH] = portrait
+    ? CANVAS_REM.portrait
+    : CANVAS_REM.landscape;
+  const layerWidth = `${canvasW / LAYER_SHRINK}rem`;
+  const layerHeight = `${canvasH / LAYER_SHRINK}rem`;
   const leftButton = zoom >= 1.15 ? 'left-mid' : 'left-bottom';
   const rightButton = zoom >= 1.15 ? 'right-mid' : 'right-bottom';
   const [x, y, z] = frameData[frame].position;
@@ -134,15 +142,24 @@ function Frame({
       )}
       <Html
         as="div"
-        className={`${portrait ? 'w-[250rem] h-[400rem]' : 'w-[502rem] h-[250rem]'} text-[15rem] antialiased`}
-        style={{ zoom: 1 / LAYER_SHRINK }}
+        style={{ width: layerWidth, height: layerHeight }}
         transform
         distanceFactor={portrait ? 4.9 * LAYER_SHRINK : 10 * LAYER_SHRINK}
         occlude="blending"
         position={[0, 0, 0]}
         zIndexRange={zIndexRange}
       >
-        {content}
+        <div
+          className="text-[15rem] antialiased"
+          style={{
+            width: `${canvasW}rem`,
+            height: `${canvasH}rem`,
+            transform: `scale(${1 / LAYER_SHRINK})`,
+            transformOrigin: '0 0',
+          }}
+        >
+          {content}
+        </div>
       </Html>
       {active && (
         <>
