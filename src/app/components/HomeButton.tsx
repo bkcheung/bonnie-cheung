@@ -20,9 +20,10 @@ const HomeButton = () => {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M3 11.5 12 4l9 7.5" />
-        <path d="M5.5 10v9.5h13V10" />
-        <path d="M10 19.5v-5h4v5" />
+        {/* spans y 2-22 and x 2-22, exactly like the help icon's circle */}
+        <path d="M2 11 12 2l10 9" />
+        <path d="M5 9.5V22h14V9.5" />
+        <path d="M10 22v-6h4v6" />
       </svg>
     </button>
   );

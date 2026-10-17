@@ -18,8 +18,8 @@ export default function Home() {
           ©<a href="https://github.com/bkcheung"> Bonnie Cheung </a>
         </h4>
         {/* the icons sit one footer gutter apart (the left padding), minus the
-            ~4px of empty space inside the two SVGs, so the visible gap matches */}
-        <div className="flex items-center gap-[calc(var(--gutter)-4px)]">
+            ~2.8px of empty space inside the two SVGs, so the visible gap matches */}
+        <div className="flex items-center gap-[calc(var(--gutter)-2.81px)]">
           <HomeButton />
           <Help />
         </div>
