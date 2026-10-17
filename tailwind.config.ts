@@ -25,6 +25,10 @@ export default {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        'pulse-soft': {
+          '0%, 100%': { opacity: '0.25', transform: 'scale(0.98)' },
+          '50%': { opacity: '0.95', transform: 'scale(1.03)' },
+        },
         'fade-in-delay': {
           '0%': { opacity: '0' },
           '70%': { opacity: '0' },
@@ -34,6 +38,7 @@ export default {
       animation: {
         'fade-in': 'fade-in 0.5s ease-out forwards',
         'fade-in-long': 'fade-in-delay 2.5s ease-out forwards',
+        'pulse-soft': 'pulse-soft 3s ease-in-out infinite',
       },
     },
   },

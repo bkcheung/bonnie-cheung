@@ -4,7 +4,8 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const IDLE_MS = 3000;
-const CYCLE_MS = 3500;
+// two pulses per hint; each pulse starts and ends dark, so swaps are seamless
+const CYCLE_MS = 6000;
 const ACTIVITY_EVENTS = [
   'pointerdown',
   'pointermove',
@@ -82,24 +83,28 @@ const IdleHint = ({ suppressed }: IdleHintProps) => {
   return (
     <div
       aria-hidden={!idle}
-      className="pointer-events-none fixed inset-x-0 top-[66.667dvh] flex h-[33.333dvh] items-center justify-center px-4"
+      className="pointer-events-none fixed inset-x-0 top-[56.667dvh] flex h-[33.333dvh] items-center justify-center px-4"
     >
       <div
-        key={index}
-        className={`flex items-center rounded-full bg-white/70 px-4 py-2 text-sm text-gray-700 shadow-lg backdrop-blur transition-opacity duration-500 sm:text-base ${
-          idle ? 'animate-fade-in opacity-100' : 'opacity-0'
+        className={`transition-opacity duration-700 ${
+          idle ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        {hint.icon && (
-          <Image
-            src={hint.icon}
-            alt=""
-            width={30}
-            height={30}
-            className="p-[0.25rem] pr-[0.5rem]"
-          />
-        )}
-        {hint.text}
+        <div
+          key={index}
+          className="flex animate-pulse-soft items-center text-sm font-medium tracking-wide text-white [text-shadow:0_1px_6px_rgba(0,0,0,0.6)] sm:text-base"
+        >
+          {hint.icon && (
+            <Image
+              src={hint.icon}
+              alt=""
+              width={26}
+              height={26}
+              className="mr-2 invert drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]"
+            />
+          )}
+          {hint.text}
+        </div>
       </div>
     </div>
   );
