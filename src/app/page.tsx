@@ -13,11 +13,13 @@ export default function Home() {
         <ToastContainer limit={3} autoClose={2000} hideProgressBar={true} />
         <SpeedInsights />
       </main>
-      <footer className="fixed bottom-0 bg-white/40 w-full min-h-[3rem] flex items-center justify-between px-3 text-sm sm:px-4 sm:text-base">
+      <footer className="fixed bottom-0 bg-white/40 w-full min-h-[3rem] flex items-center justify-between px-[var(--gutter)] text-sm [--gutter:0.75rem] sm:text-base sm:[--gutter:1rem]">
         <h4>
           ©<a href="https://github.com/bkcheung"> Bonnie Cheung </a>
         </h4>
-        <div className="flex items-center">
+        {/* the icons sit one footer gutter apart (the left padding), minus the
+            ~4px of empty space inside the two SVGs, so the visible gap matches */}
+        <div className="flex items-center gap-[calc(var(--gutter)-4px)]">
           <HomeButton />
           <Help />
         </div>

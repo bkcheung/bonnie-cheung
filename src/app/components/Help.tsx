@@ -10,7 +10,7 @@ const Help = () => {
       <button
         aria-label="Help"
         title="Help"
-        className="mx-2 flex items-center sm:mx-4"
+        className="flex items-center"
         onClick={() => setShowHelp(true)}
       >
         <svg
@@ -22,7 +22,6 @@ const Help = () => {
           strokeWidth="1.75"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="p-[0.25rem]"
         >
           <circle cx="12" cy="12" r="10" />
           <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />

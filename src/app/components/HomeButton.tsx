@@ -7,7 +7,7 @@ const HomeButton = () => {
     <button
       aria-label="Back to the opening scene"
       title="Home"
-      className="mx-2 flex items-center sm:mx-4"
+      className="flex items-center"
       onClick={() => window.dispatchEvent(new Event(HOME_EVENT))}
     >
       <svg
@@ -19,7 +19,6 @@ const HomeButton = () => {
         strokeWidth="1.75"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="p-[0.25rem]"
       >
         <path d="M3 11.5 12 4l9 7.5" />
         <path d="M5.5 10v9.5h13V10" />
