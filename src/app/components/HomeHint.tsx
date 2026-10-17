@@ -3,20 +3,20 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-import { getIntroHintTop } from '../layout3d';
+import { getHomeHintTop } from '../layout3d';
 
-// let the opening camera move finish before the hints start
+// let the camera settle (on load, or on returning home) before hints start
 const START_DELAY_MS = 1500;
 const FADE_MS = 1200;
 const HOLD_MS = 5000;
 const GAP_MS = 600;
 
-interface IntroHintProps {
-  // true once the user has moved off the first home view
-  dismissed: boolean;
+interface HomeHintProps {
+  // true while a frame is open, when the hints would be irrelevant
+  suppressed: boolean;
 }
 
-const IntroHint = ({ dismissed }: IntroHintProps) => {
+const HomeHint = ({ suppressed }: HomeHintProps) => {
   const [touch, setTouch] = useState(false);
   const [index, setIndex] = useState(0);
   const [shown, setShown] = useState(false);
@@ -31,7 +31,7 @@ const IntroHint = ({ dismissed }: IntroHintProps) => {
     const place = () => {
       const footer = document.querySelector('footer');
       setTop(
-        getIntroHintTop(
+        getHomeHintTop(
           window.innerWidth,
           window.innerHeight,
           footer?.offsetHeight ?? 48
@@ -62,9 +62,9 @@ const IntroHint = ({ dismissed }: IntroHintProps) => {
     },
   ];
 
-  // fade in, hold, fade out, then on to the next hint, until dismissed
+  // fade in, hold, fade out, then on to the next hint, while no frame is open
   useEffect(() => {
-    if (dismissed) {
+    if (suppressed) {
       setShown(false);
       return;
     }
@@ -82,7 +82,7 @@ const IntroHint = ({ dismissed }: IntroHintProps) => {
     timers.push(setTimeout(() => run(0), START_DELAY_MS));
     return () => timers.forEach(clearTimeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dismissed]);
+  }, [suppressed]);
 
   if (top === null) return null;
 
@@ -117,4 +117,4 @@ const IntroHint = ({ dismissed }: IntroHintProps) => {
   );
 };
 
-export default IntroHint;
+export default HomeHint;

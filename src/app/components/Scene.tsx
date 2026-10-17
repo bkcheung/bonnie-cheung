@@ -2,19 +2,17 @@
 
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useCallback, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
-import IntroHint from './IntroHint';
+import HomeHint from './HomeHint';
 import Lighting from './Lighting';
 import Loader from './Loader';
 import Models from './Models';
 
 function ThreeCanvas({
   onFrameActiveChange,
-  onUserMove,
 }: {
   onFrameActiveChange: (active: boolean) => void;
-  onUserMove: () => void;
 }) {
   const [orbitEnabled, setOrbitEnabled] = useState(true);
 
@@ -29,7 +27,6 @@ function ThreeCanvas({
       <Lighting />
       <OrbitControls
         enabled={orbitEnabled}
-        onStart={onUserMove}
         target={[0, 10, 0]}
         minDistance={10}
         maxDistance={150}
@@ -47,12 +44,8 @@ function ThreeCanvas({
 
 export default function Scene() {
   const [isLoading, setIsLoading] = useState(true);
-  // the hints stay up until the user first leaves the opening home view
-  const [hintDismissed, setHintDismissed] = useState(false);
-  const dismissHint = useCallback(() => setHintDismissed(true), []);
-  const handleFrameActive = useCallback((active: boolean) => {
-    if (active) setHintDismissed(true);
-  }, []);
+  // the hints are shown whenever the user isn't locked into a frame
+  const [frameActive, setFrameActive] = useState(false);
 
   useEffect(() => {
     setIsLoading(false);
@@ -63,11 +56,8 @@ export default function Scene() {
   }
   return (
     <Suspense fallback={<Loader />}>
-      <ThreeCanvas
-        onFrameActiveChange={handleFrameActive}
-        onUserMove={dismissHint}
-      />
-      <IntroHint dismissed={hintDismissed} />
+      <ThreeCanvas onFrameActiveChange={setFrameActive} />
+      <HomeHint suppressed={frameActive} />
     </Suspense>
   );
 }
