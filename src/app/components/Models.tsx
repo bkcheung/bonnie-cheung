@@ -12,9 +12,14 @@ import Frame from './Frame';
 interface ModelsProps {
   orbitEnabled: boolean;
   setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+  onFrameActiveChange?: (active: boolean) => void;
 }
 
-const Models = ({ orbitEnabled, setOrbitEnabled }: ModelsProps) => {
+const Models = ({
+  orbitEnabled,
+  setOrbitEnabled,
+  onFrameActiveChange,
+}: ModelsProps) => {
   const [activeFrame, setActiveFrame] = useState(-1);
   const [zoom, setZoom] = useState(1.15);
   const { width, height } = useThree((state) => state.size);
@@ -23,6 +28,10 @@ const Models = ({ orbitEnabled, setOrbitEnabled }: ModelsProps) => {
 
   const activeFrameRef = useRef(activeFrame);
   activeFrameRef.current = activeFrame;
+
+  useEffect(() => {
+    onFrameActiveChange?.(activeFrame !== -1);
+  }, [activeFrame, onFrameActiveChange]);
 
   useEffect(() => {
     const ratio = height / width;
