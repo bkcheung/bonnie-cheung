@@ -1,5 +1,6 @@
 'use client';
 
+import { FOOTER_ICON_PX } from '../footerIcons';
 import { HOME_EVENT } from '../homeEvent';
 
 const HomeButton = () => {
@@ -7,12 +8,12 @@ const HomeButton = () => {
     <button
       aria-label="Back to the opening scene"
       title="Home"
-      className="flex items-center"
+      className="-m-1.5 flex items-center p-1.5"
       onClick={() => window.dispatchEvent(new Event(HOME_EVENT))}
     >
       <svg
-        width="30"
-        height="30"
+        width={FOOTER_ICON_PX}
+        height={FOOTER_ICON_PX}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"

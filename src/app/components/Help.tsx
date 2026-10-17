@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { FOOTER_ICON_PX } from '../footerIcons';
+
 const Help = () => {
   const [showHelp, setShowHelp] = useState(false);
 
@@ -10,12 +12,12 @@ const Help = () => {
       <button
         aria-label="Help"
         title="Help"
-        className="flex items-center"
+        className="-m-1.5 flex items-center p-1.5"
         onClick={() => setShowHelp(true)}
       >
         <svg
-          width="30"
-          height="30"
+          width={FOOTER_ICON_PX}
+          height={FOOTER_ICON_PX}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
