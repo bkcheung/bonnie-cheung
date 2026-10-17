@@ -4,12 +4,16 @@ import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useEffect, useState } from 'react';
 
-import Help from './Help';
+import HomeHint from './HomeHint';
 import Lighting from './Lighting';
 import Loader from './Loader';
 import Models from './Models';
 
-function ThreeCanvas() {
+function ThreeCanvas({
+  onFrameActiveChange,
+}: {
+  onFrameActiveChange: (active: boolean) => void;
+}) {
   const [orbitEnabled, setOrbitEnabled] = useState(true);
 
   useEffect(() => {});
@@ -29,13 +33,19 @@ function ThreeCanvas() {
         minPolarAngle={Math.PI / 4}
         maxPolarAngle={Math.PI / 2}
       />
-      <Models orbitEnabled={orbitEnabled} setOrbitEnabled={setOrbitEnabled} />
+      <Models
+        orbitEnabled={orbitEnabled}
+        setOrbitEnabled={setOrbitEnabled}
+        onFrameActiveChange={onFrameActiveChange}
+      />
     </Canvas>
   );
 }
 
 export default function Scene() {
   const [isLoading, setIsLoading] = useState(true);
+  // the hints are shown whenever the user isn't locked into a frame
+  const [frameActive, setFrameActive] = useState(false);
 
   useEffect(() => {
     setIsLoading(false);
@@ -46,8 +56,8 @@ export default function Scene() {
   }
   return (
     <Suspense fallback={<Loader />}>
-      <ThreeCanvas />
-      <Help />
+      <ThreeCanvas onFrameActiveChange={setFrameActive} />
+      <HomeHint suppressed={frameActive} />
     </Suspense>
   );
 }

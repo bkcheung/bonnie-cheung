@@ -11,12 +11,14 @@ interface BackgroundProps {
   orbitEnabled: boolean;
   setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
   setActiveFrame: React.Dispatch<React.SetStateAction<number>>;
+  homeView: [number, number, number];
 }
 
 export default function Background({
   orbitEnabled,
   setOrbitEnabled,
   setActiveFrame,
+  homeView,
 }: BackgroundProps) {
   const group = useRef<Group>(null);
 
@@ -60,9 +62,9 @@ export default function Background({
             });
             setTimeout(() => {
               gsap.to(camera.position, {
-                x: 0,
-                y: 15,
-                z: 40,
+                x: homeView[0],
+                y: homeView[1],
+                z: homeView[2],
                 duration: 0.75,
                 ease: 'power2.inOut',
               });

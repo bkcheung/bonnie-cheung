@@ -6,6 +6,11 @@ import {
   PortfolioContent,
   PortfolioPreview,
 } from './components/Content';
+import {
+  AboutPortrait,
+  ContactPortrait,
+  PortfolioPortrait,
+} from './components/PortraitContent';
 
 type frameType = {
   frame: string;
@@ -16,6 +21,8 @@ type frameType = {
   right: number;
   preview: React.ReactNode;
   content: React.ReactNode;
+  portraitPreview: React.ReactNode;
+  portraitContent: React.ReactNode;
 };
 
 const frameData: frameType[] = [
@@ -28,6 +35,8 @@ const frameData: frameType[] = [
     right: 1,
     preview: <AboutPreview />,
     content: <AboutContent />,
+    portraitPreview: <AboutPortrait />,
+    portraitContent: <AboutPortrait />,
   },
   {
     frame: 'Portfolio',
@@ -38,6 +47,8 @@ const frameData: frameType[] = [
     right: 2,
     preview: <PortfolioPreview />,
     content: <PortfolioContent />,
+    portraitPreview: <PortfolioPortrait />,
+    portraitContent: <PortfolioPortrait />,
   },
   {
     frame: 'Contact',
@@ -48,6 +59,8 @@ const frameData: frameType[] = [
     right: 0,
     preview: <ContactPreview />,
     content: <ContactContent />,
+    portraitPreview: <ContactPreview />,
+    portraitContent: <ContactPortrait />,
   },
 ];
 

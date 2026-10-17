@@ -78,4 +78,48 @@ const NavButton = ({ text, position, buttonClick }: NavButton) => {
   );
 };
 
-export { Button, NavButton };
+interface PortraitNavProps {
+  layout: { width: number; top: number; height: number };
+  leftText: string;
+  rightText: string;
+  leftClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  rightClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+// Portrait frames are too narrow for 3D buttons beside or below them, so the
+// nav is a plain screen-space row just above the footer, as wide as the frame
+const PortraitNav = ({
+  layout,
+  leftText,
+  rightText,
+  leftClick,
+  rightClick,
+}: PortraitNavProps) => {
+  const buttonClass =
+    'pointer-events-auto min-w-28 rounded-xl bg-white px-5 text-gray-700 shadow-xl hover:bg-gray-100';
+  return (
+    <Html fullscreen className="pointer-events-none" pointerEvents="none">
+      <div
+        className="pointer-events-none absolute inset-x-0 mx-auto flex animate-fade-in-long justify-between"
+        style={{ width: layout.width, top: layout.top }}
+      >
+        <button
+          className={buttonClass}
+          onClick={leftClick}
+          style={{ height: layout.height }}
+        >
+          {leftText}
+        </button>
+        <button
+          className={buttonClass}
+          onClick={rightClick}
+          style={{ height: layout.height }}
+        >
+          {rightText}
+        </button>
+      </div>
+    </Html>
+  );
+};
+
+export { Button, NavButton, PortraitNav };

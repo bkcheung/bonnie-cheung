@@ -4,8 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { Group } from 'three';
 import { KTX2Loader } from 'three-stdlib';
 
-import { frameData, homeView } from '../data';
-import moveCamera from '../moveCamera';
+import moveCamera, { moveToFrame } from '../moveCamera';
 import { Button } from './Buttons';
 
 useGLTF.preload('/imac.glb');
@@ -14,9 +13,17 @@ interface DeskProps {
   setOrbitEnabled: React.Dispatch<React.SetStateAction<boolean>>;
   setActiveFrame: React.Dispatch<React.SetStateAction<number>>;
   zoom: number;
+  portrait: boolean;
+  homeView: [number, number, number];
 }
 
-function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
+function Desk({
+  setOrbitEnabled,
+  setActiveFrame,
+  zoom,
+  portrait,
+  homeView: home,
+}: DeskProps) {
   const group = useRef<Group>(null);
   const { gl } = useThree();
   const ktx2Loader = new KTX2Loader();
@@ -27,16 +34,22 @@ function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
     loader.setKTX2Loader(ktx2Loader.detectSupport(gl));
     ktx2Loader.dispose();
   });
-  const { camera } = useThree();
+  const { camera, size } = useThree();
+  const viewOptions = {
+    portrait,
+    zoom,
+    width: size.width,
+    height: size.height,
+  };
 
   const textZ = 6.8;
-  const about = frameData[0];
-  const exp = frameData[1];
-  const contact = frameData[2];
 
+  // the opening camera move only uses the layout at first load
+  const initial = useRef({ home, portrait });
   useEffect(() => {
     camera.position.set(30, 50, 50);
-    moveCamera(homeView, [0, 0, 0], camera, 1, 0, 1.15);
+    const { home, portrait } = initial.current;
+    moveCamera(home, [0, 0, 0], camera, 1, 0, portrait ? 1 : 1.15);
   }, [camera]);
 
   return (
@@ -78,7 +91,7 @@ function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
           textAlign: 'center',
         }}
       >
-        I'm a frontend engineer who is passionate about creating stunning user
+        I'm a fullstack engineer who is passionate about creating stunning user
         experiences
       </Html>
       <Button
@@ -88,7 +101,7 @@ function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
           e.stopPropagation();
           setOrbitEnabled(false);
           setActiveFrame(0);
-          moveCamera(about.view, about.rotation, camera, 0.8, 0.8, zoom);
+          moveToFrame(0, camera, viewOptions, 0.8);
         }}
       />
       <Button
@@ -98,7 +111,7 @@ function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
           e.stopPropagation();
           setOrbitEnabled(false);
           setActiveFrame(1);
-          moveCamera(exp.view, exp.rotation, camera, 0.8, 0.8, zoom);
+          moveToFrame(1, camera, viewOptions, 0.8);
         }}
       />
       <Button
@@ -108,7 +121,7 @@ function Desk({ setOrbitEnabled, setActiveFrame, zoom }: DeskProps) {
           e.stopPropagation();
           setOrbitEnabled(false);
           setActiveFrame(2);
-          moveCamera(contact.view, contact.rotation, camera, 0.8, 0.8, zoom);
+          moveToFrame(2, camera, viewOptions, 0.8);
         }}
       />
     </group>
