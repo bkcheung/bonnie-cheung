@@ -92,13 +92,23 @@ const PortfolioPortrait = React.memo(() => {
         </div>
       </div>
       <div className="flex flex-1 flex-col justify-between gap-[6rem] rounded-[14rem] bg-[#f1f1f1] p-[10rem] shadow-xl">
-        <Image
-          src={project.image}
-          alt={project.title}
-          width={361}
-          height={194}
-          className="h-auto w-full"
-        />
+        {/* all screenshots stay mounted and eagerly loaded: swapping a lazy
+            image's src inside this 3D-transformed layer can fail to load */}
+        <div className="grid">
+          {projects.map((p, i) => (
+            <Image
+              key={p.image}
+              src={p.image}
+              alt={p.title}
+              width={361}
+              height={194}
+              priority
+              className={`col-start-1 row-start-1 h-auto w-full ${
+                i === index ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))}
+        </div>
         <div className="flex flex-wrap gap-[4rem]">
           {project.tags.map((tag, i) => (
             <span
