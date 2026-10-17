@@ -8,6 +8,12 @@ import { PORTRAIT_Y_OFFSET, getPortraitNavLayout } from '../layout3d';
 import { moveToFrame } from '../moveCamera';
 import { NavButton, PortraitNav } from './Buttons';
 
+// The frame content is laid out on a very large canvas (rem sizes), so each 3D
+// layer is millions of px and the browser drops tiles once a few are on
+// screen. CSS zoom shrinks the layer's pixels by this factor squared and
+// distanceFactor grows by the same factor, so the world size is unchanged.
+const LAYER_SHRINK = 4;
+
 interface FrameProps {
   frame: number;
   active: boolean;
@@ -129,8 +135,9 @@ function Frame({
       <Html
         as="div"
         className={`${portrait ? 'w-[250rem] h-[400rem]' : 'w-[502rem] h-[250rem]'} text-[15rem] antialiased`}
+        style={{ zoom: 1 / LAYER_SHRINK }}
         transform
-        distanceFactor={portrait ? 4.9 : undefined}
+        distanceFactor={portrait ? 4.9 * LAYER_SHRINK : 10 * LAYER_SHRINK}
         occlude="blending"
         position={[0, 0, 0]}
         zIndexRange={zIndexRange}
