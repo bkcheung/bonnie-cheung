@@ -31,17 +31,36 @@ const Help = () => {
       </button>
       {showHelp && (
         <section
-          title="Click anywhere to close"
-          className="fixed inset-0 z-50 h-full w-full bg-black/50 hover:cursor-pointer"
+          role="dialog"
+          aria-label="Help"
+          className="fixed inset-0 z-50 flex items-center justify-center whitespace-normal bg-black/50 px-4 hover:cursor-pointer"
           onClick={() => setShowHelp(false)}
         >
-          <div className="z-1 absolute inset-0 m-auto flex h-min w-3/4 flex-col items-center rounded-3xl bg-white p-4 shadow-xl sm:w-max lg:p-10">
-            <ul className="flex list-disc flex-col gap-2 p-10 text-lg text-gray-700 lg:gap-4 lg:text-2xl">
-              <li>Click and drag to rotate the view</li>
-              <li>Pinch or scroll to zoom in and out</li>
-              <li>Click on the iMac buttons or frames to zoom in</li>
-              <li>Click on background to return to home</li>
+          <div className="relative w-full max-w-md rounded-3xl bg-white p-6 shadow-xl sm:w-max sm:max-w-none lg:p-10">
+            <ul className="flex list-disc flex-col gap-3 pl-5 pr-2 text-base text-gray-700 sm:text-lg lg:gap-4 lg:text-2xl">
+              <li>
+                <span className="hidden sm:inline">Click and drag</span>
+                <span className="sm:hidden">Drag</span> to rotate the view
+              </li>
+              <li>
+                <span className="hidden sm:inline">Pinch or scroll</span>
+                <span className="sm:hidden">Pinch</span> to zoom in and out
+              </li>
+              <li>
+                <span className="hidden sm:inline">Click</span>
+                <span className="sm:hidden">Tap</span> the iMac buttons or
+                frames to zoom in
+              </li>
+              <li>
+                <span className="hidden sm:inline">Click</span>
+                <span className="sm:hidden">Tap</span> the background to return
+                home
+              </li>
             </ul>
+            <p className="mt-5 text-center text-sm text-gray-500">
+              <span className="hidden sm:inline">Click</span>
+              <span className="sm:hidden">Tap</span> anywhere to close
+            </p>
           </div>
         </section>
       )}
