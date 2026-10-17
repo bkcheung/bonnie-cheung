@@ -118,7 +118,7 @@ const CAMERA_FOV = 75;
 // Screen y (px) for the hint on first load: centred in the space between the
 // desk's front edge and the footer. If the desk reaches the footer (short,
 // wide screens) there is no such space, so the hint sits just above the footer.
-const getIdleHintTop = (width: number, height: number, footerPx: number) => {
+const getIntroHintTop = (width: number, height: number, footerPx: number) => {
   const portrait = isPortrait(width, height);
   const [, cameraY, cameraZ] = portrait
     ? getHomeView(true, { fov: CAMERA_FOV } as PerspectiveCamera, width, height)
@@ -133,7 +133,7 @@ const getIdleHintTop = (width: number, height: number, footerPx: number) => {
 };
 
 export {
-  getIdleHintTop,
+  getIntroHintTop,
   PORTRAIT_Y_OFFSET,
   getHomeView,
   getPortraitNavLayout,
