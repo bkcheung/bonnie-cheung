@@ -98,7 +98,7 @@ const PortraitNav = ({
   const buttonClass =
     'pointer-events-auto min-w-28 rounded-xl bg-white px-5 text-gray-700 shadow-xl hover:bg-gray-100';
   return (
-    <Html fullscreen pointerEvents="none">
+    <Html fullscreen className="pointer-events-none" pointerEvents="none">
       <div
         className="pointer-events-none absolute inset-x-0 mx-auto flex animate-fade-in-long justify-between"
         style={{ width: layout.width, top: layout.top }}
