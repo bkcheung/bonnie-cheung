@@ -109,7 +109,31 @@ const getPortraitNavLayout = (
   };
 };
 
+// World position of the desk's front-bottom edge, measured from the home view
+// at two viewport sizes
+const DESK_EDGE_Y = 2.93;
+const DESK_EDGE_Z = 36.2;
+const CAMERA_FOV = 75;
+
+// Screen y (px) for the hint on first load: centred in the space between the
+// desk's front edge and the footer. If the desk reaches the footer (short,
+// wide screens) there is no such space, so the hint sits just above the footer.
+const getIdleHintTop = (width: number, height: number, footerPx: number) => {
+  const portrait = isPortrait(width, height);
+  const [, cameraY, cameraZ] = portrait
+    ? getHomeView(true, { fov: CAMERA_FOV } as PerspectiveCamera, width, height)
+    : [0, HOME_VIEW[1] * 1.15, HOME_VIEW[2] * 1.15];
+  const tanHalfFov = Math.tan((CAMERA_FOV * Math.PI) / 360);
+  const f = height / (2 * tanHalfFov);
+  const deskEdge =
+    height / 2 - ((DESK_EDGE_Y - cameraY) * f) / (cameraZ - DESK_EDGE_Z);
+  const footerTop = height - footerPx;
+  if (footerTop - deskEdge < 80) return footerTop - 40;
+  return (deskEdge + footerTop) / 2;
+};
+
 export {
+  getIdleHintTop,
   PORTRAIT_Y_OFFSET,
   getHomeView,
   getPortraitNavLayout,

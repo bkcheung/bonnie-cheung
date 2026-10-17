@@ -3,9 +3,12 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
+import { getIdleHintTop } from '../layout3d';
+
 const IDLE_MS = 3000;
-// two pulses per hint; each pulse starts and ends dark, so swaps are seamless
-const CYCLE_MS = 6000;
+const FADE_MS = 1200;
+const HOLD_MS = 5000;
+const GAP_MS = 600;
 const ACTIVITY_EVENTS = [
   'pointerdown',
   'pointermove',
@@ -23,9 +26,28 @@ const IdleHint = ({ suppressed }: IdleHintProps) => {
   const [idle, setIdle] = useState(false);
   const [touch, setTouch] = useState(false);
   const [index, setIndex] = useState(0);
+  const [shown, setShown] = useState(false);
+  const [top, setTop] = useState<number | null>(null);
 
   useEffect(() => {
     setTouch(window.matchMedia('(pointer: coarse)').matches);
+  }, []);
+
+  // vertical position: centred between the desk and the footer
+  useEffect(() => {
+    const place = () => {
+      const footer = document.querySelector('footer');
+      setTop(
+        getIdleHintTop(
+          window.innerWidth,
+          window.innerHeight,
+          footer?.offsetHeight ?? 48
+        )
+      );
+    };
+    place();
+    window.addEventListener('resize', place);
+    return () => window.removeEventListener('resize', place);
   }, []);
 
   // idle once there has been no input for a while; any input hides the hint
@@ -50,16 +72,6 @@ const IdleHint = ({ suppressed }: IdleHintProps) => {
     };
   }, [suppressed]);
 
-  // step through the hints while visible
-  useEffect(() => {
-    if (!idle) {
-      setIndex(0);
-      return;
-    }
-    const timer = setInterval(() => setIndex((i) => i + 1), CYCLE_MS);
-    return () => clearInterval(timer);
-  }, [idle]);
-
   const hints = [
     {
       icon: '/360.png',
@@ -78,34 +90,59 @@ const IdleHint = ({ suppressed }: IdleHintProps) => {
         : 'Click About, Portfolio or Contact to explore',
     },
   ];
-  const hint = hints[index % hints.length];
+
+  // fade in, hold, fade out, then on to the next hint
+  useEffect(() => {
+    if (!idle) {
+      setShown(false);
+      setIndex(0);
+      return;
+    }
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    const run = (i: number) => {
+      setIndex(i % hints.length);
+      setShown(true);
+      timers.push(
+        setTimeout(() => {
+          setShown(false);
+          timers.push(setTimeout(() => run(i + 1), FADE_MS + GAP_MS));
+        }, FADE_MS + HOLD_MS)
+      );
+    };
+    run(0);
+    return () => timers.forEach(clearTimeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idle]);
+
+  if (top === null) return null;
 
   return (
     <div
-      aria-hidden={!idle}
-      className="pointer-events-none fixed inset-x-0 top-[56.667dvh] flex h-[33.333dvh] items-center justify-center px-4"
+      aria-hidden={!(idle && shown)}
+      className="pointer-events-none fixed inset-x-0 grid -translate-y-1/2 justify-items-center px-4"
+      style={{ top }}
     >
-      <div
-        className={`transition-opacity duration-700 ${
-          idle ? 'opacity-100' : 'opacity-0'
-        }`}
-      >
+      {hints.map((hint, i) => (
         <div
-          key={index}
-          className="flex animate-pulse-soft items-center text-sm font-medium tracking-wide text-white [text-shadow:0_1px_6px_rgba(0,0,0,0.6)] sm:text-base"
+          key={hint.text}
+          style={{ transitionDuration: `${FADE_MS}ms` }}
+          className={`col-start-1 row-start-1 flex items-center text-base font-medium tracking-wide text-white transition-opacity [text-shadow:0_1px_6px_rgba(0,0,0,0.6)] sm:text-lg ${
+            idle && shown && i === index ? 'opacity-100' : 'opacity-0'
+          }`}
         >
           {hint.icon && (
             <Image
               src={hint.icon}
               alt=""
-              width={26}
-              height={26}
+              width={30}
+              height={30}
+              priority
               className="mr-2 invert drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]"
             />
           )}
           {hint.text}
         </div>
-      </div>
+      ))}
     </div>
   );
 };
