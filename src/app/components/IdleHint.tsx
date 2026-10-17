@@ -137,7 +137,7 @@ const IdleHint = ({ suppressed }: IdleHintProps) => {
               width={30}
               height={30}
               priority
-              className="mr-2 invert drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]"
+              className="mr-2 h-[1.2em] w-[1.2em] invert drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]"
             />
           )}
           {hint.text}
